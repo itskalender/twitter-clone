@@ -1,0 +1,13 @@
+{
+  "name": "twitter-clone",
+  "version": "1.0.0",
+  "description": "Twitter clone project for improving my software developer skills",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kalender Toptas <toptaskalender@gmail.com>",
+  "license": "ISC"
+}

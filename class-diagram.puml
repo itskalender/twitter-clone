@@ -1,0 +1,58 @@
+@startuml Class Diagram for Twitter Clone
+
+class User <<Entity>> { 
+  + firstName     : String
+  + lastName      : String
+  + userName      : String
+  + email         : String
+  + password      : String
+  + followings    : [User]
+  + followers     : [User]
+  + tweets        : [Tweet]
+  + likedTweets   : [Tweet]
+  + retweets      : [Tweet]
+
+  + profilePage   : ProfilePage
+  + homePage      : HomePage
+
+  - createProfilePage() : ProfilePage
+  - createHomePage()    : HomePage
+  + tweet()
+  + deleteTweet()
+
+  + follow()
+  + unfollow()
+
+  + retweet()
+  + undoRetweet()
+
+  + like()
+  + undoLike()
+}
+
+class Tweet <<Entity>> {
+  + id            : Number  
+  + user          : User
+  + content       : String
+  + time          : Date
+
+  - generateId()  : Number
+}
+
+class ProfilPage <<Entity>> {
+  + user          : User
+  + tweets        : [Tweet]
+  + retweets      : [Tweet]
+}
+
+class HomePage <<Entity>> {
+  + user                  : User
+  + tweets              : [Tweet]
+  + retweets            : [Tweet]
+}
+
+User *-- Tweet
+User *-- ProfilPage
+User *-- HomePage
+
+@enduml
