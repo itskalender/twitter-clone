@@ -1,10 +1,10 @@
 class Tweet {
-  constructor(user, content, id) {
+  constructor(creator, content, id, createTime = new Date()) {
     // this.id       = this.#generateId();
-    this.id       = id;
-    this.user     = user;
-    this.content  = content;
-    this.time     = new Date();
+    this.id         = id;
+    this.creator    = creator;
+    this.content    = content;
+    this.createTime = createTime
   }
 
   #generateId() {

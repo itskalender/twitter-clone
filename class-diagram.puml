@@ -10,49 +10,44 @@ class User <<Entity>> {
   + followers     : [User]
   + tweets        : [Tweet]
   + likedTweets   : [Tweet]
-  + retweets      : [Tweet]
-
-  + profilePage   : ProfilePage
   + homePage      : HomePage
 
-  - createProfilePage() : ProfilePage
   - createHomePage()    : HomePage
   + tweet()
   + deleteTweet()
-
   + follow()
   + unfollow()
-
   + retweet()
   + undoRetweet()
-
   + like()
   + undoLike()
 }
 
 class Tweet <<Entity>> {
   + id            : Number  
-  + user          : User
+  + creator       : User
   + content       : String
-  + time          : Date
+  + createTime    : Date
 
   - generateId()  : Number
 }
 
-class ProfilPage <<Entity>> {
-  + user          : User
-  + tweets        : [Tweet]
-  + retweets      : [Tweet]
+class Retweet <<Entity>> {
+  + id            : Number
+  + creator       : User
+  + content       : String
+  + createTime    : Date
+  + shareTime     : Date
+
+  - generateId()  : Number
 }
 
 class HomePage <<Entity>> {
-  + user                  : User
-  + tweets              : [Tweet]
-  + retweets            : [Tweet]
+  + tweets        : [Tweet]
 }
 
 User *-- Tweet
-User *-- ProfilPage
 User *-- HomePage
+Tweet <|-- Retweet
 
 @enduml

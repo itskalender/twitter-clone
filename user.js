@@ -1,8 +1,8 @@
 const colors      = require('colors/safe');
 
-const ProfilePage = require('./profile-page');
 const HomePage    = require('./home-page');
 const Tweet       = require('./tweet');
+const Retweet     = require('./retweet')
 
 class User {
   #password;
@@ -17,14 +17,8 @@ class User {
     this.followers    = [];
     this.tweets       = [];
     this.likedTweets  = [];
-    this.retweets     = [];
 
-    this.profilePage  = this.#createProfilePage();
     this.homePage     = this.#createHomePage();
-  }
-
-  #createProfilePage() {
-    return new ProfilePage(this);
   }
 
   #createHomePage() {
@@ -35,19 +29,17 @@ class User {
     const tweet = new Tweet(this, content, id);
 
     this.tweets.push(tweet);
-    this.profilePage.tweets.push(tweet);
     this.homePage.tweets.push(tweet);
 
     console.log(`${colors.red(this.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
   }
 
   deleteTweet(id) {
-    const tweet                 = this.tweets.find(tweet => tweet.id === id);
-    const updatedTweets         = this.tweets.filter(tweet => tweet.id !== id );
-    const updatedHomePageTweets = this.homePage.tweets.filter(tweet => tweet.id !== id)
+    const tweet                   = this.tweets.find(tweet => tweet.id === id);
+    const updatedTweets           = this.tweets.filter(tweet => tweet.id !== id );
+    const updatedHomePageTweets   = this.homePage.tweets.filter(tweet => tweet.id !== id)
 
     this.tweets             = updatedTweets;
-    this.profilePage.tweets = updatedTweets;
     this.homePage.tweets    = updatedHomePageTweets;
 
     console.log(`${colors.red(this.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
@@ -57,51 +49,46 @@ class User {
     this.followings.push(user);
     user.followers.push(this);
     this.homePage.tweets.push(...user.tweets);
-    this.homePage.retweets.push(...user.retweets);
 
     console.log(`${colors.red(this.firstName)} followed ${colors.red(user.firstName)}.`);
   }
 
   unfollow(user) {
-    const updatedFollowings       = this.followings.filter(following => following.userName !== user.userName);
-    const updatedHomePageTweets   = this.homePage.tweets.filter(tweet => tweet.user.userName !== user.userName);
-    const updatedHomePageRetweets = this.homePage.retweets.filter(retweet => retweet.user.userName !== user.userName);
+    const updatedFollowings     = this.followings.filter(following => following.userName !== user.userName);
+    const updatedFollowers      = user.followers.filter(follower => follower.userName !== this.userName);
+    const updatedHomePageTweets = this.homePage.tweets.filter(tweet => tweet.creator.userName !== user.userName);
 
-    this.followings               = updatedFollowings;
-    this.homePage.tweets          = updatedHomePageTweets;
-    this.homePage.retweets        = updatedHomePageRetweets;
+    this.followings       = updatedFollowings;
+    user.followers        = updatedFollowers;
+    this.homePage.tweets  = updatedHomePageTweets;
 
     console.log(`${colors.red(this.firstName)} unfollowed ${colors.red(user.firstName)}.`);
   }
 
   retweet(id) {
-    const [tweet] = 
-      this.homePage.tweets.filter(tweet => tweet.id === id ) || 
-      this.homePage.retweets.filter(retweet => retweet.id === id );
+    const tweet     = this.homePage.tweets.find(tweet => tweet.id === id);
+    const newTweet  = new Retweet(tweet.creator, tweet.content, 9, tweet.createTime );
 
-    this.retweets.push(tweet);
-    this.profilePage.retweets.push(tweet);
-    this.homePage.retweets.push(tweet);
+    this.tweets.push(newTweet);
+    this.homePage.tweets.push(newTweet);
 
     console.log(`${colors.red(this.firstName)} retweeted "${colors.yellow(tweet.content)}".`);
   }
 
   undoRetweet(id) {
-    const retweets            = this.retweets;
-    const retweet             = retweets.find(retweet => retweet.id === id)
-    const updatedRetweets     = retweets.filter(retweet => retweet.id !== id );
+    const tweets                = this.tweets;
+    const tweet                 = tweets.find(tweet => tweet.id === id);
+    const updatedTweets         = tweets.filter(tweet => tweet.id !== id );
+    const updatedHomePageTweets = this.homePage.tweets.filter(tweet => tweet.id !== id);
     
-    this.retweets             = updatedRetweets; 
-    this.profilePage.retweets = updatedRetweets;
-    this.homePage.retweets    = updatedRetweets;
+    this.tweets             = updatedTweets; 
+    this.homePage.tweets    = updatedHomePageTweets;
 
-    console.log(`${colors.red(this.firstName)} did undo a retweet "${colors.yellow(retweet.content)}".`);
+    console.log(`${colors.red(this.firstName)} did undo a retweet "${colors.yellow(tweet.content)}".`);
   }
 
   like(id) {
-    const [tweet] = 
-      this.homePage.tweets.filter(tweet => tweet.id === id ) || 
-      this.homePage.retweets.filter(retweet => retweet.id === id );
+    const tweet = this.homePage.tweets.find(tweet => tweet.id === id );
 
     this.likedTweets.push(tweet);
 

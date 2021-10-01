@@ -1,4 +1,4 @@
-const User        = require('./user');
+const User      = require('./user');
 
 const kalender  = new User('Kalender', 'Toptas', 'toptaskalender', 'toptaskalender@gmail.com', '1111');
 const kahtali   = new User('Kahtali', 'Mice', 'micekahtali', 'micekahtali@gmail.com', '2222');
@@ -22,9 +22,8 @@ kalender.follow(latif);
 kalender.unfollow(latif);
 
 kalender.retweet(6);
-kalender.retweet(7);
 
-kalender.undoRetweet(6);
+kalender.undoRetweet(9);
 
 kalender.like(6);
 kalender.like(8);
