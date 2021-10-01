@@ -17,7 +17,7 @@ class User {
     this.likedTweets  = [];
     this.retweets     = [];
 
-    this.profilePage   = this.#createProfilePage();
+    this.profilePage  = this.#createProfilePage();
     this.homePage     = this.#createHomePage();
   }
 
