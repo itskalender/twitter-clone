@@ -1,3 +1,4 @@
+const db        = require('./database')
 const User      = require('./user');
 
 const kalender  = new User('Kalender', 'Toptas', 'toptaskalender', 'toptaskalender@gmail.com', '1111');
@@ -29,3 +30,5 @@ kalender.like(6);
 kalender.like(8);
 
 kalender.undoLike(8);
+
+db.save('users', [{name:'kalender', age:21}]);
