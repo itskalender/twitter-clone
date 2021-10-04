@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "watch": "nodemon",
+    "watch": "nodemon --ignore *.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kalender Toptas <toptaskalender@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "flatted": "^3.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"

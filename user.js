@@ -1,108 +1,151 @@
 const colors      = require('colors/safe');
 
-const HomePage    = require('./home-page');
+const Home        = require('./home');
 const Tweet       = require('./tweet');
-const Retweet     = require('./retweet')
-
+const Retweet     = require('./retweet');
+const db          = require('./database')
 class User {
   #password;
 
-  constructor(firstName, lastName, userName, email, password) {
+  constructor(firstName, lastName, username, email, password ,id) {
+    this.id           = id;
     this.firstName    = firstName;
     this.lastName     = lastName;
-    this.userName     = userName;
+    this.username     = username;
     this.email        = email;
     this.#password    = password;
-    this.followings   = [];
-    this.followers    = [];
     this.tweets       = [];
     this.likedTweets  = [];
+    this.followings   = [];
+    this.followers    = [];
 
-    this.homePage     = this.#createHomePage();
+    this.home         = this.#createHome();
   }
 
-  #createHomePage() {
-    return new HomePage(this);
+  #createHome() {
+    return new Home();
   }
 
   tweet(content, id) {
+    const users = db.load('users');
+    const user  = users.find(u => u.id === this.id);
+    
     const tweet = new Tweet(this, content, id);
 
-    this.tweets.push(tweet);
-    this.homePage.tweets.push(tweet);
+    user.tweets.push(tweet);
+    user.home.tweets.push(tweet);
 
-    console.log(`${colors.red(this.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
+    db.update('users', user);
+
+    console.log(`${colors.red(user.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
   }
 
   deleteTweet(id) {
-    const tweet                   = this.tweets.find(tweet => tweet.id === id);
-    const updatedTweets           = this.tweets.filter(tweet => tweet.id !== id );
-    const updatedHomePageTweets   = this.homePage.tweets.filter(tweet => tweet.id !== id)
+    const users             = db.load('users');
+    const user              = users.find(u => u.id === this.id);
 
-    this.tweets             = updatedTweets;
-    this.homePage.tweets    = updatedHomePageTweets;
+    const tweet             = user.tweets.find(t => t.id === id);
+    const updatedTweets     = user.tweets.filter(t => t.id !== id );
+    const updatedHomeTweets = user.home.tweets.filter(t => t.id !== id)
 
-    console.log(`${colors.red(this.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
+    user.tweets             = updatedTweets;
+    user.home.tweets        = updatedHomeTweets;
+
+    db.update('users', user);
+
+    console.log(`${colors.red(user.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
   }
 
-  follow(user) {
-    this.followings.push(user);
-    user.followers.push(this);
-    this.homePage.tweets.push(...user.tweets);
+  follow(id) {
+    const users     = db.load('users');
+    const follower  = users.find(u => u.id === this.id);
+    const following = users.find(u => u.id === id);
+    
+    follower.followings.push(following);
+    following.followers.push(follower);
+    follower.home.tweets.push(...following.tweets);
 
-    console.log(`${colors.red(this.firstName)} followed ${colors.red(user.firstName)}.`);
+    db.update('users', follower);
+    db.update('users', following); // you could refactor update for the functionality to take 2 or more object to be updated.
+
+    console.log(`${colors.red(follower.firstName)} followed ${colors.red(following.firstName)}.`);
   }
 
-  unfollow(user) {
-    const updatedFollowings     = this.followings.filter(following => following.userName !== user.userName);
-    const updatedFollowers      = user.followers.filter(follower => follower.userName !== this.userName);
-    const updatedHomePageTweets = this.homePage.tweets.filter(tweet => tweet.creator.userName !== user.userName);
+  unfollow(id) { // change the variable names, it feels like not a libükütüs language.
+    const users             = db.load('users');
+    const follower          = users.find(u => u.id === this.id);
+    const following         = users.find(u => u.id === id);
 
-    this.followings       = updatedFollowings;
-    user.followers        = updatedFollowers;
-    this.homePage.tweets  = updatedHomePageTweets;
+    const updatedFollowings = follower.followings.filter(f => f.id !== id);
+    const updatedFollowers  = following.followers.filter(f => f.id !== follower.id);
+    const updatedHomeTweets = follower.home.tweets.filter(t => t.creator.id !== following.id);
 
-    console.log(`${colors.red(this.firstName)} unfollowed ${colors.red(user.firstName)}.`);
+    follower.followings     = updatedFollowings;
+    following.followers     = updatedFollowers;
+    follower.home.tweets    = updatedHomeTweets;
+
+    db.update('users', follower);
+    db.update('users', following);
+
+    console.log(`${colors.red(follower.firstName)} unfollowed ${colors.red(following.firstName)}.`);
   }
 
   retweet(id) {
-    const tweet     = this.homePage.tweets.find(tweet => tweet.id === id);
+    const users     = db.load('users');
+    const user      = users.find(u => u.id === this.id);
+    const tweet     = users.flatMap(u => u.tweets).find(t => t.id === id);
     const newTweet  = new Retweet(tweet.creator, tweet.content, 9, tweet.createTime );
 
-    this.tweets.push(newTweet);
-    this.homePage.tweets.push(newTweet);
+    user.tweets.push(newTweet);
+    user.home.tweets.push(newTweet);
 
-    console.log(`${colors.red(this.firstName)} retweeted "${colors.yellow(tweet.content)}".`);
+    db.update('users', user);
+
+    console.log(`${colors.red(user.firstName)} retweeted "${colors.yellow(tweet.content)}".`);
   }
 
   undoRetweet(id) {
-    const tweets                = this.tweets;
-    const tweet                 = tweets.find(tweet => tweet.id === id);
-    const updatedTweets         = tweets.filter(tweet => tweet.id !== id );
-    const updatedHomePageTweets = this.homePage.tweets.filter(tweet => tweet.id !== id);
-    
-    this.tweets             = updatedTweets; 
-    this.homePage.tweets    = updatedHomePageTweets;
+    const users = db.load('users');
+    const user  = users.find(u => u.id === this.id);
+    const tweet = users.flatMap(u => u.tweets).find(t => t.id === id);
+    if (!tweet) {
+      console.log(`${colors.bgWhite.red('WARNING')} - There is no tweet with the id of ${colors.red(id)}`);
+      return;     
+    }
+    const updatedTweets     = user.tweets.filter(t => t.id !== id );
+    const updatedHomeTweets = user.home.tweets.filter(t => t.id !== id);
 
-    console.log(`${colors.red(this.firstName)} did undo a retweet "${colors.yellow(tweet.content)}".`);
+    user.tweets             = updatedTweets; 
+    user.home.tweets        = updatedHomeTweets;
+
+    db.update('users', user);
+
+    console.log(`${colors.red(user.firstName)} did undo a retweet "${colors.yellow(tweet.content)}".`);
   }
 
   like(id) {
-    const tweet = this.homePage.tweets.find(tweet => tweet.id === id );
+    const users = db.load('users'); // getUsers f();
+    const user  = users.find(u => u.id === this.id);
+    const tweet = users.flatMap(u => u.tweets).find(t => t.id === id);
 
-    this.likedTweets.push(tweet);
+    user.likedTweets.push(tweet);
 
-    console.log(`${colors.red(this.firstName)} liked "${colors.yellow(tweet.content)}".`);
+    db.update('users', user);
+
+    console.log(`${colors.red(user.firstName)} liked "${colors.yellow(tweet.content)}".`);
   }
 
   undoLike(id) {
-    const tweets        = this.likedTweets;
-    const tweet         = tweets.find(tweet => tweet.id === id);
-    const updatedTweets = tweets.filter(tweet => tweet.id !== id);
+    const users         = db.load('users'); // getUsers f();
+    const user          = users.find(u => u.id === this.id);
+    const tweet         = user.likedTweets.find(t => t.id === id);
+    const updatedTweets = user.likedTweets.filter(t => t.id !== id);
 
-    this.likedTweets    = updatedTweets;
+    user.likedTweets    = updatedTweets;
 
-    console.log(`${colors.red(this.firstName)} did undo a liked tweet "${colors.yellow(tweet.content)}".`);
+    db.update('users', user);
+
+    console.log(`${colors.red(user.firstName)} did undo like a tweet "${colors.yellow(tweet.content)}".`);
   }
 }
 
