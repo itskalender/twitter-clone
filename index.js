@@ -2,7 +2,7 @@ const colors  = require('colors');
 const db      = require('./database');
 const User    = require('./user');
 
-const kalender  = new User(
+const kalender = new User(
   'Kalender',
   'Toptas',
   'toptaskalender',
@@ -23,7 +23,7 @@ const latif = new User(
   'Dogan',
   'doganlatif',
   'doganlatif@gmail.com',
-  '4444',
+  '3333',
   'user3'
 );
 
@@ -39,34 +39,47 @@ const latif = new User(
 // kahtali.tweet('What a wonderful day!', 7);
 // kahtali.tweet('My tweets are exciting, not like Kalender\'s!', 8);
 
-kalender.deleteTweet(5);
+// kalender.deleteTweet(5);
 
-kalender.follow('user2'); // to point unique user, I hardcoded these ids
-kalender.follow('user3');
+// kalender.follow('user2'); // to point unique user, I hardcoded these ids
+// kalender.follow('user3');
 
-kalender.unfollow('user3');
+// kalender.unfollow('user3');
 
 // kalender.retweet(6);
 
-kalender.undoRetweet(9);
+// kalender.undoRetweet(9);
 
-kalender.like(6);
+// kalender.like(6);
 // kalender.like(8);
 
-kalender.undoLike(8);
+// kalender.undoLike(8);
 
-// @@@@@@@@@@@@@@@@@@@@@@@@@@
+// const ibrahim = new User(
+//   'İbrahim',
+//   'Tatlıses',
+//   'tatlisesibrahim',
+//   'tatlisesibrahim@gmail.com',
+//   '4444',
+//   'user4'
+// );
 
-// const ibrahim = new User('İbrahim', 'Tatlıses', 'tatlisesibrahim', 'tatlisesibrahim@gmail.com', 4444, 'user4');
+// db.insert('users', ibrahim);
+// db.remove('users', ibrahim)
+
 // ibrahim.tweet('Do you wanna learn how to halay? Then check my profile!');
-// const hakki   = new User('Hakkı', 'Bulut', 'buluthakki', 'buluthakki@gmail.com', 5555, 'user5');
+
 
 // db.insert('users', ibrahim);
 // db.remove('users', 'tatlisesibrahim');
 
 
-const users = db.load('users');
-// console.log(users);
+// const users   = db.load('users');
+// const ibrahim = users.find(u => u.id === 'user4');
+
+// console.log(ibrahim);
+
+// ibrahim.tweet('A tweet from Ibrahim whose data has been fetched from a database.', 20);
 
 // function showTweets(users) {
 //   users.forEach(u => u.tweets.forEach(t => console.log(colors.yellow(t.content))));

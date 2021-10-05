@@ -23,12 +23,26 @@ const update = (filename, objects) => {
 
 const insert = (filename, object) => {
   const users = load(filename);
+
+  const hasSameUser = users.find(u => u.id === object.id);
+
+  if (hasSameUser) {
+    return;
+  }
+
   save(filename, users.concat(object))
 };
 
-const remove = (filename, username) => {
+const remove = (filename, object) => {
   const users         = load(filename);
-  const updatedUsers  = users.filter(u => u.username !== username); 
+  const hasSameUser   = users.find(u => u.id === object.id);
+
+  if (!hasSameUser) {
+    return;
+  }
+
+  const updatedUsers  = users.filter(u => u.id !== object.id);
+
   save(filename, updatedUsers);
 };
 

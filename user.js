@@ -1,9 +1,9 @@
-const colors      = require('colors/safe');
+const colors  = require('colors/safe');
 
-const Home        = require('./home');
-const Tweet       = require('./tweet');
-const Retweet     = require('./retweet');
-const db          = require('./database')
+const Home    = require('./home');
+const Tweet   = require('./tweet');
+const Retweet = require('./retweet');
+const db      = require('./database')
 class User {
   #password;
 
@@ -62,11 +62,12 @@ class User {
   }
 
   follow(id) {
-    const users     = db.load('users');
-    const follower  = users.find(u => u.id === this.id);
-    const following = users.find(u => u.id === id);
+    const users         = db.load('users');
+    const follower      = users.find(u => u.id === this.id);
+    const following     = users.find(u => u.id === id);
+    const hasFollowing  = follower.followings.some(u => u.id === id);
 
-    if (follower.followings.some(u => u.id === id)) {
+    if (hasFollowing) {
       console.log(`You've already followed ${following.firstName}.`);
       return;
     }
@@ -81,11 +82,12 @@ class User {
   }
 
   unfollow(id) {
-    const users     = db.load('users');
-    const follower  = users.find(u => u.id === this.id);
-    const following = users.find(u => u.id === id);
+    const users         = db.load('users');
+    const follower      = users.find(u => u.id === this.id);
+    const following     = users.find(u => u.id === id);
+    const hasFollowing  = follower.followings.find(u => u.id !== id);
 
-    if (follower.followings.find(u => u.id !== id)) {
+    if (!hasFollowing) {
       console.log(`You've already unfollowed ${following.firstName}.`);
       return;
     }
@@ -108,8 +110,9 @@ class User {
     const user      = users.find(u => u.id === this.id);
     const tweet     = users.flatMap(u => u.tweets).find(t => t.id === id);
     const newTweet  = new Retweet(tweet.creator, tweet.content, 9, tweet.createTime );
+    const hasTweet  = user.tweets.find(t => t.id === 9);
 
-    if (user.tweets.find(t => t.id === 9)) {
+    if (hasTweet) {
       console.log(`You've already retweeted this tweet.`);
       return;
     } // I've hardcoded because I need to know the id of the tweet that will be retweeted.
@@ -144,11 +147,12 @@ class User {
   }
 
   like(id) {
-    const users = db.load('users'); // getUsers f();
-    const user  = users.find(u => u.id === this.id);
-    const tweet = users.flatMap(u => u.tweets).find(t => t.id === id);
+    const users     = db.load('users'); // getUsers f();
+    const user      = users.find(u => u.id === this.id);
+    const tweet     = users.flatMap(u => u.tweets).find(t => t.id === id);
+    const hasTweet  = user.likedTweets.find(t => t.id === id);
 
-    if (user.likedTweets.find(t => t.id === id)) {
+    if (hasTweet) {
       console.log(`You've already liked this tweet.`);
       return;
     }
