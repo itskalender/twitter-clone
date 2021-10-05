@@ -39,354 +39,170 @@
   "34",
   "35",
   "36",
-  "37"
-],[
+  "37",
   "38"
-],[
-  "39"
-],[],{
-  "tweets": "40"
+],[],[],[],{
+  "tweets": "39"
 },"user2","Kahtali","Mice","micekahtali","micekahtali@gmail.com",[
+  "40",
   "41",
-  "42",
-  "43"
-],[],[],[
-  "44"
-],{
-  "tweets": "45"
+  "42"
+],[],[],[],{
+  "tweets": "43"
 },"user3","Latif","Dogan","doganlatif","doganlatif@gmail.com",[],[],[],[],{
-  "tweets": "46"
+  "tweets": "44"
 },{
   "id": 1,
-  "creator": "47",
-  "content": "48",
-  "createTime": "49"
+  "creator": "45",
+  "content": "46",
+  "createTime": "47"
 },{
   "id": 2,
-  "creator": "50",
-  "content": "51",
-  "createTime": "52"
+  "creator": "48",
+  "content": "49",
+  "createTime": "50"
 },{
   "id": 3,
-  "creator": "53",
-  "content": "54",
-  "createTime": "55"
+  "creator": "51",
+  "content": "52",
+  "createTime": "53"
 },{
   "id": 4,
-  "creator": "56",
-  "content": "57",
-  "createTime": "58"
+  "creator": "54",
+  "content": "55",
+  "createTime": "56"
 },{
-  "id": 6,
-  "creator": "59",
-  "content": "60",
-  "createTime": "61"
-},{
-  "id": "14",
-  "firstName": "15",
-  "lastName": "16",
-  "username": "17",
-  "email": "18",
-  "tweets": "62",
-  "likedTweets": "63",
-  "followings": "64",
-  "followers": "65",
-  "home": "66"
+  "id": 5,
+  "creator": "57",
+  "content": "58",
+  "createTime": "59"
 },[
   "34",
   "35",
   "36",
   "37",
-  "67",
-  "68",
-  "69"
+  "38"
 ],{
   "id": 6,
-  "creator": "70",
-  "content": "60",
-  "createTime": "61"
+  "creator": "60",
+  "content": "61",
+  "createTime": "62"
 },{
   "id": 7,
-  "creator": "71",
-  "content": "72",
-  "createTime": "73"
+  "creator": "63",
+  "content": "64",
+  "createTime": "65"
 },{
   "id": 8,
-  "creator": "74",
-  "content": "75",
-  "createTime": "76"
-},{
-  "id": "4",
-  "firstName": "5",
-  "lastName": "6",
-  "username": "7",
-  "email": "8",
-  "tweets": "77",
-  "likedTweets": "78",
-  "followings": "79",
-  "followers": "80",
-  "home": "81"
+  "creator": "66",
+  "content": "67",
+  "createTime": "68"
 },[
+  "40",
   "41",
-  "42",
-  "43"
+  "42"
 ],[],{
   "id": "4",
   "firstName": "5",
   "lastName": "6",
   "username": "7",
   "email": "8",
-  "tweets": "82",
-  "likedTweets": "83",
-  "followings": "84",
-  "followers": "85",
-  "home": "86"
-},"Hi, this is my very first tweet!","2021-10-04T19:45:12.422Z",{
+  "tweets": "69",
+  "likedTweets": "70",
+  "followings": "71",
+  "followers": "72",
+  "home": "73"
+},"Hi, this is my very first tweet!","2021-10-05T15:31:25.769Z",{
   "id": "4",
   "firstName": "5",
   "lastName": "6",
   "username": "7",
   "email": "8",
-  "tweets": "87",
-  "likedTweets": "88",
-  "followings": "89",
-  "followers": "90",
-  "home": "91"
-},"Hi, this is my second tweet!","2021-10-04T19:45:12.428Z",{
+  "tweets": "74",
+  "likedTweets": "75",
+  "followings": "76",
+  "followers": "77",
+  "home": "78"
+},"Hi, this is my second tweet!","2021-10-05T15:31:25.777Z",{
   "id": "4",
   "firstName": "5",
   "lastName": "6",
   "username": "7",
   "email": "8",
-  "tweets": "92",
-  "likedTweets": "93",
-  "followings": "94",
-  "followers": "95",
-  "home": "96"
-},"Hi, this is my third tweet!","2021-10-04T19:45:12.433Z",{
+  "tweets": "79",
+  "likedTweets": "80",
+  "followings": "81",
+  "followers": "82",
+  "home": "83"
+},"Hi, this is my third tweet!","2021-10-05T15:31:25.784Z",{
   "id": "4",
   "firstName": "5",
   "lastName": "6",
   "username": "7",
   "email": "8",
-  "tweets": "97",
-  "likedTweets": "98",
-  "followings": "99",
-  "followers": "100",
-  "home": "101"
-},"Hi, this is my fourth tweet!","2021-10-04T19:45:12.440Z",{
-  "id": "14",
-  "firstName": "15",
-  "lastName": "16",
-  "username": "17",
-  "email": "18",
-  "tweets": "102",
-  "likedTweets": "103",
-  "followings": "104",
-  "followers": "105",
-  "home": "106"
-},"Hello, I'm Kahtali!","2021-10-04T19:45:12.449Z",[
-  "67",
-  "68",
-  "69"
-],[],[],[
-  "1"
-],{
-  "tweets": "107"
-},{
-  "id": 6,
-  "creator": "108",
-  "content": "60",
-  "createTime": "61"
-},{
-  "id": 7,
-  "creator": "109",
-  "content": "72",
-  "createTime": "73"
-},{
-  "id": 8,
-  "creator": "110",
-  "content": "75",
-  "createTime": "76"
-},{
-  "id": "14",
-  "firstName": "15",
-  "lastName": "16",
-  "username": "17",
-  "email": "18",
-  "tweets": "111",
-  "likedTweets": "112",
-  "followings": "113",
-  "followers": "114",
-  "home": "115"
-},{
-  "id": "14",
-  "firstName": "15",
-  "lastName": "16",
-  "username": "17",
-  "email": "18",
-  "tweets": "116",
-  "likedTweets": "117",
-  "followings": "118",
-  "followers": "119",
-  "home": "120"
-},"What a wonderful day!","2021-10-04T19:45:12.454Z",{
-  "id": "14",
-  "firstName": "15",
-  "lastName": "16",
-  "username": "17",
-  "email": "18",
-  "tweets": "121",
-  "likedTweets": "122",
-  "followings": "123",
-  "followers": "124",
-  "home": "125"
-},"My tweets are exciting, not like Kalender's!","2021-10-04T19:45:12.460Z",[
-  "126",
-  "127",
-  "128",
-  "129"
-],[],[
-  "2"
-],[],{
-  "tweets": "130"
-},[],[],[],[],{
-  "tweets": "131"
-},[],[],[],[],{
-  "tweets": "132"
-},[],[],[],[],{
-  "tweets": "133"
-},[],[],[],[],{
-  "tweets": "134"
-},[],[],[],[],{
-  "tweets": "135"
-},[
-  "67",
-  "68",
-  "69"
-],{
-  "id": "14",
-  "firstName": "15",
-  "lastName": "16",
-  "username": "17",
-  "email": "18",
-  "tweets": "136",
-  "likedTweets": "137",
-  "followings": "138",
-  "followers": "139",
-  "home": "140"
-},{
-  "id": "14",
-  "firstName": "15",
-  "lastName": "16",
-  "username": "17",
-  "email": "18",
-  "tweets": "141",
-  "likedTweets": "142",
-  "followings": "143",
-  "followers": "144",
-  "home": "145"
-},{
-  "id": "14",
-  "firstName": "15",
-  "lastName": "16",
-  "username": "17",
-  "email": "18",
-  "tweets": "146",
-  "likedTweets": "147",
-  "followings": "148",
-  "followers": "149",
-  "home": "150"
-},[],[],[],[],{
-  "tweets": "151"
-},[],[],[],[],{
-  "tweets": "152"
-},[],[],[],[],{
-  "tweets": "153"
-},{
-  "id": 1,
-  "creator": "154",
-  "content": "48",
-  "createTime": "49"
-},{
-  "id": 2,
-  "creator": "155",
-  "content": "51",
-  "createTime": "52"
-},{
-  "id": 3,
-  "creator": "156",
-  "content": "54",
-  "createTime": "55"
-},{
-  "id": 4,
-  "creator": "157",
-  "content": "57",
-  "createTime": "58"
-},[
-  "126",
-  "127",
-  "128",
-  "129",
-  "41",
-  "42",
-  "43"
-],[],[],[],[],[],[],[],[],[],{
-  "tweets": "158"
-},[],[],[],[],{
-  "tweets": "159"
-},[],[],[],[],{
-  "tweets": "160"
-},[],[],[],{
+  "tweets": "84",
+  "likedTweets": "85",
+  "followings": "86",
+  "followers": "87",
+  "home": "88"
+},"Hi, this is my fourth tweet!","2021-10-05T15:31:25.788Z",{
   "id": "4",
   "firstName": "5",
   "lastName": "6",
   "username": "7",
   "email": "8",
-  "tweets": "161",
-  "likedTweets": "162",
-  "followings": "163",
-  "followers": "164",
-  "home": "165"
-},{
-  "id": "4",
-  "firstName": "5",
-  "lastName": "6",
-  "username": "7",
-  "email": "8",
-  "tweets": "166",
-  "likedTweets": "167",
-  "followings": "168",
-  "followers": "169",
-  "home": "170"
-},{
-  "id": "4",
-  "firstName": "5",
-  "lastName": "6",
-  "username": "7",
-  "email": "8",
-  "tweets": "171",
-  "likedTweets": "172",
-  "followings": "173",
-  "followers": "174",
-  "home": "175"
-},{
-  "id": "4",
-  "firstName": "5",
-  "lastName": "6",
-  "username": "7",
-  "email": "8",
-  "tweets": "176",
-  "likedTweets": "177",
-  "followings": "178",
-  "followers": "179",
-  "home": "180"
-},[],[],[],[],[],[],[],{
-  "tweets": "181"
+  "tweets": "89",
+  "likedTweets": "90",
+  "followings": "91",
+  "followers": "92",
+  "home": "93"
+},"Hi, this is my fifth tweet!","2021-10-05T15:31:25.791Z",{
+  "id": "14",
+  "firstName": "15",
+  "lastName": "16",
+  "username": "17",
+  "email": "18",
+  "tweets": "94",
+  "likedTweets": "95",
+  "followings": "96",
+  "followers": "97",
+  "home": "98"
+},"Hello, I'm Kahtali!","2021-10-05T15:31:25.801Z",{
+  "id": "14",
+  "firstName": "15",
+  "lastName": "16",
+  "username": "17",
+  "email": "18",
+  "tweets": "99",
+  "likedTweets": "100",
+  "followings": "101",
+  "followers": "102",
+  "home": "103"
+},"What a wonderful day!","2021-10-05T15:31:25.804Z",{
+  "id": "14",
+  "firstName": "15",
+  "lastName": "16",
+  "username": "17",
+  "email": "18",
+  "tweets": "104",
+  "likedTweets": "105",
+  "followings": "106",
+  "followers": "107",
+  "home": "108"
+},"My tweets are exciting, not like Kalender's!","2021-10-05T15:31:25.807Z",[],[],[],[],{
+  "tweets": "109"
 },[],[],[],[],{
-  "tweets": "182"
+  "tweets": "110"
 },[],[],[],[],{
-  "tweets": "183"
+  "tweets": "111"
 },[],[],[],[],{
-  "tweets": "184"
-},[],[],[],[]]
+  "tweets": "112"
+},[],[],[],[],{
+  "tweets": "113"
+},[],[],[],[],{
+  "tweets": "114"
+},[],[],[],[],{
+  "tweets": "115"
+},[],[],[],[],{
+  "tweets": "116"
+},[],[],[],[],[],[],[],[]]

@@ -35,7 +35,7 @@ class User {
     user.tweets.push(tweet);
     user.home.tweets.push(tweet);
 
-    db.update('users', user);
+    db.update('users', [user]);
 
     console.log(`${colors.red(user.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
   }
@@ -45,13 +45,17 @@ class User {
     const user              = users.find(u => u.id === this.id);
 
     const tweet             = user.tweets.find(t => t.id === id);
+    if (!tweet) {
+      console.log(`The tweet has been already deleted.`);
+      return;
+    }
     const updatedTweets     = user.tweets.filter(t => t.id !== id );
     const updatedHomeTweets = user.home.tweets.filter(t => t.id !== id)
 
     user.tweets             = updatedTweets;
     user.home.tweets        = updatedHomeTweets;
 
-    db.update('users', user);
+    db.update('users', [user]);
 
     console.log(`${colors.red(user.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
   }
@@ -65,8 +69,7 @@ class User {
     following.followers.push(follower);
     follower.home.tweets.push(...following.tweets);
 
-    db.update('users', follower);
-    db.update('users', following); // you could refactor update for the functionality to take 2 or more object to be updated.
+    db.update('users', [follower, following]);
 
     console.log(`${colors.red(follower.firstName)} followed ${colors.red(following.firstName)}.`);
   }
@@ -84,8 +87,7 @@ class User {
     following.followers     = updatedFollowers;
     follower.home.tweets    = updatedHomeTweets;
 
-    db.update('users', follower);
-    db.update('users', following);
+    db.update('users', [follower, following]);
 
     console.log(`${colors.red(follower.firstName)} unfollowed ${colors.red(following.firstName)}.`);
   }
@@ -99,7 +101,7 @@ class User {
     user.tweets.push(newTweet);
     user.home.tweets.push(newTweet);
 
-    db.update('users', user);
+    db.update('users', [user]);
 
     console.log(`${colors.red(user.firstName)} retweeted "${colors.yellow(tweet.content)}".`);
   }
@@ -118,7 +120,7 @@ class User {
     user.tweets             = updatedTweets; 
     user.home.tweets        = updatedHomeTweets;
 
-    db.update('users', user);
+    db.update('users', [user]);
 
     console.log(`${colors.red(user.firstName)} did undo a retweet "${colors.yellow(tweet.content)}".`);
   }
@@ -130,7 +132,7 @@ class User {
 
     user.likedTweets.push(tweet);
 
-    db.update('users', user);
+    db.update('users', [user]);
 
     console.log(`${colors.red(user.firstName)} liked "${colors.yellow(tweet.content)}".`);
   }
@@ -143,7 +145,7 @@ class User {
 
     user.likedTweets    = updatedTweets;
 
-    db.update('users', user);
+    db.update('users', [user]);
 
     console.log(`${colors.red(user.firstName)} did undo like a tweet "${colors.yellow(tweet.content)}".`);
   }

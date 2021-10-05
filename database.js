@@ -10,11 +10,14 @@ const load = filename => {
   return parse(file);
 }
 
-const update = (filename, object) => {
-  const users     = load(filename);
-  const userIndex = users.findIndex(u => u.id === object.id);
+const update = (filename, objects) => {
+  const users = load(filename);
 
-  users.splice(userIndex, 1, object);
+  objects.forEach(o => {
+    const userIndex = users.findIndex(u => u.id === o.id);
+    return users.splice(userIndex, 1, o);
+  })
+
   save(filename, users);
 }
 
