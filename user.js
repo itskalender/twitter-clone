@@ -109,6 +109,11 @@ class User {
     const tweet     = users.flatMap(u => u.tweets).find(t => t.id === id);
     const newTweet  = new Retweet(tweet.creator, tweet.content, 9, tweet.createTime );
 
+    if (user.tweets.find(t => t.id === 9)) {
+      console.log(`You've already retweeted this tweet.`);
+      return;
+    } // I've hardcoded because I need to know the id of the tweet that will be retweeted.
+
     user.tweets.push(newTweet);
     user.home.tweets.push(newTweet);
 
@@ -121,25 +126,32 @@ class User {
     const users = db.load('users');
     const user  = users.find(u => u.id === this.id);
     const tweet = users.flatMap(u => u.tweets).find(t => t.id === id);
+
     if (!tweet) {
-      console.log(`${colors.bgWhite.red('WARNING')} - There is no tweet with the id of ${colors.red(id)}`);
+      console.log(`You've already deleted this retweet.`);
       return;     
     }
+
     const updatedTweets     = user.tweets.filter(t => t.id !== id );
     const updatedHomeTweets = user.home.tweets.filter(t => t.id !== id);
 
-    user.tweets             = updatedTweets; 
-    user.home.tweets        = updatedHomeTweets;
+    user.tweets       = updatedTweets; 
+    user.home.tweets  = updatedHomeTweets;
 
     db.update('users', [user]);
 
-    console.log(`${colors.red(user.firstName)} did undo a retweet "${colors.yellow(tweet.content)}".`);
+    console.log(`${colors.red(user.firstName)} deleted a retweet "${colors.yellow(tweet.content)}".`);
   }
 
   like(id) {
     const users = db.load('users'); // getUsers f();
     const user  = users.find(u => u.id === this.id);
     const tweet = users.flatMap(u => u.tweets).find(t => t.id === id);
+
+    if (user.likedTweets.find(t => t.id === id)) {
+      console.log(`You've already liked this tweet.`);
+      return;
+    }
 
     user.likedTweets.push(tweet);
 
@@ -152,8 +164,13 @@ class User {
     const users         = db.load('users'); // getUsers f();
     const user          = users.find(u => u.id === this.id);
     const tweet         = user.likedTweets.find(t => t.id === id);
-    const updatedTweets = user.likedTweets.filter(t => t.id !== id);
 
+    if (!tweet) {
+      console.log(`You've already deleted this liked tweet.`);
+      return;
+    }
+
+    const updatedTweets = user.likedTweets.filter(t => t.id !== id);
     user.likedTweets    = updatedTweets;
 
     db.update('users', [user]);

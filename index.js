@@ -48,12 +48,12 @@ kalender.unfollow('user3');
 
 // kalender.retweet(6);
 
-// kalender.undoRetweet(9);
+kalender.undoRetweet(9);
 
-// kalender.like(6);
+kalender.like(6);
 // kalender.like(8);
 
-// kalender.undoLike(8);
+kalender.undoLike(8);
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@
 
