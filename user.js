@@ -41,19 +41,20 @@ class User {
   }
 
   deleteTweet(id) {
-    const users             = db.load('users');
-    const user              = users.find(u => u.id === this.id);
+    const users = db.load('users');
+    const user  = users.find(u => u.id === this.id);
+    const tweet = user.tweets.find(t => t.id === id);
 
-    const tweet             = user.tweets.find(t => t.id === id);
     if (!tweet) {
-      console.log(`The tweet has been already deleted.`);
+      console.log(`This tweet has been already deleted.`);
       return;
     }
+
     const updatedTweets     = user.tweets.filter(t => t.id !== id );
     const updatedHomeTweets = user.home.tweets.filter(t => t.id !== id)
 
-    user.tweets             = updatedTweets;
-    user.home.tweets        = updatedHomeTweets;
+    user.tweets       = updatedTweets;
+    user.home.tweets  = updatedHomeTweets;
 
     db.update('users', [user]);
 
@@ -64,7 +65,12 @@ class User {
     const users     = db.load('users');
     const follower  = users.find(u => u.id === this.id);
     const following = users.find(u => u.id === id);
-    
+
+    if (follower.followings.some(u => u.id === id)) {
+      console.log(`You've already followed ${following.firstName}.`);
+      return;
+    }
+
     follower.followings.push(following);
     following.followers.push(follower);
     follower.home.tweets.push(...following.tweets);
@@ -74,18 +80,23 @@ class User {
     console.log(`${colors.red(follower.firstName)} followed ${colors.red(following.firstName)}.`);
   }
 
-  unfollow(id) { // change the variable names, it feels like not a libükütüs language.
-    const users             = db.load('users');
-    const follower          = users.find(u => u.id === this.id);
-    const following         = users.find(u => u.id === id);
+  unfollow(id) {
+    const users     = db.load('users');
+    const follower  = users.find(u => u.id === this.id);
+    const following = users.find(u => u.id === id);
+
+    if (follower.followings.find(u => u.id !== id)) {
+      console.log(`You've already unfollowed ${following.firstName}.`);
+      return;
+    }
 
     const updatedFollowings = follower.followings.filter(f => f.id !== id);
     const updatedFollowers  = following.followers.filter(f => f.id !== follower.id);
     const updatedHomeTweets = follower.home.tweets.filter(t => t.creator.id !== following.id);
 
-    follower.followings     = updatedFollowings;
-    following.followers     = updatedFollowers;
-    follower.home.tweets    = updatedHomeTweets;
+    follower.followings   = updatedFollowings;
+    following.followers   = updatedFollowers;
+    follower.home.tweets  = updatedHomeTweets;
 
     db.update('users', [follower, following]);
 
