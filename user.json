@@ -1,0 +1,47 @@
+[[
+  "1",
+  "2",
+  "3"
+],{
+  "id": "4",
+  "firstName": "5",
+  "lastName": "6",
+  "username": "7",
+  "email": "8",
+  "password": "9",
+  "tweets": "10",
+  "likedTweets": "11",
+  "followings": "12",
+  "followers": "13",
+  "home": "14"
+},{
+  "id": "15",
+  "firstName": "16",
+  "lastName": "17",
+  "username": "18",
+  "email": "19",
+  "password": "20",
+  "tweets": "21",
+  "likedTweets": "22",
+  "followings": "23",
+  "followers": "24",
+  "home": "25"
+},{
+  "id": "26",
+  "firstName": "27",
+  "lastName": "28",
+  "username": "29",
+  "email": "30",
+  "password": "31",
+  "tweets": "32",
+  "likedTweets": "33",
+  "followings": "34",
+  "followers": "35",
+  "home": "36"
+},"user1","Kalender","Toptas","toptaskalender","toptaskalender@gmail.com","1111",[],[],[],[],{
+  "tweets": "37"
+},"user2","Kahtali","Mice","micekahtali","micekahtali@gmail.com","2222",[],[],[],[],{
+  "tweets": "38"
+},"user3","Latif","Dogan","doganlatif","doganlatif@gmail.com","3333",[],[],[],[],{
+  "tweets": "39"
+},[],[],[]]

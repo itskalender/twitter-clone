@@ -1,6 +1,6 @@
-const colors  = require('colors');
-const db      = require('./database');
-const User    = require('./user');
+const colors        = require('colors');
+const User          = require('./user');
+const userDatabase  = require('./user-database');
 
 const kalender = new User(
   'Kalender',
@@ -27,62 +27,69 @@ const latif = new User(
   'user3'
 );
 
-// db.save('users', [kalender, kahtali, latif]);
+userDatabase.save([kalender, kahtali, latif]);
 
-// kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
-// kalender.tweet('Hi, this is my second tweet!', 2);
-// kalender.tweet('Hi, this is my third tweet!', 3);
-// kalender.tweet('Hi, this is my fourth tweet!', 4);
-// kalender.tweet('Hi, this is my fifth tweet!', 5);
+kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
+kalender.tweet('Hi, this is my second tweet!', 2);
+kalender.tweet('Hi, this is my third tweet!', 3);
+kalender.tweet('Hi, this is my fourth tweet!', 4);
+kalender.tweet('Hi, this is my fifth tweet!', 5);
 
-// kahtali.tweet('Hello, I\'m Kahtali!', 6);
-// kahtali.tweet('What a wonderful day!', 7);
-// kahtali.tweet('My tweets are exciting, not like Kalender\'s!', 8);
+kahtali.tweet('Hello, I\'m Kahtali!', 6);
+kahtali.tweet('What a wonderful day!', 7);
+kahtali.tweet('My tweets are exciting, not like Kalender\'s!', 8);
 
-// kalender.deleteTweet(5);
+kalender.deleteTweet(5);
 
-// kalender.follow('user2'); // to point unique user, I hardcoded these ids
-// kalender.follow('user3');
+kalender.follow(kahtali);
+kalender.follow(latif);
 
-// kalender.unfollow('user3');
+kalender.unfollow(latif);
 
-// kalender.retweet(6);
+kalender.retweet(6);
 
-// kalender.undoRetweet(9);
+kalender.undoRetweet(9);
 
-// kalender.like(6);
-// kalender.like(8);
+kalender.like(6);
+kalender.like(8);
 
-// kalender.undoLike(8);
+kalender.undoLike(8);
 
-// const ibrahim = new User(
-//   'İbrahim',
-//   'Tatlıses',
-//   'tatlisesibrahim',
-//   'tatlisesibrahim@gmail.com',
-//   '4444',
-//   'user4'
-// );
+const ibrahim = new User(
+  'İbrahim',
+  'Tatlıses',
+  'tatlisesibrahim',
+  'tatlisesibrahim@gmail.com',
+  '4444',
+  'user4'
+);
 
-// db.insert('users', ibrahim);
-// db.remove('users', ibrahim)
+const hakki = new User(
+  'Hakki',
+  'Bulut',
+  'buluthakki',
+  'buluthakki@gmail.com',
+  '5555',
+  'user5'
+);
+
+// userDatabase.insert([ibrahim, hakki]);
+// const users = userDatabase.load();
+// console.log(users); // OK
+
+// userDatabase.remove([ibrahim, hakki]);
+// const users = userDatabase.load();
+// console.log(users); // OK
 
 // ibrahim.tweet('Do you wanna learn how to halay? Then check my profile!');
+// const users = userDatabase.load();
+// showTweets(users); // OK
 
+// const kalender2 = userDatabase.findById('user1');
+// kalender2.tweet('This is my new tweet!', 10);
+// const users = userDatabase.load();
+// showTweets(users); // OK
 
-// db.insert('users', ibrahim);
-// db.remove('users', 'tatlisesibrahim');
-
-
-// const users   = db.load('users');
-// const ibrahim = users.find(u => u.id === 'user4');
-
-// console.log(ibrahim);
-
-// ibrahim.tweet('A tweet from Ibrahim whose data has been fetched from a database.', 20);
-
-// function showTweets(users) {
-//   users.forEach(u => u.tweets.forEach(t => console.log(colors.yellow(t.content))));
-// }
-
-// showTweets(users);
+function showTweets(users) {
+  users.forEach(u => u.tweets.forEach(t => console.log(colors.yellow(t.content))));
+}
