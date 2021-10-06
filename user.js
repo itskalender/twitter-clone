@@ -1,9 +1,10 @@
-const colors        = require('colors/safe');
-const Home          = require('./home');
-const Tweet         = require('./tweet');
-const Retweet       = require('./retweet');
+const colors          = require('colors/safe');
+const { v4: uuidv4 }  = require('uuid');
+const Home            = require('./home');
+const Tweet           = require('./tweet');
+const Retweet         = require('./retweet');
 class User {
-  constructor(firstName, lastName, username, email, password ,id, tweets = [], likedTweets = [], followings = [], followers = [], home = this.#createHome()) {
+  constructor(id = uuidv4(), firstName, lastName, username, email, password, tweets = [], likedTweets = [], followings = [], followers = [], home = this.#createHome()) {
     this.id           = id;
     this.firstName    = firstName;
     this.lastName     = lastName;
@@ -21,38 +22,36 @@ class User {
     return new Home();
   }
 
-  static create({firstName, lastName, username, email, password, id, tweets, likedTweets, followings, followers, home}) {
-    const newUser = new User(firstName, lastName, username, email, password ,id, tweets, likedTweets, followings, followers, home);
+  static create({id, firstName, lastName, username, email, password, tweets, likedTweets, followings, followers, home}) {
+    const newUser = new User(id, firstName, lastName, username, email, password ,tweets, likedTweets, followings, followers, home);
     
     return newUser;
   }
 
   tweet(content, id) {
-    const user = this;
     const tweet = new Tweet(this, content, id);
 
-    user.tweets.push(tweet);
-    user.home.tweets.push(tweet);
+    this.tweets.push(tweet);
+    this.home.tweets.push(tweet);
 
-    console.log(`${colors.red(user.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
+    console.log(`${colors.red(this.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
   }
 
   deleteTweet(id) {
-    const user  = this;
-    const tweet = user.tweets.find(t => t.id === id);
+    const tweet = this.tweets.find(t => t.id === id);
 
     if (!tweet) {
       console.log(`This tweet has been already deleted.`);
       return;
     }
 
-    const updatedTweets     = user.tweets.filter(t => t.id !== id );
-    const updatedHomeTweets = user.home.tweets.filter(t => t.id !== id);
+    const updatedTweets     = this.tweets.filter(t => t.id !== id );
+    const updatedHomeTweets = this.home.tweets.filter(t => t.id !== id);
 
-    user.tweets       = updatedTweets;
-    user.home.tweets  = updatedHomeTweets;
+    this.tweets       = updatedTweets;
+    this.home.tweets  = updatedHomeTweets;
 
-    console.log(`${colors.red(user.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
+    console.log(`${colors.red(this.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
   }
 
   follow(user) {
@@ -100,7 +99,7 @@ class User {
     } // I've hardcoded because I need to know the id of the tweet that will be retweeted.
 
     this.tweets.push(newTweet);
-    this.home.tweets.push(newTweet);
+    // this.home.tweets.push(newTweet);
 
     console.log(`${colors.red(this.firstName)} retweeted "${colors.yellow(tweet.content)}".`);
   }

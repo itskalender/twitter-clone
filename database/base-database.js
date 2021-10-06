@@ -1,5 +1,6 @@
 const fs                    = require('fs');
 const { stringify, parse }  = require('flatted');
+const colors                = require('colors')
 
 class BaseDatabase {
   constructor(model){
@@ -33,28 +34,34 @@ class BaseDatabase {
     const users = this.load();
 
     objects.forEach(o => {
+      if (users.some(u => u.id === o.id)) {
+        console.log(`You've already inserted ${colors.red(o.firstName)}.`);
+        return;
+      }
       users.push(o);
     })
 
-    this.save(users)
+    this.save(users);
   };
   
   remove(objects) {
     const users = this.load();
 
-    objects.forEach(u => {
-      const index = users.findIndex(user => user.id === u.id);
-      if (index) {
-        users.splice(index, 1);
+    objects.forEach(o => {
+      const index = users.findIndex(user => user.id === o.id);
+      if (index === -1) {
+        console.log(`You've already removed ${colors.red(o.firstName)}.`);
+        return;
       }
+      users.splice(index, 1);
     })
   
     this.save(users);
   };
   
-  findById(id) {
+  findBy(property, value) {
     const users = this.load();
-    const user  = users.find(u => u.id === id);
+    const user  = users.find(u => u[property] === value);
   
     return user;
   }

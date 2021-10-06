@@ -3,75 +3,93 @@ const User              = require('./user');
 const { userDatabase }  = require('./database');
 
 const kalender = new User(
+  undefined,
   'Kalender',
   'Toptas',
   'toptaskalender',
   'toptaskalender@gmail.com',
-  '1111',
-  'user1'
+  '1111'
 );
 const kahtali = new User(
+  undefined,
   'Kahtali',
   'Mice',
   'micekahtali',
   'micekahtali@gmail.com',
-  '2222',
-  'user2'
+  '2222'
 );
 const latif = new User(
+  undefined,
   'Latif',
   'Dogan',
   'doganlatif',
   'doganlatif@gmail.com',
   '3333',
-  'user3'
 );
+
+function printTweets(users){
+  users.forEach(u => u.tweets.forEach(t => console.log(colors.yellow(t.content))));
+};
+
+function printUsernames(users){
+  users.forEach(u => console.log(`${colors.red(u.firstName)}`));
+};
 
 userDatabase.save([kalender, kahtali, latif]);
 
-kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
-kalender.tweet('Hi, this is my second tweet!', 2);
-kalender.tweet('Hi, this is my third tweet!', 3);
-kalender.tweet('Hi, this is my fourth tweet!', 4);
-kalender.tweet('Hi, this is my fifth tweet!', 5);
+// const users = userDatabase.load();
+// printUsernames(users); // OK
 
-kahtali.tweet('Hello, I\'m Kahtali!', 6);
-kahtali.tweet('What a wonderful day!', 7);
-kahtali.tweet('My tweets are exciting, not like Kalender\'s!', 8);
+// const kalender = userDatabase.findByName('Kalender');
+// kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
+// kalender.tweet('Hi, this is my second tweet!', 2);
+// kalender.tweet('Hi, this is my third tweet!', 3);
+// kalender.tweet('Hi, this is my fourth tweet!', 4);
+// kalender.tweet('Hi, this is my fifth tweet!', 5);
 
-kalender.deleteTweet(5);
+// kahtali.tweet('Hello, I\'m Kahtali!', 6);
+// kahtali.tweet('What a wonderful day!', 7);
+// kahtali.tweet('My tweets are exciting, not like Kalender\'s!', 8);
 
-kalender.follow(kahtali);
-kalender.follow(latif);
+// kalender.deleteTweet(5);
 
-kalender.unfollow(latif);
+// const kalender  = userDatabase.findBy('firstName', 'Kalender');
+// const kahtali   = userDatabase.findBy('firstName', 'Kahtali');
+// const latif     = userDatabase.findBy('firstName', 'Latif');
 
-kalender.retweet(6);
+// kalender.follow(kahtali);
+// kalender.follow(latif);
 
-kalender.undoRetweet(9);
+// kalender.unfollow(latif);
+// kalender.unfollow(kahtali);
 
-kalender.like(6);
-kalender.like(8);
 
-kalender.undoLike(8);
+// kalender.retweet(6);
 
-const ibrahim = new User(
-  'İbrahim',
-  'Tatlıses',
-  'tatlisesibrahim',
-  'tatlisesibrahim@gmail.com',
-  '4444',
-  'user4'
-);
+// kalender.undoRetweet(9);
 
-const hakki = new User(
-  'Hakki',
-  'Bulut',
-  'buluthakki',
-  'buluthakki@gmail.com',
-  '5555',
-  'user5'
-);
+// kalender.like(6);
+// kalender.like(8);
+
+// kalender.undoLike(8);
+
+// const ibrahim = new User(
+//   'user4',
+//   'İbrahim',
+//   'Tatlıses',
+//   'tatlisesibrahim',
+//   'tatlisesibrahim@gmail.com',
+//   '4444'
+// );
+
+// const hakki = new User(
+//   'user5',
+//   'Hakki',
+//   'Bulut',
+//   'buluthakki',
+//   'buluthakki@gmail.com',
+//   '5555'
+// );
 
 // userDatabase.insert([ibrahim, hakki]);
 // const users = userDatabase.load();
@@ -89,7 +107,3 @@ const hakki = new User(
 // kalender2.tweet('This is my new tweet!', 10);
 // const users = userDatabase.load();
 // showTweets(users); // OK
-
-function showTweets(users) {
-  users.forEach(u => u.tweets.forEach(t => console.log(colors.yellow(t.content))));
-}
