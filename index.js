@@ -1,6 +1,6 @@
-const colors        = require('colors');
-const User          = require('./user');
-const userDatabase  = require('./user-database');
+const colors            = require('colors');
+const User              = require('./user');
+const { userDatabase }  = require('./database');
 
 const kalender = new User(
   'Kalender',
