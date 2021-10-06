@@ -63,7 +63,6 @@ userDatabase.save([kalender, kahtali, latif]);
 // kalender.unfollow(latif);
 // kalender.unfollow(kahtali);
 
-
 // kalender.retweet(6);
 
 // kalender.undoRetweet(9);
@@ -100,10 +99,5 @@ userDatabase.save([kalender, kahtali, latif]);
 // console.log(users); // OK
 
 // ibrahim.tweet('Do you wanna learn how to halay? Then check my profile!');
-// const users = userDatabase.load();
-// showTweets(users); // OK
-
-// const kalender2 = userDatabase.findById('user1');
-// kalender2.tweet('This is my new tweet!', 10);
 // const users = userDatabase.load();
 // showTweets(users); // OK
