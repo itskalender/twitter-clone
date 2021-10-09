@@ -29,9 +29,8 @@ class User {
   }
 
   tweet(content, id) {
-    const tweet = new Tweet(this, content, id);
+    const tweet = new Tweet(id, this, content,);
 
-    
     this.tweets.push(tweet);
     this.home.tweets.push(tweet);
     this.followers.forEach(u => u.home.tweets.push(tweet));
@@ -97,35 +96,36 @@ class User {
   }
 
   retweet(id) {
-    const tweet         = this.home.tweets.find(t => t.id === id);
-    const newTweet      = new Retweet(tweet.creator, tweet.content, 9, tweet.createTime);
+    const tweet = this.home.tweets.find(t => t.id === id);
+    tweet.addToRetweets(this);
+    const newTweet      = new Retweet(9, tweet.creator, tweet.content, tweet.createTime, tweet.retweets, tweet.likes, this);
     const hasSameTweet  = this.tweets.some(t => t.id === 9);
-
+  
     if (hasSameTweet) {
       console.log(`You've already retweeted this tweet.`);
       return;
     } // I've hardcoded because I need to know the id of the tweet that will be retweeted.
-
+  
     this.tweets.push(newTweet);
     this.followers.forEach(u => {
       if (u.id === newTweet.creator.id)
         return;
       u.home.tweets.push(newTweet);
     })    
-
+  
     console.log(`${colors.red(this.firstName)} retweeted "${colors.yellow(tweet.content)}".`);
   }
-
+  
   undoRetweet(id) {
     const tweet = this.tweets.find(t => t.id === id);
-
     if (!tweet) {
       console.log(`You've already deleted this retweet.`);
       return;     
     }
+    tweet.deleteFromRetweets(this);
 
     const updatedTweets = this.tweets.filter(t => t.id !== id );
-
+  
     this.tweets = updatedTweets; 
     this.followers.forEach(u => {
       const index = u.home.tweets.findIndex(t => t.id === id);
@@ -133,35 +133,36 @@ class User {
         return;
       u.home.tweets.splice(index, 1);
     })
-
+  
     console.log(`${colors.red(this.firstName)} deleted a retweet "${colors.yellow(tweet.content)}".`);
   }
 
   like(id) {
     const tweet         = this.home.tweets.find(t => t.id === id);
-    const hasSameTweet  = this.likedTweets.some(t => t.id === id);
+    tweet.addToLikes(this);
 
+    const hasSameTweet  = this.likedTweets.some(t => t.id === id);
     if (hasSameTweet) {
       console.log(`You've already liked this tweet.`);
       return;
     }
-
+    
     this.likedTweets.push(tweet);
-
+    
     console.log(`${colors.red(this.firstName)} liked "${colors.yellow(tweet.content)}".`);
   }
-
+  
   undoLike(id) {
     const tweet = this.likedTweets.find(t => t.id === id);
-
     if (!tweet) {
       console.log(`You've already deleted this liked tweet.`);
       return;
     }
+    tweet.deleteFromLikes(this);
 
     const updatedTweets = this.likedTweets.filter(t => t.id !== id);
     this.likedTweets    = updatedTweets;
-
+    
     console.log(`${colors.red(this.firstName)} did undo like a tweet "${colors.yellow(tweet.content)}".`);
   }
 }

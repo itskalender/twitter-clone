@@ -44,8 +44,11 @@ function printUsernames(users){
 // const users = userDatabase.load();
 // printUsernames(users); // OK
 
+ // $$$$$$$$$$$$$$$
+
 kahtali.follow(kalender);
 latif.follow(kalender);
+latif.follow(kahtali);
 kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
 // kalender.tweet('Hi, this is my second tweet!', 2); // follower home'dan siliniyor mu bak!
 kalender.tweet('Hi, this is my third tweet!', 3);
@@ -54,7 +57,11 @@ kahtali.tweet('Hello, I\'m Kahtali!', 6);
 kahtali.tweet('What a wonderful day!', 7);
 kalender.follow(kahtali);
 kalender.retweet(6);
-kalender.undoRetweet(9);
+kalender.like(6);
+kalender.like(7);
+latif.like(7);
+
+// $$$$$$$$$$$$$$$$$$$$$
 
 // kahtali.tweet('My tweets are exciting, not like Kalender\'s!', 8);
 // kalender.unfollow(kahtali);

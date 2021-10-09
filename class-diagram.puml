@@ -29,6 +29,13 @@ class Tweet <<Entity>> {
   + creator       : User
   + content       : String
   + createTime    : Date
+  + likes         : [User]
+  + retweets      : [User]
+
+  +addToRetweets()
+  +deleteFromRetweets()
+  +addToLikes()
+  +deleteFromLikes()
 }
 
 class Retweet <<Entity>> {
@@ -37,6 +44,14 @@ class Retweet <<Entity>> {
   + content       : String
   + createTime    : Date
   + shareTime     : Date
+  + likes         : [User]
+  + retweets      : [User]
+  + retweeter     : User
+
+  +addToRetweets()
+  +deleteFromRetweets()
+  +addToLikes()
+  +deleteFromLikes()
 }
 
 class Home <<Entity>> {
