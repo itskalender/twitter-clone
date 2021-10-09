@@ -1,13 +1,17 @@
-## Twitter Clone
+# Twitter Clone
 
-This project is a clone project of Twitter.
+Twitter clone that is being developed by Node.js, JavaScript..
 
-### Installation
+## Installation
 
 Clone the source code:
 
     git clone git@github.com:toptaskalender/twitter-clone.git
 
-### Starting the app
+Install dependencies:
+
+    npm install
+
+## Starting the app
 
 Run `npm start` / `npm run watch` to start the application.
