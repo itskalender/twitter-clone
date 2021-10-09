@@ -31,8 +31,10 @@ class User {
   tweet(content, id) {
     const tweet = new Tweet(this, content, id);
 
+    
     this.tweets.push(tweet);
     this.home.tweets.push(tweet);
+    this.followers.forEach(u => u.home.tweets.push(tweet));
 
     console.log(`${colors.red(this.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
   }
@@ -47,10 +49,16 @@ class User {
 
     const updatedTweets     = this.tweets.filter(t => t.id !== id );
     const updatedHomeTweets = this.home.tweets.filter(t => t.id !== id);
-
+    
     this.tweets       = updatedTweets;
     this.home.tweets  = updatedHomeTweets;
-
+    this.followers.forEach(u => {
+      const index = u.home.tweets.findIndex(t => t.id === id);
+      if (index === -1)
+        console.log(`The tweet that you've deleted already deleted from ${u.firstName}'s home.`);
+      u.home.tweets.splice(index, 1);
+    })
+    
     console.log(`${colors.red(this.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
   }
 

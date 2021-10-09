@@ -38,10 +38,88 @@
   "followings": "34",
   "followers": "35",
   "home": "36"
-},"17e0b9ce-ac9f-4831-8d95-af124a57ba87","Kalender","Toptas","toptaskalender","toptaskalender@gmail.com","1111",[],[],[],[],{
-  "tweets": "37"
-},"e97009e8-0d59-41dd-85d9-8f0c68c00b34","Kahtali","Mice","micekahtali","micekahtali@gmail.com","2222",[],[],[],[],{
+},"b280c3f5-2ab6-43cf-a91a-8d4e1e8b3fd5","Kalender","Toptas","toptaskalender","toptaskalender@gmail.com","1111",[],[],[],[
+  "37"
+],{
   "tweets": "38"
-},"54367970-c164-4bbf-bba1-00492e82f3a8","Latif","Dogan","doganlatif","doganlatif@gmail.com","3333",[],[],[],[],{
-  "tweets": "39"
-},[],[],[]]
+},"c40e6d20-ff54-49dc-8cfa-e5864111deea","Kahtali","Mice","micekahtali","micekahtali@gmail.com","2222",[],[],[
+  "39"
+],[],{
+  "tweets": "40"
+},"b723118e-b3fa-4261-8cc2-367a5f61cc8f","Latif","Dogan","doganlatif","doganlatif@gmail.com","3333",[],[],[],[],{
+  "tweets": "41"
+},{
+  "id": "15",
+  "firstName": "16",
+  "lastName": "17",
+  "username": "18",
+  "email": "19",
+  "password": "20",
+  "tweets": "42",
+  "likedTweets": "43",
+  "followings": "44",
+  "followers": "45",
+  "home": "46"
+},[],{
+  "id": "4",
+  "firstName": "5",
+  "lastName": "6",
+  "username": "7",
+  "email": "8",
+  "password": "9",
+  "tweets": "47",
+  "likedTweets": "48",
+  "followings": "49",
+  "followers": "50",
+  "home": "51"
+},[
+  "52"
+],[],[],[],[
+  "53"
+],[],{
+  "tweets": "54"
+},[
+  "52"
+],[],[],[
+  "55"
+],{
+  "tweets": "56"
+},{
+  "id": 1,
+  "creator": "39",
+  "content": "57",
+  "createTime": "58"
+},{
+  "id": "4",
+  "firstName": "5",
+  "lastName": "6",
+  "username": "7",
+  "email": "8",
+  "password": "9",
+  "tweets": "59",
+  "likedTweets": "11",
+  "followings": "12",
+  "followers": "13",
+  "home": "14"
+},[],{
+  "id": "15",
+  "firstName": "16",
+  "lastName": "17",
+  "username": "18",
+  "email": "19",
+  "password": "20",
+  "tweets": "21",
+  "likedTweets": "22",
+  "followings": "23",
+  "followers": "24",
+  "home": "25"
+},[
+  "52"
+],"Hi, this is my very first tweet!","2021-10-09T09:46:56.699Z",[
+  "60"
+],{
+  "id": 1,
+  "creator": "53",
+  "content": "57",
+  "createTime": "58"
+}]

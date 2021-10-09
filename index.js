@@ -35,13 +35,19 @@ function printUsernames(users){
   users.forEach(u => console.log(`${colors.red(u.firstName)}`));
 };
 
-userDatabase.save([kalender, kahtali, latif]);
+// userDatabase.save([kalender, kahtali, latif]);
 
 // const users = userDatabase.load();
 // printUsernames(users); // OK
 
-// const kalender = userDatabase.findByName('Kalender');
+kahtali.follow(kalender);
 kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
+// kalender.tweet('Hi, this is my second tweet!', 2);
+kalender.tweet('Hi, this is my third tweet!', 3);
+kalender.deleteTweet(2);
+
+// const kalender = userDatabase.findByName('Kalender');
+// kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
 // kalender.tweet('Hi, this is my second tweet!', 2);
 // kalender.tweet('Hi, this is my third tweet!', 3);
 // kalender.tweet('Hi, this is my fourth tweet!', 4);
