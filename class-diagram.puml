@@ -29,8 +29,6 @@ class Tweet <<Entity>> {
   + creator       : User
   + content       : String
   + createTime    : Date
-
-  - generateId()  : Number
 }
 
 class Retweet <<Entity>> {
@@ -39,8 +37,6 @@ class Retweet <<Entity>> {
   + content       : String
   + createTime    : Date
   + shareTime     : Date
-
-  - generateId()  : Number
 }
 
 class Home <<Entity>> {

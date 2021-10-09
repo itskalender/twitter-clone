@@ -41,7 +41,7 @@ userDatabase.save([kalender, kahtali, latif]);
 // printUsernames(users); // OK
 
 // const kalender = userDatabase.findByName('Kalender');
-// kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
+kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
 // kalender.tweet('Hi, this is my second tweet!', 2);
 // kalender.tweet('Hi, this is my third tweet!', 3);
 // kalender.tweet('Hi, this is my fourth tweet!', 4);
