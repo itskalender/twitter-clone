@@ -27,6 +27,10 @@ const latif = new User(
   '3333',
 );
 
+function getUsers() {
+  return userDatabase.load();
+}
+
 function printTweets(users){
   users.forEach(u => u.tweets.forEach(t => console.log(colors.yellow(t.content))));
 };
@@ -41,10 +45,29 @@ function printUsernames(users){
 // printUsernames(users); // OK
 
 kahtali.follow(kalender);
+latif.follow(kalender);
 kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.
-// kalender.tweet('Hi, this is my second tweet!', 2);
+// kalender.tweet('Hi, this is my second tweet!', 2); // follower home'dan siliniyor mu bak!
 kalender.tweet('Hi, this is my third tweet!', 3);
 kalender.deleteTweet(2);
+kahtali.tweet('Hello, I\'m Kahtali!', 6);
+kahtali.tweet('What a wonderful day!', 7);
+kalender.follow(kahtali);
+kalender.retweet(6);
+kalender.undoRetweet(9);
+
+// kahtali.tweet('My tweets are exciting, not like Kalender\'s!', 8);
+// kalender.unfollow(kahtali);
+// latif.tweet('Tweet number one from Latif', 10);
+// kalender.follow(latif);
+// latif.tweet('Tweet number two from Latif', 11);
+// kalender.retweet(11);
+// latif.tweet('Tweet number three from Latif', 12);
+// latif.tweet('Tweet number four from Latif', 13);
+// latif.tweet('Tweet number five from Latif', 14);
+
+// userDatabase.save([kalender, kahtali, latif])
+// console.log(getUsers());
 
 // const kalender = userDatabase.findByName('Kalender');
 // kalender.tweet('Hi, this is my very first tweet!', 1); // Last item is id number.

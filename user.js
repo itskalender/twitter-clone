@@ -55,7 +55,7 @@ class User {
     this.followers.forEach(u => {
       const index = u.home.tweets.findIndex(t => t.id === id);
       if (index === -1)
-        console.log(`The tweet that you've deleted already deleted from ${u.firstName}'s home.`);
+        return;
       u.home.tweets.splice(index, 1);
     })
     
@@ -107,7 +107,11 @@ class User {
     } // I've hardcoded because I need to know the id of the tweet that will be retweeted.
 
     this.tweets.push(newTweet);
-    // this.home.tweets.push(newTweet);
+    this.followers.forEach(u => {
+      if (u.id === newTweet.creator.id)
+        return;
+      u.home.tweets.push(newTweet);
+    })    
 
     console.log(`${colors.red(this.firstName)} retweeted "${colors.yellow(tweet.content)}".`);
   }
@@ -120,11 +124,15 @@ class User {
       return;     
     }
 
-    const updatedTweets     = this.tweets.filter(t => t.id !== id );
-    const updatedHomeTweets = this.home.tweets.filter(t => t.id !== id);
+    const updatedTweets = this.tweets.filter(t => t.id !== id );
 
-    this.tweets       = updatedTweets; 
-    this.home.tweets  = updatedHomeTweets;
+    this.tweets = updatedTweets; 
+    this.followers.forEach(u => {
+      const index = u.home.tweets.findIndex(t => t.id === id);
+      if (index === -1)
+        return;
+      u.home.tweets.splice(index, 1);
+    })
 
     console.log(`${colors.red(this.firstName)} deleted a retweet "${colors.yellow(tweet.content)}".`);
   }
