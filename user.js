@@ -1,16 +1,37 @@
 const colors          = require('colors/safe');
 const { v4: uuidv4 }  = require('uuid');
-const Home            = require('./home');
-const Tweet           = require('./tweet');
 const Retweet         = require('./retweet');
+const Tweet = require('./tweet');
 class User {
-  constructor(id = uuidv4(), firstName, lastName, username, email, password, tweets = [], likedTweets = [], followings = [], followers = [], home = this.#createHome()) {
+  constructor(
+    id = uuidv4(),
+    firstName,
+    lastName,
+    username,
+    email,
+    password,
+    about       = '',
+    location    = '',
+    webSite     = '',
+    createdAt   = new Date(),
+    profilePic  = '',
+    tweets      = [],
+    likedTweets = [],
+    followings  = [],
+    followers   = [],
+    home        = [],
+    ) {
     this.id           = id;
     this.firstName    = firstName;
     this.lastName     = lastName;
     this.username     = username;
     this.email        = email;
     this.password     = password;
+    this.about        = about;
+    this.location     = location;
+    this.webSite      = webSite;
+    this.createdAt    = createdAt;
+    this.profilePic   = profilePic;
     this.tweets       = tweets;
     this.likedTweets  = likedTweets;
     this.followings   = followings;
@@ -18,150 +39,125 @@ class User {
     this.home         = home;
   }
 
-  #createHome() {
-    return new Home();
-  }
-
-  static create({id, firstName, lastName, username, email, password, tweets, likedTweets, followings, followers, home}) {
-    const newUser = new User(id, firstName, lastName, username, email, password ,tweets, likedTweets, followings, followers, home);
+  static create({
+      id,
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+      about,
+      location,
+      webSite,
+      createdAt,
+      profilePic,
+      tweets,
+      likedTweets,
+      followings,
+      followers,
+      home
+    }) {
+    const newUser = new User(id, firstName, lastName, username, email, password, about, location, webSite,createdAt, profilePic, tweets, likedTweets, followings, followers, home);
     
     return newUser;
   }
 
-  tweet(content, id) {
-    const tweet = new Tweet(id, this, content,);
-
+  tweet(tweet) {
     this.tweets.push(tweet);
-    this.home.tweets.push(tweet);
-    this.followers.forEach(u => u.home.tweets.push(tweet));
+    this.home.push(tweet);
+    this.followers.forEach(f => f.home.push(tweet));
 
     console.log(`${colors.red(this.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
   }
 
-  deleteTweet(id) {
-    const tweet = this.tweets.find(t => t.id === id);
+  deleteTweet(tweet) {
+    const updatedTweets = this.tweets.filter(t => t.id !== tweet.id );
+    const updatedHome   = this.home.filter(t => t.id !== tweet.id);
 
-    if (!tweet) {
-      console.log(`This tweet has been already deleted.`);
-      return;
-    }
+    this.tweets         = updatedTweets;
+    this.home           = updatedHome;
 
-    const updatedTweets     = this.tweets.filter(t => t.id !== id );
-    const updatedHomeTweets = this.home.tweets.filter(t => t.id !== id);
-    
-    this.tweets       = updatedTweets;
-    this.home.tweets  = updatedHomeTweets;
-    this.followers.forEach(u => {
-      const index = u.home.tweets.findIndex(t => t.id === id);
-      if (index === -1)
-        return;
-      u.home.tweets.splice(index, 1);
+    this.followers.forEach(f => {
+      const updatedHome = f.home.filter(t => t.id !== tweet.id);
+      f.home            = updatedHome;
     })
     
     console.log(`${colors.red(this.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
   }
 
   follow(user) {
-    const hasSameUser = this.followings.some(u => u.id === user.id);
-
-    if (hasSameUser) {
-      console.log(`You've already followed ${user.firstName}.`);
-      return;
-    }
-
     this.followings.push(user);
-    this.home.tweets.push(...user.tweets);
+    this.home.push(...user.tweets); // You cannot add all the tweets of user. Use an algorithmn.
     user.followers.push(this);
 
     console.log(`${colors.red(this.firstName)} followed ${colors.red(user.firstName)}.`);
   }
 
   unfollow(user) {
-    const hasSameUser = this.followings.some(u => u.id === user.id);
-
-    if (!hasSameUser) {
-      console.log(`You've already unfollowed ${user.firstName}.`);
-      return;
-    }
-
     const updatedFollowings = this.followings.filter(u => u.id !== user.id);
-    const updatedHomeTweets = this.home.tweets.filter(t => t.creator.id !== user.id);
+    const updatedHome       = this.home.filter(t => t.author.id !== user.id);
     const updatedFollowers  = user.followers.filter(u => u.id !== this.id);
 
     this.followings   = updatedFollowings;
-    this.home.tweets  = updatedHomeTweets;
+    this.home         = updatedHome;
     user.followers    = updatedFollowers;
 
     console.log(`${colors.red(this.firstName)} unfollowed ${colors.red(user.firstName)}.`);
   }
 
-  retweet(id) {
-    const tweet = this.home.tweets.find(t => t.id === id);
-    tweet.addToRetweets(this);
-    const newTweet      = new Retweet(9, tweet.creator, tweet.content, tweet.createTime, tweet.retweets, tweet.likes, this);
-    const hasSameTweet  = this.tweets.some(t => t.id === 9);
-  
-    if (hasSameTweet) {
-      console.log(`You've already retweeted this tweet.`);
-      return;
-    } // I've hardcoded because I need to know the id of the tweet that will be retweeted.
-  
-    this.tweets.push(newTweet);
-    this.followers.forEach(u => {
-      if (u.id === newTweet.creator.id)
-        return;
-      u.home.tweets.push(newTweet);
-    })    
-  
-    console.log(`${colors.red(this.firstName)} retweeted "${colors.yellow(tweet.content)}".`);
+  retweet(originalTweet, content = '') {
+    const retweet = new Retweet(this, content, originalTweet);
+
+    this.tweets.push(retweet);
+    this.home.push(retweet);
+
+    originalTweet.retweets.push(retweet);
+
+    console.log(`${colors.red(this.firstName)} retweeted "${colors.yellow(originalTweet.content)}"${content ? ` with a comment on it: ${colors.yellow(content)}.` : '.'}`)
   }
   
-  undoRetweet(id) {
-    const tweet = this.tweets.find(t => t.id === id);
-    if (!tweet) {
-      console.log(`You've already deleted this retweet.`);
-      return;     
-    }
-    tweet.deleteFromRetweets(this);
+  undoRetweet(tweet) {
+    const updatedTweets = this.tweets.filter(t => {
+      if (t.originalTweet) {
+        return t.originalTweet.id !== tweet.id 
+      }
+      else {
+        return t.id !== tweet.id
+      }
+    });
+    const updatedHome = this.home.filter(t => {
+      if (t.originalTweet) {
+        return t.originalTweet.id !== tweet.id 
+      }
+      else {
+        return t.id !== tweet.id
+      }
+    });
 
-    const updatedTweets = this.tweets.filter(t => t.id !== id );
-  
     this.tweets = updatedTweets; 
-    this.followers.forEach(u => {
-      const index = u.home.tweets.findIndex(t => t.id === id);
-      if (index === -1)
-        return;
-      u.home.tweets.splice(index, 1);
+    this.home   = updatedHome;
+
+    this.followers.forEach(f => {
+      const updatedHome = f.home.filter(t => t.id !== tweet.id)
+      f.home = updatedHome;
     })
-  
+
     console.log(`${colors.red(this.firstName)} deleted a retweet "${colors.yellow(tweet.content)}".`);
   }
 
-  like(id) {
-    const tweet         = this.home.tweets.find(t => t.id === id);
-    tweet.addToLikes(this);
-
-    const hasSameTweet  = this.likedTweets.some(t => t.id === id);
-    if (hasSameTweet) {
-      console.log(`You've already liked this tweet.`);
-      return;
-    }
-    
+  like(tweet) {
     this.likedTweets.push(tweet);
+    tweet.likes.push(this);
     
     console.log(`${colors.red(this.firstName)} liked "${colors.yellow(tweet.content)}".`);
   }
   
-  undoLike(id) {
-    const tweet = this.likedTweets.find(t => t.id === id);
-    if (!tweet) {
-      console.log(`You've already deleted this liked tweet.`);
-      return;
-    }
-    tweet.deleteFromLikes(this);
+  undoLike(tweet) {
+    const updatedLikedTweets  = this.likedTweets.filter(t => t.id !== tweet.id);
+    const updatedLikes        = tweet.likes.filter(u => u.id !== this.id);
 
-    const updatedTweets = this.likedTweets.filter(t => t.id !== id);
-    this.likedTweets    = updatedTweets;
+    this.likedTweets  = updatedLikedTweets;
+    tweet.likes       = updatedLikes;
     
     console.log(`${colors.red(this.firstName)} did undo like a tweet "${colors.yellow(tweet.content)}".`);
   }

@@ -7,13 +7,17 @@ class User <<Entity>> {
   + username          : String
   + email             : String
   + password          : String
+  + about             : String
+  + location          : String
+  + webSite           : String
+  + createdAt         : Date
+  + profilePic        : String
   + tweets            : [Tweet]
   + likedTweets       : [Tweet]
   + followings        : [User]
   + followers         : [User]
-  + home              : Home
+  + home              : [Tweet]
 
-  - createHome()  : Home
   + tweet()
   + deleteTweet()
   + follow()
@@ -22,44 +26,25 @@ class User <<Entity>> {
   + undoRetweet()
   + like()
   + undoLike()
+  + reply()
 }
 
 class Tweet <<Entity>> {
-  + id            : Number  
-  + creator       : User
+  + id            : Number
+  + author        : User
   + content       : String
-  + createTime    : Date
+  + createdAt     : Date
+  + attachments   : []
+  + replies       : [Tweet]
+  + retweets      : [Tweet]
   + likes         : [User]
-  + retweets      : [User]
-
-  +addToRetweets()
-  +deleteFromRetweets()
-  +addToLikes()
-  +deleteFromLikes()
 }
 
 class Retweet <<Entity>> {
-  + id            : Number
-  + creator       : User
-  + content       : String
-  + createTime    : Date
-  + shareTime     : Date
-  + likes         : [User]
-  + retweets      : [User]
-  + retweeter     : User
-
-  +addToRetweets()
-  +deleteFromRetweets()
-  +addToLikes()
-  +deleteFromLikes()
-}
-
-class Home <<Entity>> {
-  + tweets        : [Tweet]
+  + originalTweet : Tweet
 }
 
 User *-- Tweet
-User *-- Home
 Tweet <|-- Retweet
 
 @enduml

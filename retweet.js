@@ -1,10 +1,9 @@
 const Tweet = require('./tweet')
 
 class Retweet extends Tweet {
-  constructor(id, creator, content, createTime, retweets, likes, retweeter) {
-    super(id, creator, content, createTime, retweets, likes);
-    this.shareTime  = new Date();
-    this.retweeter  = retweeter;
+  constructor(author, content, originalTweet) {
+    super(author, content);
+    this.originalTweet = originalTweet;
   }
 }
 
