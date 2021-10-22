@@ -1,7 +1,6 @@
 const colors          = require('colors/safe');
 const { v4: uuidv4 }  = require('uuid');
 const Retweet         = require('./retweet');
-const Tweet = require('./tweet');
 class User {
   constructor(
     id = uuidv4(),
@@ -57,9 +56,9 @@ class User {
       followers,
       home
     }) {
-    const newUser = new User(id, firstName, lastName, username, email, password, about, location, webSite,createdAt, profilePic, tweets, likedTweets, followings, followers, home);
+    const user = new User(id, firstName, lastName, username, email, password, about, location, webSite,createdAt, profilePic, tweets, likedTweets, followings, followers, home);
     
-    return newUser;
+    return user;
   }
 
   tweet(tweet) {

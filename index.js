@@ -1,16 +1,24 @@
-const colors            = require('colors');
+const colors            = require('colors')
 const User              = require('./user');
 const Tweet             = require('./tweet');
 const { userDatabase }  = require('./database');
 
-const kalender = new User(
+/* const kalender = new User(
   undefined,
   'Kalender',
   'Toptas',
   'toptaskalender',
   'toptaskalender@gmail.com',
   '1111'
-);
+); */
+
+const kalender = User.create({
+  firstName : 'Kalender',
+  lastName  : 'Toptas',
+  username  : 'toptaskalender',
+  email     : 'toptaskalender@gmail.com',
+  password  : '1111'
+});
 
 const ozden = new User (
   undefined,
@@ -30,8 +38,9 @@ const ezgi = new User(
   '3333',
 )
 
-const tweet1 = new Tweet(kalender, 'Hi, this is my first tweet!');
+/* const tweet1 = new Tweet(kalender, 'Hi, this is my first tweet!');
 const tweet2 = new Tweet(kalender, 'What a wonderful day to begin to code!');
+
 kalender.tweet(tweet1);
 kalender.tweet(tweet2);
 
@@ -58,16 +67,22 @@ kalender.undoLike(tweet4);
 kalender.retweet(tweet3);
 kalender.retweet(tweet4, 'Yes, you are right!');
 
-kalender.undoRetweet(tweet3);
+kalender.undoRetweet(tweet3); */
 
-// function getUsers() {
-//   return userDatabase.load();
-// }
 
-// function printTweets(users){
-//   users.forEach(u => u.tweets.forEach(t => console.log(colors.yellow(t.content))));
-// };
+// userDatabase.save([kalender, ozden, ezgi]);
+// const users = getUsers();
 
-// function printUsernames(users){
-//   users.forEach(u => console.log(`${colors.red(u.firstName)}`));
-// }
+const k = userDatabase.findBy('firstName', 'Kalender');
+
+function getUsers() {
+  return userDatabase.load();
+}
+
+function printTweets(users){
+  users.forEach(u => u.tweets.forEach(t => console.log(colors.yellow(t.content))));
+};
+
+function printUsernames(users){
+  users.forEach(u => console.log(`${colors.red(u.firstName)}`));
+}

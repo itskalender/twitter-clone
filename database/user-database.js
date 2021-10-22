@@ -5,6 +5,9 @@ class UserDatabase extends BaseDatabase {
   findByName(name){
     return this.findBy('firstName', name);
   }
+  /*
+    findByUsername
+  */
 };
 
 module.exports = new UserDatabase(User)

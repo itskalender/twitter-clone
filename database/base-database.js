@@ -9,11 +9,11 @@ class BaseDatabase {
   }
 
   save(objects) {
-    fs.writeFileSync(`${this.filename}.json`, stringify(objects, null, 2));
+    fs.writeFileSync(`${__dirname}/${this.filename}.json`, stringify(objects, null, 2));
   };
   
   load() {
-    const file    = fs.readFileSync(`${this.filename}.json`, 'utf-8');
+    const file    = fs.readFileSync(`${__dirname}/${this.filename}.json`, 'utf-8');
     const objects = parse(file);
 
     return objects.map(this.model.create);
