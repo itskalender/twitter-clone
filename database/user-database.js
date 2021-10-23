@@ -3,7 +3,7 @@ const { User }      = require('../models');
 
 class UserDatabase extends BaseDatabase {
   findByName(name){
-    return this.findBy('firstName', name);
+    return this.findBy('name', name);
   }
   /*
     findByUsername

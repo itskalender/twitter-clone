@@ -1,22 +1,21 @@
 @startuml Class Diagram for Twitter Clone
 
 class User <<Entity>> {
-  + id                : Number 
-  + firstName         : String
-  + lastName          : String
-  + username          : String
-  + email             : String
-  + password          : String
-  + about             : String
-  + location          : String
-  + webSite           : String
-  + createdAt         : Date
-  + profilePic        : String
-  + tweets            : [Tweet]
-  + likedTweets       : [Tweet]
-  + followings        : [User]
-  + followers         : [User]
-  + home              : [Tweet]
+  + id          : Number 
+  + name        : String
+  + username    : String
+  + email       : String
+  + password    : String
+  + bio         : String
+  + location    : String
+  + webSite     : String
+  + createdAt   : Date
+  + profilePic  : String
+  + tweets      : [Tweet]
+  + likedTweets : [Tweet]
+  + followings  : [User]
+  + followers   : [User]
+  + home        : [Tweet]
 
   + tweet()
   + deleteTweet()

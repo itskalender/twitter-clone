@@ -1,27 +1,24 @@
-const { User }          = require('./models');
+const { User, Tweet }   = require('./models');
 const { userDatabase }  = require('./database');
 
 /* Creating Users */
 
 const kalender = User.create({
-  firstName : 'Kalender',
-  lastName  : 'Toptas',
+  name      : 'Kalender',
   username  : 'toptaskalender',
   email     : 'toptaskalender@gmail.com',
   password  : '1111'
 });
 
 const ozden = User.create({
-  firstName : 'Ozden',
-  lastName  : 'Kaynarca',
+  name      : 'Ozden',
   username  : 'kaynarcaozden',
   email     : 'kaynarcaozden@gmail.com',
   password  : '2222'
 })
 
 const ezgi = User.create({
-  firstName : 'Ezgi',
-  lastName  : 'Turkmen',
+  name      : 'Ezgi',
   username  : 'turkmenezgi',
   email     : 'turkmenezgi@gmail.com',
   password  : '3333'

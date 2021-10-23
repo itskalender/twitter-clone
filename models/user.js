@@ -5,12 +5,11 @@ const Retweet         = require('./retweet');
 class User {
   constructor(
     id = uuidv4(),
-    firstName,
-    lastName,
+    name,
     username,
     email,
     password,
-    about       = '',
+    bio         = '',
     location    = '',
     webSite     = '',
     createdAt   = new Date(),
@@ -22,12 +21,11 @@ class User {
     home        = [],
     ) {
     this.id           = id;
-    this.firstName    = firstName;
-    this.lastName     = lastName;
+    this.name         = name;
     this.username     = username;
     this.email        = email;
     this.password     = password;
-    this.about        = about;
+    this.bio          = bio;
     this.location     = location;
     this.webSite      = webSite;
     this.createdAt    = createdAt;
@@ -41,12 +39,11 @@ class User {
 
   static create({
       id,
-      firstName,
-      lastName,
+      name,
       username,
       email,
       password,
-      about,
+      bio,
       location,
       webSite,
       createdAt,
@@ -57,7 +54,7 @@ class User {
       followers,
       home
     }) {
-    const user = new User(id, firstName, lastName, username, email, password, about, location, webSite,createdAt, profilePic, tweets, likedTweets, followings, followers, home);
+    const user = new User(id, name, username, email, password, bio, location, webSite,createdAt, profilePic, tweets, likedTweets, followings, followers, home);
     
     return user;
   }
@@ -67,7 +64,7 @@ class User {
     this.home.push(tweet);
     this.followers.forEach(f => f.home.push(tweet));
 
-    console.log(`${colors.red(this.firstName)} tweeted "${colors.yellow(tweet.content)}".`)
+    console.log(`${colors.red(this.name)} tweeted "${colors.yellow(tweet.content)}".`)
   }
 
   deleteTweet(tweet) {
@@ -82,7 +79,7 @@ class User {
       f.home            = updatedHome;
     })
     
-    console.log(`${colors.red(this.firstName)} deleted a tweet "${colors.yellow(tweet.content)}".`)
+    console.log(`${colors.red(this.name)} deleted a tweet "${colors.yellow(tweet.content)}".`)
   }
 
   follow(user) {
@@ -90,7 +87,7 @@ class User {
     this.home.push(...user.tweets); // You cannot add all the tweets of user. Use an algorithmn.
     user.followers.push(this);
 
-    console.log(`${colors.red(this.firstName)} followed ${colors.red(user.firstName)}.`);
+    console.log(`${colors.red(this.name)} followed ${colors.red(user.name)}.`);
   }
 
   unfollow(user) {
@@ -102,7 +99,7 @@ class User {
     this.home         = updatedHome;
     user.followers    = updatedFollowers;
 
-    console.log(`${colors.red(this.firstName)} unfollowed ${colors.red(user.firstName)}.`);
+    console.log(`${colors.red(this.name)} unfollowed ${colors.red(user.name)}.`);
   }
 
   retweet(originalTweet, content = '') {
@@ -113,7 +110,7 @@ class User {
 
     originalTweet.retweets.push(retweet);
 
-    console.log(`${colors.red(this.firstName)} retweeted "${colors.yellow(originalTweet.content)}"${content ? ` with a comment on it: ${colors.yellow(content)}.` : '.'}`)
+    console.log(`${colors.red(this.name)} retweeted "${colors.yellow(originalTweet.content)}"${content ? ` with a comment on it: ${colors.yellow(content)}.` : '.'}`)
   }
   
   undoRetweet(tweet) {
@@ -142,14 +139,14 @@ class User {
       f.home = updatedHome;
     })
 
-    console.log(`${colors.red(this.firstName)} deleted a retweet "${colors.yellow(tweet.content)}".`);
+    console.log(`${colors.red(this.name)} deleted a retweet "${colors.yellow(tweet.content)}".`);
   }
 
   like(tweet) {
     this.likedTweets.push(tweet);
     tweet.likes.push(this);
     
-    console.log(`${colors.red(this.firstName)} liked "${colors.yellow(tweet.content)}".`);
+    console.log(`${colors.red(this.name)} liked "${colors.yellow(tweet.content)}".`);
   }
   
   undoLike(tweet) {
@@ -159,7 +156,7 @@ class User {
     this.likedTweets  = updatedLikedTweets;
     tweet.likes       = updatedLikes;
     
-    console.log(`${colors.red(this.firstName)} did undo like a tweet "${colors.yellow(tweet.content)}".`);
+    console.log(`${colors.red(this.name)} did undo like a tweet "${colors.yellow(tweet.content)}".`);
   }
 }
 
