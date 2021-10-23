@@ -1,4 +1,4 @@
-const Tweet = require('./tweet')
+const Tweet = require('./tweet');
 
 class Retweet extends Tweet {
   constructor(author, content, originalTweet) {

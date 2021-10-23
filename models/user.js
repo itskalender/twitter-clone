@@ -1,6 +1,7 @@
 const colors          = require('colors/safe');
 const { v4: uuidv4 }  = require('uuid');
 const Retweet         = require('./retweet');
+
 class User {
   constructor(
     id = uuidv4(),
