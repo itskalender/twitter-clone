@@ -3,15 +3,6 @@ const User              = require('./user');
 const Tweet             = require('./tweet');
 const { userDatabase }  = require('./database');
 
-/* const kalender = new User(
-  undefined,
-  'Kalender',
-  'Toptas',
-  'toptaskalender',
-  'toptaskalender@gmail.com',
-  '1111'
-); */
-
 const kalender = User.create({
   firstName : 'Kalender',
   lastName  : 'Toptas',
@@ -20,23 +11,21 @@ const kalender = User.create({
   password  : '1111'
 });
 
-const ozden = new User (
-  undefined,
-  'Ozden',
-  'Kaynarca',
-  'kaynarcaozden',
-  'kaynarcaozden@gmail.com',
-  '2222'
-)
+const ozden = User.create({
+  firstName : 'Ozden',
+  lastName  : 'Kaynarca',
+  username  : 'kaynarcaozden',
+  email     : 'kaynarcaozden@gmail.com',
+  password  :'2222'
+})
 
-const ezgi = new User(
-  undefined,
-  'Ezgi',
-  'Turkmen',
-  'turkmenezgi',
-  'turkmenezgi@gmail.com',
-  '3333',
-)
+const ezgi = User.create({
+  firstName : 'Ezgi',
+  lastName  : 'Turkmen',
+  username  : 'turkmenezgi',
+  email     : 'turkmenezgi@gmail.com',
+  password  : '3333'
+})
 
 /* const tweet1 = new Tweet(kalender, 'Hi, this is my first tweet!');
 const tweet2 = new Tweet(kalender, 'What a wonderful day to begin to code!');
