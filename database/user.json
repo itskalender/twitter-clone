@@ -27,139 +27,108 @@
   "bio": "9",
   "location": "9",
   "webSite": "9",
-  "createdAt": "21",
+  "createdAt": "10",
   "profilePic": "9",
-  "tweets": "22",
-  "likedTweets": "23",
-  "followings": "24",
-  "followers": "25",
-  "home": "26"
+  "tweets": "21",
+  "likedTweets": "22",
+  "followings": "23",
+  "followers": "24",
+  "home": "25"
 },{
-  "id": "27",
-  "name": "28",
-  "username": "29",
-  "email": "30",
-  "password": "31",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "21",
-  "profilePic": "9",
-  "tweets": "32",
-  "likedTweets": "33",
-  "followings": "34",
-  "followers": "35",
-  "home": "36"
-},"ce764960-7027-401d-9a88-5162f0b521f8","Kalender","toptaskalender","toptaskalender@gmail.com","1111","","2021-10-23T11:05:35.024Z",[
-  "37",
-  "38",
-  "39"
-],[
-  "40"
-],[
-  "41"
-],[],[
-  "37",
-  "38",
-  "39"
-],"5764f7ae-bf40-4968-813b-4ea25faf39be","Ozden","kaynarcaozden","kaynarcaozden@gmail.com","2222","2021-10-23T11:05:35.025Z",[
-  "42"
-],[],[],[
-  "43"
-],[
-  "42"
-],"239e3aec-994f-44e4-9d08-c7abb7e54949","Ezgi","turkmenezgi","turkmenezgi@gmail.com","3333",[
-  "44"
-],[],[],[],[
-  "44"
-],{
-  "id": "45",
-  "createdAt": "21",
-  "attachments": "46",
-  "replies": "47",
-  "retweets": "48",
-  "likes": "49",
-  "author": "50",
-  "content": "51"
-},{
-  "id": "52",
-  "createdAt": "53",
-  "attachments": "54",
-  "replies": "55",
-  "retweets": "56",
-  "likes": "57",
-  "author": "50",
-  "content": "58",
-  "originalTweet": "59"
-},{
-  "id": "60",
-  "createdAt": "61",
-  "attachments": "62",
-  "replies": "63",
-  "retweets": "64",
-  "likes": "65",
-  "author": "1",
-  "content": "66"
-},{
-  "id": "67",
-  "createdAt": "68",
-  "attachments": "69",
-  "replies": "70",
-  "retweets": "71",
-  "likes": "72",
-  "author": "41",
-  "content": "73"
-},{
-  "id": "16",
-  "name": "17",
-  "username": "18",
-  "email": "19",
-  "password": "20",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "21",
-  "profilePic": "9",
-  "tweets": "74",
-  "likedTweets": "75",
-  "followings": "76",
-  "followers": "77",
-  "home": "78"
-},{
-  "id": "67",
-  "createdAt": "68",
-  "attachments": "79",
-  "replies": "80",
-  "retweets": "81",
-  "likes": "82",
-  "author": "83",
-  "content": "73"
-},{
-  "id": "4",
-  "name": "5",
-  "username": "6",
-  "email": "7",
-  "password": "8",
+  "id": "26",
+  "name": "27",
+  "username": "28",
+  "email": "29",
+  "password": "30",
   "bio": "9",
   "location": "9",
   "webSite": "9",
   "createdAt": "10",
   "profilePic": "9",
-  "tweets": "84",
-  "likedTweets": "85",
-  "followings": "86",
-  "followers": "87",
-  "home": "88"
+  "tweets": "31",
+  "likedTweets": "32",
+  "followings": "33",
+  "followers": "34",
+  "home": "35"
+},"3a242960-9e25-4712-825d-2b8bc76b8668","Kalender","toptaskalender","toptaskalender@gmail.com","1111","","2021-10-23T17:08:30.497Z",[
+  "36",
+  "37"
+],[
+  "38"
+],[
+  "39"
+],[],[
+  "36",
+  "37"
+],"faabbc08-0600-4d69-b968-de3995efdbbe","Mustafa","kaynarcamustafa","kaynarcamustafa@gmail.com","4444",[],[],[],[],[],"53cc233b-5060-4bcd-9276-9bc91fb50130","Ezgi","turkmenezgi","turkmenezgi@gmail.com","3333",[
+  "40",
+  "41"
+],[],[],[],[
+  "40",
+  "41"
+],{
+  "id": "42",
+  "createdAt": "10",
+  "attachments": "43",
+  "replies": "44",
+  "retweets": "45",
+  "likes": "46",
+  "author": "47",
+  "content": "48"
 },{
-  "id": "89",
-  "createdAt": "68",
-  "attachments": "90",
-  "replies": "91",
-  "retweets": "92",
-  "likes": "93",
-  "author": "94",
-  "content": "95"
-},"a884517e-4644-4bd5-8843-82af799916d8",[],[],[],[],{
+  "id": "49",
+  "createdAt": "50",
+  "attachments": "51",
+  "replies": "52",
+  "retweets": "53",
+  "likes": "54",
+  "author": "47",
+  "content": "55",
+  "originalTweet": "56"
+},{
+  "id": "57",
+  "createdAt": "58",
+  "attachments": "59",
+  "replies": "60",
+  "retweets": "61",
+  "likes": "62",
+  "author": "39",
+  "content": "63"
+},{
+  "id": "64",
+  "name": "65",
+  "username": "66",
+  "email": "67",
+  "password": "68",
+  "bio": "9",
+  "location": "9",
+  "webSite": "9",
+  "createdAt": "10",
+  "profilePic": "9",
+  "tweets": "69",
+  "likedTweets": "70",
+  "followings": "71",
+  "followers": "72",
+  "home": "73"
+},{
+  "id": "74",
+  "createdAt": "58",
+  "attachments": "75",
+  "replies": "76",
+  "retweets": "77",
+  "likes": "78",
+  "author": "79",
+  "content": "80"
+},{
+  "id": "81",
+  "createdAt": "82",
+  "attachments": "83",
+  "replies": "84",
+  "retweets": "85",
+  "likes": "86",
+  "author": "79",
+  "content": "87"
+},"ba0edc12-0a2e-4ad4-934c-fc29a99cfd0a",[],[],[],[],{
   "id": "4",
   "name": "5",
   "username": "6",
@@ -175,132 +144,163 @@
   "followings": "13",
   "followers": "14",
   "home": "15"
-},"Hi, this is my first tweet!","8c6e103d-f061-40c5-a788-7b59100fac26","2021-10-23T11:05:35.032Z",[],[],[],[],"Yes, you are right!",{
-  "id": "89",
-  "createdAt": "68",
-  "attachments": "96",
-  "replies": "97",
-  "retweets": "98",
-  "likes": "99",
-  "author": "100",
-  "content": "95"
-},"521525a5-4240-43e3-a5f5-8747876dc8cf","2021-10-23T11:05:45.676Z",[],[],[],[],"Hi, being a member of Twitter is very cool!","c2abfdfc-2e0b-439b-a10b-c0bec08af17f","2021-10-23T11:05:35.028Z",[],[],[
-  "101"
+},"Hi, this is my first tweet!","0d6c4e01-18b1-44b8-929b-43c30edb2e7d","2021-10-23T17:08:30.504Z",[],[],[],[],"Yes, you are right!",{
+  "id": "74",
+  "createdAt": "58",
+  "attachments": "88",
+  "replies": "89",
+  "retweets": "90",
+  "likes": "91",
+  "author": "92",
+  "content": "80"
+},"22b3218b-bbc3-4bc4-aab5-a5e23fba33d5","2021-10-23T17:08:30.500Z",[],[],[
+  "93"
 ],[
-  "50"
-],"Hi, this is Ozden, this's my first tweet ever!",[
-  "40"
-],[],[],[
-  "50"
-],[
-  "40"
-],[],[],[
-  "102"
-],[
-  "43"
-],{
-  "id": "16",
-  "name": "17",
-  "username": "18",
-  "email": "19",
-  "password": "20",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "21",
-  "profilePic": "9",
-  "tweets": "22",
-  "likedTweets": "23",
-  "followings": "24",
-  "followers": "25",
-  "home": "26"
-},[
-  "103",
-  "104"
-],[
-  "42"
-],[
-  "83"
-],[],[
-  "103",
-  "104"
-],"9dbe8e44-f6f2-41a4-a68b-8ca98fb43653",[],[],[
-  "104"
-],[],{
-  "id": "27",
-  "name": "28",
-  "username": "29",
-  "email": "30",
-  "password": "31",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "21",
-  "profilePic": "9",
-  "tweets": "32",
-  "likedTweets": "33",
-  "followings": "34",
-  "followers": "35",
-  "home": "36"
-},"Hi, I'm Ezgi :)",[],[],[
+  "47"
+],"Hi, this is Ozden, this's my first tweet ever!","523048a6-4036-47b8-ab95-4397ad76fe65","Ozden","kaynarcaozden","kaynarcaozden@gmail.com","2222",[
   "38"
+],[],[],[
+  "47"
+],[
+  "38"
+],"fec8ab01-b76d-4f7a-8240-2ae195c6d317",[],[],[
+  "94"
 ],[],{
-  "id": "27",
-  "name": "28",
-  "username": "29",
-  "email": "30",
-  "password": "31",
+  "id": "26",
+  "name": "27",
+  "username": "28",
+  "email": "29",
+  "password": "30",
   "bio": "9",
   "location": "9",
   "webSite": "9",
-  "createdAt": "21",
+  "createdAt": "10",
   "profilePic": "9",
-  "tweets": "105",
-  "likedTweets": "106",
-  "followings": "107",
-  "followers": "108",
-  "home": "109"
+  "tweets": "31",
+  "likedTweets": "32",
+  "followings": "33",
+  "followers": "34",
+  "home": "35"
+},"What a wonderful day!","46b33f89-377e-46a0-8d71-4ce5280e28b4","2021-10-23T17:08:30.509Z",[],[],[],[],"Learning AJAX is cool too!",[],[],[
+  "37"
+],[],{
+  "id": "26",
+  "name": "27",
+  "username": "28",
+  "email": "29",
+  "password": "30",
+  "bio": "9",
+  "location": "9",
+  "webSite": "9",
+  "createdAt": "10",
+  "profilePic": "9",
+  "tweets": "95",
+  "likedTweets": "96",
+  "followings": "97",
+  "followers": "98",
+  "home": "99"
 },{
-  "id": "110",
-  "createdAt": "111",
-  "attachments": "112",
-  "replies": "113",
-  "retweets": "114",
-  "likes": "115",
-  "author": "50",
+  "id": "100",
+  "createdAt": "101",
+  "attachments": "102",
+  "replies": "103",
+  "retweets": "104",
+  "likes": "105",
+  "author": "47",
   "content": "9",
+  "originalTweet": "38"
+},{
+  "id": "49",
+  "createdAt": "50",
+  "attachments": "106",
+  "replies": "107",
+  "retweets": "108",
+  "likes": "109",
+  "author": "110",
+  "content": "55",
   "originalTweet": "40"
-},{
-  "id": "110",
-  "createdAt": "111",
-  "attachments": "116",
-  "replies": "117",
-  "retweets": "118",
-  "likes": "119",
-  "author": "43",
-  "content": "9",
-  "originalTweet": "42"
-},{
-  "id": "45",
-  "createdAt": "21",
-  "attachments": "120",
-  "replies": "121",
-  "retweets": "122",
-  "likes": "123",
-  "author": "43",
-  "content": "51"
-},{
-  "id": "52",
-  "createdAt": "53",
-  "attachments": "124",
-  "replies": "125",
-  "retweets": "126",
-  "likes": "127",
-  "author": "43",
-  "content": "58",
-  "originalTweet": "44"
 },[
-  "59"
+  "56"
 ],[],[],[],[
-  "59"
-],"471098f2-68a4-4b80-bec8-09f0bbacf54d","2021-10-23T11:05:35.031Z",[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+  "56"
+],"d76c72ca-bfc9-4bbe-8d4c-ea3d00c0296b","2021-10-23T17:08:30.503Z",[],[],[],[],[],[],[],[],{
+  "id": "4",
+  "name": "5",
+  "username": "6",
+  "email": "7",
+  "password": "8",
+  "bio": "9",
+  "location": "9",
+  "webSite": "9",
+  "createdAt": "10",
+  "profilePic": "9",
+  "tweets": "111",
+  "likedTweets": "112",
+  "followings": "113",
+  "followers": "114",
+  "home": "115"
+},[
+  "116",
+  "94"
+],[
+  "117"
+],[
+  "118"
+],[],[
+  "116",
+  "94"
+],{
+  "id": "42",
+  "createdAt": "10",
+  "attachments": "119",
+  "replies": "120",
+  "retweets": "121",
+  "likes": "122",
+  "author": "110",
+  "content": "48"
+},{
+  "id": "57",
+  "createdAt": "58",
+  "attachments": "123",
+  "replies": "124",
+  "retweets": "125",
+  "likes": "126",
+  "author": "118",
+  "content": "63"
+},{
+  "id": "64",
+  "name": "65",
+  "username": "66",
+  "email": "67",
+  "password": "68",
+  "bio": "9",
+  "location": "9",
+  "webSite": "9",
+  "createdAt": "10",
+  "profilePic": "9",
+  "tweets": "127",
+  "likedTweets": "128",
+  "followings": "129",
+  "followers": "130",
+  "home": "131"
+},[],[],[],[],[],[],[
+  "132"
+],[
+  "110"
+],[
+  "117"
+],[],[],[
+  "110"
+],[
+  "117"
+],{
+  "id": "100",
+  "createdAt": "101",
+  "attachments": "133",
+  "replies": "134",
+  "retweets": "135",
+  "likes": "136",
+  "author": "110",
+  "content": "9",
+  "originalTweet": "117"
+},[],[],[],[]]

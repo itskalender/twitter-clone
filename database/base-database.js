@@ -1,6 +1,6 @@
 const fs                    = require('fs');
 const { stringify, parse }  = require('flatted');
-const colors                = require('colors')
+const colors                = require('colors');
 
 class BaseDatabase {
   constructor(model){
@@ -9,18 +9,27 @@ class BaseDatabase {
   }
 
   save(objects) {
-    fs.writeFileSync(`${__dirname}/${this.filename}.json`, stringify(objects, null, 2));
+    return new Promise((resolve, reject) => {
+      fs.writeFile(`${__dirname}/${this.filename}.json`, stringify(objects, null, 2), (err) => {
+        if (err) reject(err);
+        resolve();
+      } );
+    })
   };
   
   load() {
-    const file    = fs.readFileSync(`${__dirname}/${this.filename}.json`, 'utf-8');
-    const objects = parse(file);
-
-    return objects.map(this.model.create);
+    return new Promise((resolve, reject) => {
+      fs.readFile(`${__dirname}/${this.filename}.json`, 'utf-8', (err, file) => {
+        if (err) reject(err);
+        
+        const objects = parse(file);
+        resolve(objects.map(this.model.create));
+      });
+    })
   }
   
-  update(objects) {
-    const users = this.load();
+  async update(objects) {
+    const users = await this.load();
   
     objects.forEach(o => {
       const userIndex = users.findIndex(u => u.id === o.id);
@@ -30,22 +39,13 @@ class BaseDatabase {
     this.save(users);
   }
   
-  insert(objects) {
-    const users = this.load();
-
-    objects.forEach(o => {
-      if (users.some(u => u.id === o.id)) {
-        console.log(`You've already inserted ${colors.red(o.firstName)}.`);
-        return;
-      }
-      users.push(o);
-    })
-
-    this.save(users);
+  async insert(newObjects) {
+    const objects = await this.load()
+    return this.save(objects.concat(newObjects));
   };
   
-  remove(objects) {
-    const users = this.load();
+  async remove(objects) {
+    const users = await this.load();
 
     objects.forEach(o => {
       const index = users.findIndex(user => user.id === o.id);
@@ -56,14 +56,11 @@ class BaseDatabase {
       users.splice(index, 1);
     })
   
-    this.save(users);
+    return this.save(users);
   };
   
-  findBy(property, value) {
-    const users = this.load();
-    const user  = users.find(u => u[property] === value);
-  
-    return user;
+  async findBy(property, value) {
+    return (await this.load()).find(u => u[property] === value);
   }
 }
 

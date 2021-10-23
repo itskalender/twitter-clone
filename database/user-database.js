@@ -2,14 +2,15 @@ const BaseDatabase  = require('./base-database');
 const { User }      = require('../models');
 
 class UserDatabase extends BaseDatabase {
-  findByName(name) {
-    return this.findBy('name', name);
+  async findByName(name) {
+    const user = await this.findBy('name', name);
+    return user;
   }
   
-  findByUsername(username) {
-    return this.findBy('username', username);
+  async findByUsername(username) {
+    const user = await this.findBy('username', username);
+    return user;
   }
-  
 };
 
 module.exports = new UserDatabase(User)
