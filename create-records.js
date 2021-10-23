@@ -30,9 +30,7 @@ const tweet1 = new Tweet(kalender, 'Hi, this is my first tweet!');
 const tweet2 = new Tweet(kalender, 'What a wonderful day to begin to code!');
 
 kalender.tweet(tweet1);
-kalender.tweet(tweet2);
 
-kalender.deleteTweet(tweet2);
 kalender.deleteTweet(tweet2);
 
 const tweet3 = new Tweet(ozden, 'Hi, this is Ozden, this\'s my first tweet ever!');
@@ -45,23 +43,17 @@ ezgi.tweet(tweet4);
 
 kalender.follow(ozden);
 kalender.follow(ezgi);
-kalender.follow(ezgi);
 
-kalender.unfollow(ezgi);
 kalender.unfollow(ezgi);
 
 kalender.like(tweet3);
 kalender.like(tweet4);
-kalender.like(tweet4);
 
 kalender.unlike(tweet4);
-kalender.unlike(tweet4);
 
-kalender.retweet(tweet3);
 kalender.retweet(tweet3);
 kalender.retweet(tweet4, 'Yes, you are right!');
 
-kalender.unretweet(tweet3);
 kalender.unretweet(tweet3);
 
 /* Saving Users */
