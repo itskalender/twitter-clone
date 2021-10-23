@@ -36,7 +36,7 @@ class BaseDatabase {
       return users.splice(userIndex, 1, o);
     })
   
-    this.save(users);
+    return this.save(users);
   }
   
   async insert(newObjects) {
