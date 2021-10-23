@@ -8,7 +8,7 @@
   "username": "6",
   "email": "7",
   "password": "8",
-  "about": "9",
+  "bio": "9",
   "location": "9",
   "webSite": "9",
   "createdAt": "10",
@@ -24,7 +24,7 @@
   "username": "18",
   "email": "19",
   "password": "20",
-  "about": "9",
+  "bio": "9",
   "location": "9",
   "webSite": "9",
   "createdAt": "10",
@@ -40,7 +40,7 @@
   "username": "28",
   "email": "29",
   "password": "30",
-  "about": "9",
+  "bio": "9",
   "location": "9",
   "webSite": "9",
   "createdAt": "10",
@@ -50,7 +50,7 @@
   "followings": "33",
   "followers": "34",
   "home": "35"
-},"6c8ba9b9-edf4-442f-bb4e-17f27a4247c9","Kalender","toptaskalender","toptaskalender@gmail.com","1111","","2021-10-23T09:06:54.204Z",[
+},"091aa33b-7ed6-42fb-aa23-718c5bc0fdb0","Kalender","toptaskalender","toptaskalender@gmail.com","1111","","2021-10-23T10:38:22.027Z",[
   "36",
   "37"
 ],[
@@ -60,13 +60,13 @@
 ],[],[
   "36",
   "37"
-],"90897372-87ce-4cfd-affe-47c1ba166857","Ozden","kaynarcaozden","kaynarcaozden@gmail.com","2222",[
+],"52c4ee2c-8ff1-424b-9ae2-cb4cd3bdea17","Ozden","kaynarcaozden","kaynarcaozden@gmail.com","2222",[
   "38"
 ],[],[],[
   "1"
 ],[
   "38"
-],"ae291a7f-ed0b-4b7d-abef-962753afb3b2","Ezgi","turkmenezgi","turkmenezgi@gmail.com","3333",[
+],"2e2a1889-abbf-4f2c-9fff-8b04d99c2daa","Ezgi","turkmenezgi","turkmenezgi@gmail.com","3333",[
   "39"
 ],[],[],[],[
   "39"
@@ -100,27 +100,27 @@
   "content": "59"
 },{
   "id": "60",
-  "createdAt": "54",
-  "attachments": "61",
-  "replies": "62",
-  "retweets": "63",
-  "likes": "64",
+  "createdAt": "61",
+  "attachments": "62",
+  "replies": "63",
+  "retweets": "64",
+  "likes": "65",
   "author": "3",
-  "content": "65"
-},"b690d877-198b-4be1-a9ba-b8996ab3fa99",[],[],[],[],"Hi, this is my first tweet!","af8718d6-477a-4c90-a340-fe3ae5bbcabc","2021-10-23T09:06:54.210Z",[],[],[],[],"Yes, you are right!","ffc894f6-cd5d-45d2-ae05-5b3b7a34b252","2021-10-23T09:06:54.207Z",[],[],[
-  "66"
+  "content": "66"
+},"de2e368f-01e7-4fcc-951a-26ee6e41547c",[],[],[],[],"Hi, this is my first tweet!","c9a65d85-b14a-4034-94dd-ff7ff81d34cd","2021-10-23T10:38:22.038Z",[],[],[],[],"Yes, you are right!","08179321-7482-4cc5-9e3a-cc592723396c","2021-10-23T10:38:22.032Z",[],[],[
+  "67"
 ],[
   "1"
-],"Hi, this is Ozden, this's my first tweet ever!","440f5cd1-3d52-4431-a3ef-0b6974e0a3c4",[],[],[
+],"Hi, this is Ozden, this's my first tweet ever!","37d2a030-0d26-4a58-9446-f4cbb4388c45","2021-10-23T10:38:22.033Z",[],[],[
   "37"
 ],[],"Hi, I'm Ezgi :)",{
-  "id": "67",
-  "createdAt": "47",
-  "attachments": "68",
-  "replies": "69",
-  "retweets": "70",
-  "likes": "71",
+  "id": "68",
+  "createdAt": "69",
+  "attachments": "70",
+  "replies": "71",
+  "retweets": "72",
+  "likes": "73",
   "author": "1",
   "content": "9",
   "originalTweet": "38"
-},"257a7147-4eac-47e7-a4f0-5c1f1e301dba",[],[],[],[]]
+},"27901a50-5a19-4fdd-9170-b60bacd56dce","2021-10-23T10:38:22.037Z",[],[],[],[]]

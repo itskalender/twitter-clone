@@ -22,9 +22,9 @@ class User <<Entity>> {
   + follow()
   + unfollow()
   + retweet()
-  + undoRetweet()
+  + unretweet()
   + like()
-  + undoLike()
+  + unlike()
   + reply()
 }
 

@@ -68,6 +68,13 @@ class User {
   }
 
   deleteTweet(tweet) {
+    const hasDeleted = this.tweets.find(t => t.id === tweet.id) === undefined ? true : false;
+
+    if (hasDeleted) {
+      console.log(`You've already deleted "${colors.yellow(tweet.content)}" from your tweets.`)
+      return;
+    }
+
     const updatedTweets = this.tweets.filter(t => t.id !== tweet.id );
     const updatedHome   = this.home.filter(t => t.id !== tweet.id);
 
@@ -83,6 +90,13 @@ class User {
   }
 
   follow(user) {
+    const hasFollowed = this.followings.find(u => u.id === user.id) !== undefined ? true : false;
+
+    if (hasFollowed) {
+      console.log(`You've already followed ${colors.red(user.name)}.`);
+      return;
+    }
+
     this.followings.push(user);
     this.home.push(...user.tweets); // You cannot add all the tweets of user. Use an algorithmn.
     user.followers.push(this);
@@ -91,6 +105,13 @@ class User {
   }
 
   unfollow(user) {
+    const hasUnfollowed = this.followings.find(u => u.id === user.id) === undefined ? true : false;
+
+    if (hasUnfollowed) {
+      console.log(`You've already unfollowed ${colors.red(user.name)}.`);
+      return;
+    }
+
     const updatedFollowings = this.followings.filter(u => u.id !== user.id);
     const updatedHome       = this.home.filter(t => t.author.id !== user.id);
     const updatedFollowers  = user.followers.filter(u => u.id !== this.id);
@@ -103,6 +124,14 @@ class User {
   }
 
   retweet(originalTweet, content = '') {
+    const retweets      = this.tweets.filter(t => t.originalTweet);
+    const hasRetweeted  = retweets.find(t => t.originalTweet.id === originalTweet.id) !== undefined ? true : false;
+
+    if (hasRetweeted) {
+      console.log(`You've already retweeted "${colors.yellow(originalTweet.content)}"${content ? ` with a comment on it: ${colors.yellow(content)}.` : '.'}`);
+      return;
+    }
+
     const retweet = new Retweet(this, content, originalTweet);
 
     this.tweets.push(retweet);
@@ -113,7 +142,15 @@ class User {
     console.log(`${colors.red(this.name)} retweeted "${colors.yellow(originalTweet.content)}"${content ? ` with a comment on it: ${colors.yellow(content)}.` : '.'}`)
   }
   
-  undoRetweet(tweet) {
+  unretweet(tweet) {
+    const retweets        = this.tweets.filter(t => t.originalTweet);
+    const hasUnretweeted  = retweets.find(t => t.originalTweet.id === tweet.id) === undefined ? true : false;
+
+    if (hasUnretweeted) {
+      console.log(`You've already unretweeted "${colors.yellow(tweet.content)}".`);
+      return;
+    }
+
     const updatedTweets = this.tweets.filter(t => {
       if (t.originalTweet) {
         return t.originalTweet.id !== tweet.id 
@@ -139,24 +176,38 @@ class User {
       f.home = updatedHome;
     })
 
-    console.log(`${colors.red(this.name)} deleted a retweet "${colors.yellow(tweet.content)}".`);
+    console.log(`${colors.red(this.name)} unretweeted "${colors.yellow(tweet.content)}".`);
   }
 
   like(tweet) {
+    const hasLiked = this.likedTweets.find(t => t.id === tweet.id) !== undefined ? true : false;
+
+    if (hasLiked) {
+      console.log(`You've already liked "${colors.yellow(tweet.content)}".`);
+      return;
+    }
+
     this.likedTweets.push(tweet);
     tweet.likes.push(this);
     
     console.log(`${colors.red(this.name)} liked "${colors.yellow(tweet.content)}".`);
   }
   
-  undoLike(tweet) {
+  unlike(tweet) {
+    const hasUnliked = this.likedTweets.find(t => t.id === tweet.id) === undefined ? true : false;
+
+    if (hasUnliked) {
+      console.log(`You've already unliked "${colors.yellow(tweet.content)}".`);
+      return;
+    }
+
     const updatedLikedTweets  = this.likedTweets.filter(t => t.id !== tweet.id);
     const updatedLikes        = tweet.likes.filter(u => u.id !== this.id);
 
     this.likedTweets  = updatedLikedTweets;
     tweet.likes       = updatedLikes;
     
-    console.log(`${colors.red(this.name)} did undo like a tweet "${colors.yellow(tweet.content)}".`);
+    console.log(`${colors.red(this.name)} unliked "${colors.yellow(tweet.content)}".`);
   }
 }
 
