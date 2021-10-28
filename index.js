@@ -1,14 +1,18 @@
-const express   = require('express');
-const app       = express();
+const express         = require('express');
+const app             = express();
 
-app.get('/', (req, res) => {
-  // console.log('req => ', req)
-  res.send('Home page')
+const { userDatabase} = require('./database')
+
+app.set('view engine', 'pug');
+
+app.get('/', async  (req, res) => {
+  const users = await userDatabase.load();
+  res.render('index', { users });
 })
 
 app.get('/users', (req, res) => {
   // console.log('req => ', req)
-  res.send('Passengers')
+  res.send('Passengers');
 })
 
 app.listen(3000, () => {
