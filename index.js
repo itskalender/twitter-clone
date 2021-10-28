@@ -10,9 +10,14 @@ app.get('/', async  (req, res) => {
   res.render('index', { users });
 })
 
-app.get('/users', (req, res) => {
-  // console.log('req => ', req)
-  res.send('Passengers');
+app.get('/users/:userId', async (req, res) => {
+  const user = await userDatabase.findBy('id', req.params.userId);
+
+  if ( !user ) {
+    res.status(404).send('Cannot find user');
+  }
+  
+  res.render('user', { user } );
 })
 
 app.listen(3000, () => {

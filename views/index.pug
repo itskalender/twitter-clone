@@ -3,4 +3,5 @@ block content
   p Here are our excellent users!
   ol
     each user in users
-      li #{user.name}
+      li 
+        a(href=`users/${user.id}`) #{user.name}
