@@ -2,5 +2,11 @@ extends layout
 block content
   h3 User Details
   p Name: #{user.name}
-  p Tweets: #{user.tweets.length}
+  h3 Tweets
+  if user.tweets.length
+    ol
+      each tweet in user.tweets
+        li #{tweet.content}
+  else
+    p #{user.name} has no tweet yet!
   
