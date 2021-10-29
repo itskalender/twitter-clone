@@ -7,12 +7,12 @@ const app             = express();
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
 
-app.get('/', async  (req, res) => {
+app.get('/', async  (_, res) => {
   const users = await userDatabase.load();
   res.render('index', { users });
 })
 
-app.get('/users', async (req, res) => {
+app.get('/users', async (_, res) => {
   const users = await userDatabase.load();
 
   res.render('users', { users } );
