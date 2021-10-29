@@ -69,7 +69,7 @@ async function main() {
     kalender.tweet(tweet6);
 
     await userDatabase.update([kalender]);
-    await userDatabase.insert([ezgi]);
+    await userDatabase.insert(ezgi);
     await userDatabase.remove([ozden]);
 
     const users = await userDatabase.load();

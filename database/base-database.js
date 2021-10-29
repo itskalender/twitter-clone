@@ -39,10 +39,16 @@ class BaseDatabase {
     return this.save(users);
   }
   
-  async insert(newObjects) {
+  async insert(object) {
     const objects = await this.load()
+
+    if ( !(object instanceof this.model) ) {
+      object = this.model.create(object)
+    }
     
-    return this.save(objects.concat(newObjects));
+    await this.save(objects.concat(object));
+
+    return object;
   };
   
   async remove(objects) {

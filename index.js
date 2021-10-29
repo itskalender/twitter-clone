@@ -1,9 +1,11 @@
 const express         = require('express');
+const bodyParser      = require('body-parser');
+const { userDatabase} = require('./database');
+
 const app             = express();
 
-const { userDatabase} = require('./database')
-
 app.set('view engine', 'pug');
+app.use(bodyParser.json());
 
 app.get('/', async  (req, res) => {
   const users = await userDatabase.load();
@@ -13,7 +15,13 @@ app.get('/', async  (req, res) => {
 app.get('/users', async (req, res) => {
   const users = await userDatabase.load();
 
-  res.render('users', { users } )
+  res.render('users', { users } );
+})
+
+app.post('/users', async (req, res) => {
+  const user = await userDatabase.insert(req.body);
+
+  res.send(user);
 })
 
 app.get('/users/:userId', async (req, res) => {
