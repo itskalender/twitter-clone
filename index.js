@@ -34,6 +34,13 @@ app.get('/users/:userId', async (req, res) => {
   res.render('user', { user } );
 })
 
+app.delete('/users/:userId', async (req, res) => {
+  const user = await userDatabase.find(req.params.userId);
+  await userDatabase.remove(user);
+
+  res.send(`${user.name} with the id of (${user.id}) was deleted.`) // This will be the data property of the response.
+})
+
 app.listen(3000, () => {
   console.log('started listening on 3000');
 })

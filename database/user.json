@@ -1,339 +1,179 @@
 [[
   "1",
-  "2",
-  "3"
+  "2"
 ],{
-  "id": "4",
-  "name": "5",
-  "username": "6",
-  "email": "7",
-  "password": "8",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "11",
-  "likedTweets": "12",
-  "followings": "13",
-  "followers": "14",
-  "home": "15"
+  "id": "3",
+  "name": "4",
+  "username": "5",
+  "email": "6",
+  "password": "7",
+  "bio": "8",
+  "location": "8",
+  "webSite": "8",
+  "createdAt": "9",
+  "profilePic": "8",
+  "tweets": "10",
+  "likedTweets": "11",
+  "followings": "12",
+  "followers": "13",
+  "home": "14"
 },{
-  "id": "16",
-  "name": "17",
-  "username": "18",
-  "email": "19",
-  "password": "20",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "21",
-  "likedTweets": "22",
-  "followings": "23",
-  "followers": "24",
-  "home": "25"
-},{
-  "id": "26",
-  "name": "27",
-  "username": "28",
-  "email": "29",
-  "password": "30",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "31",
-  "likedTweets": "32",
-  "followings": "33",
-  "followers": "34",
-  "home": "35"
+  "id": "15",
+  "name": "16",
+  "username": "17",
+  "email": "18",
+  "password": "19",
+  "bio": "8",
+  "location": "8",
+  "webSite": "8",
+  "createdAt": "9",
+  "profilePic": "8",
+  "tweets": "20",
+  "likedTweets": "21",
+  "followings": "22",
+  "followers": "23",
+  "home": "24"
 },"51ade910-e8f7-4a32-a489-aa02c9fc966c","Kalender","toptaskalender","toptaskalender@gmail.com","1111","","2021-10-29T13:16:18.340Z",[
-  "36",
-  "37",
-  "38"
+  "25",
+  "26",
+  "27"
 ],[
-  "39"
+  "28"
 ],[
-  "40"
+  "29"
 ],[],[
-  "36",
-  "37",
-  "38"
-],"e489bd21-85f1-47e3-8aaf-aea60606ffff","Mustafa","kaynarcamustafa","kaynarcamustafa@gmail.com","4444",[],[],[],[],[],"b81e3707-24a8-4dd4-9714-4c80bb552941","Ezgi","turkmenezgi","turkmenezgi@gmail.com","3333",[
-  "41",
-  "42"
-],[],[],[],[
-  "41",
-  "42"
-],{
-  "id": "43",
-  "createdAt": "10",
-  "attachments": "44",
-  "replies": "45",
-  "retweets": "46",
-  "likes": "47",
-  "author": "48",
-  "content": "49"
+  "25",
+  "26",
+  "27"
+],"e489bd21-85f1-47e3-8aaf-aea60606ffff","Mustafa","kaynarcamustafa","kaynarcamustafa@gmail.com","4444",[],[],[],[],[],{
+  "id": "30",
+  "createdAt": "9",
+  "attachments": "31",
+  "replies": "32",
+  "retweets": "33",
+  "likes": "34",
+  "author": "35",
+  "content": "36"
 },{
-  "id": "50",
-  "createdAt": "51",
-  "attachments": "52",
-  "replies": "53",
-  "retweets": "54",
-  "likes": "55",
-  "author": "48",
-  "content": "56",
-  "originalTweet": "57"
+  "id": "37",
+  "createdAt": "38",
+  "attachments": "39",
+  "replies": "40",
+  "retweets": "41",
+  "likes": "42",
+  "author": "35",
+  "content": "43",
+  "originalTweet": "44"
 },{
-  "id": "58",
-  "createdAt": "59",
-  "attachments": "60",
-  "replies": "61",
-  "retweets": "62",
-  "likes": "63",
-  "author": "48",
-  "content": "64"
+  "id": "45",
+  "createdAt": "46",
+  "attachments": "47",
+  "replies": "48",
+  "retweets": "49",
+  "likes": "50",
+  "author": "35",
+  "content": "51"
 },{
-  "id": "65",
-  "createdAt": "66",
-  "attachments": "67",
-  "replies": "68",
-  "retweets": "69",
-  "likes": "70",
-  "author": "40",
-  "content": "71"
+  "id": "52",
+  "createdAt": "53",
+  "attachments": "54",
+  "replies": "55",
+  "retweets": "56",
+  "likes": "57",
+  "author": "29",
+  "content": "58"
 },{
-  "id": "72",
-  "name": "73",
-  "username": "74",
-  "email": "75",
-  "password": "76",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "77",
-  "likedTweets": "78",
-  "followings": "79",
-  "followers": "80",
-  "home": "81"
-},{
-  "id": "82",
-  "createdAt": "83",
-  "attachments": "84",
-  "replies": "85",
-  "retweets": "86",
-  "likes": "87",
-  "author": "88",
-  "content": "89"
-},{
-  "id": "90",
-  "createdAt": "91",
-  "attachments": "92",
-  "replies": "93",
-  "retweets": "94",
-  "likes": "95",
-  "author": "88",
-  "content": "96"
+  "id": "59",
+  "name": "60",
+  "username": "61",
+  "email": "62",
+  "password": "63",
+  "bio": "8",
+  "location": "8",
+  "webSite": "8",
+  "createdAt": "9",
+  "profilePic": "8",
+  "tweets": "64",
+  "likedTweets": "65",
+  "followings": "66",
+  "followers": "67",
+  "home": "68"
 },"008082d3-46e0-4eb3-87d3-06146e737301",[],[],[],[],{
-  "id": "4",
-  "name": "5",
-  "username": "6",
-  "email": "7",
-  "password": "8",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "11",
-  "likedTweets": "12",
-  "followings": "13",
-  "followers": "14",
-  "home": "15"
+  "id": "3",
+  "name": "4",
+  "username": "5",
+  "email": "6",
+  "password": "7",
+  "bio": "8",
+  "location": "8",
+  "webSite": "8",
+  "createdAt": "9",
+  "profilePic": "8",
+  "tweets": "10",
+  "likedTweets": "11",
+  "followings": "12",
+  "followers": "13",
+  "home": "14"
 },"Hi, this is my first tweet!","ca7a4efa-dd48-4839-9769-a8af4c42a7af","2021-10-29T13:16:18.346Z",[],[],[],[],"Yes, you are right!",{
-  "id": "82",
-  "createdAt": "83",
-  "attachments": "97",
-  "replies": "98",
-  "retweets": "99",
-  "likes": "100",
-  "author": "101",
-  "content": "89"
+  "id": "69",
+  "createdAt": "70",
+  "attachments": "71",
+  "replies": "72",
+  "retweets": "73",
+  "likes": "74",
+  "author": "75",
+  "content": "76"
 },"941b923b-c775-4308-81f9-f4a83f9e34e0","2021-10-29T13:16:18.353Z",[],[],[],[],"Check for update!","5d00b037-b177-47b8-b0fd-eab9df16d6a8","2021-10-29T13:16:18.342Z",[],[],[
-  "102"
+  "77"
 ],[
-  "48"
+  "35"
 ],"Hi, this is Ozden, this's my first tweet ever!","37733918-9276-4b6f-b319-c96c38e4809b","Ozden","kaynarcaozden","kaynarcaozden@gmail.com","2222",[
-  "39"
+  "28"
 ],[],[],[
-  "48"
+  "35"
 ],[
-  "39"
+  "28"
 ],"7f254bec-1a60-4663-98ea-a4c9483c8a39","2021-10-29T13:16:18.343Z",[],[],[
-  "103"
+  "26"
 ],[],{
-  "id": "26",
-  "name": "27",
-  "username": "28",
-  "email": "29",
-  "password": "30",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "31",
-  "likedTweets": "32",
-  "followings": "33",
-  "followers": "34",
-  "home": "35"
-},"What a wonderful day!","b3256b27-5a1e-4280-96f3-bd2eef317239","2021-10-29T13:16:18.352Z",[],[],[],[],"Learning AJAX is cool too!",[],[],[
-  "37"
-],[],{
-  "id": "26",
-  "name": "27",
-  "username": "28",
-  "email": "29",
-  "password": "30",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "104",
-  "likedTweets": "105",
-  "followings": "106",
-  "followers": "107",
-  "home": "108"
-},{
-  "id": "109",
-  "createdAt": "51",
-  "attachments": "110",
-  "replies": "111",
-  "retweets": "112",
-  "likes": "113",
-  "author": "48",
-  "content": "9",
-  "originalTweet": "39"
-},{
-  "id": "50",
-  "createdAt": "51",
-  "attachments": "114",
-  "replies": "115",
-  "retweets": "116",
-  "likes": "117",
-  "author": "118",
-  "content": "56",
-  "originalTweet": "41"
-},[
-  "57",
-  "119"
+  "id": "78",
+  "name": "79",
+  "username": "80",
+  "email": "81",
+  "password": "82",
+  "bio": "8",
+  "location": "8",
+  "webSite": "8",
+  "createdAt": "9",
+  "profilePic": "8",
+  "tweets": "83",
+  "likedTweets": "84",
+  "followings": "85",
+  "followers": "86",
+  "home": "87"
+},"What a wonderful day!",{
+  "id": "88",
+  "createdAt": "38",
+  "attachments": "89",
+  "replies": "90",
+  "retweets": "91",
+  "likes": "92",
+  "author": "35",
+  "content": "8",
+  "originalTweet": "28"
+},"b81e3707-24a8-4dd4-9714-4c80bb552941","Ezgi","turkmenezgi","turkmenezgi@gmail.com","3333",[
+  "44",
+  "93"
 ],[],[],[],[
-  "57",
-  "119"
-],"3340bcc3-ecc0-4b33-bfff-41b25409c055",[],[],[],[],[],[],[],[],{
-  "id": "4",
-  "name": "5",
-  "username": "6",
-  "email": "7",
-  "password": "8",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "120",
-  "likedTweets": "121",
-  "followings": "122",
-  "followers": "123",
-  "home": "124"
-},{
-  "id": "90",
-  "createdAt": "91",
-  "attachments": "125",
-  "replies": "126",
-  "retweets": "127",
-  "likes": "128",
-  "author": "101",
-  "content": "96"
-},[
-  "129",
-  "103",
-  "130"
-],[
-  "131"
-],[
-  "132"
-],[],[
-  "129",
-  "103",
-  "130"
-],[],[],[],[],{
-  "id": "43",
-  "createdAt": "10",
-  "attachments": "133",
-  "replies": "134",
-  "retweets": "135",
-  "likes": "136",
-  "author": "118",
-  "content": "49"
-},{
-  "id": "58",
-  "createdAt": "59",
-  "attachments": "137",
-  "replies": "138",
-  "retweets": "139",
-  "likes": "140",
-  "author": "118",
-  "content": "64"
-},{
-  "id": "65",
-  "createdAt": "66",
-  "attachments": "141",
-  "replies": "142",
-  "retweets": "143",
-  "likes": "144",
-  "author": "132",
-  "content": "71"
-},{
-  "id": "72",
-  "name": "73",
-  "username": "74",
-  "email": "75",
-  "password": "76",
-  "bio": "9",
-  "location": "9",
-  "webSite": "9",
-  "createdAt": "10",
-  "profilePic": "9",
-  "tweets": "145",
-  "likedTweets": "146",
-  "followings": "147",
-  "followers": "148",
-  "home": "149"
-},[],[],[],[],[],[],[],[],[],[],[
-  "150"
-],[
-  "118"
-],[
-  "131"
-],[],[],[
-  "118"
-],[
-  "131"
-],{
-  "id": "109",
-  "createdAt": "51",
-  "attachments": "151",
-  "replies": "152",
-  "retweets": "153",
-  "likes": "154",
-  "author": "118",
-  "content": "9",
-  "originalTweet": "131"
-},[],[],[],[]]
+  "44",
+  "93"
+],"3340bcc3-ecc0-4b33-bfff-41b25409c055",[],[],[],[],{
+  "id": "94",
+  "createdAt": "95",
+  "attachments": "96",
+  "replies": "97",
+  "retweets": "98",
+  "likes": "99",
+  "author": "75",
+  "content": "100"
+},"b3256b27-5a1e-4280-96f3-bd2eef317239","2021-10-29T13:16:18.352Z",[],[],[],[],"Learning AJAX is cool too!"]

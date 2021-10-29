@@ -2,7 +2,7 @@ const fs                    = require('fs');
 const { stringify, parse }  = require('flatted');
 
 class BaseDatabase {
-  constructor(model){
+  constructor(model) {
     this.model    = model;
     this.filename = model.name.toLowerCase();
   }
@@ -28,8 +28,7 @@ class BaseDatabase {
   }
   
   async update(object) {
-    const users = await this.load();
-    
+    const users     = await this.load();
     const userIndex = users.findIndex(u => u.id === object.id);
 
     if (userIndex === -1 )
@@ -53,8 +52,7 @@ class BaseDatabase {
   };
   
   async remove(object) {
-    const users = await this.load();
-
+    const users     = await this.load();
     const userIndex = users.findIndex(u => u.id === object.id);
 
     if (userIndex === -1 )
@@ -64,6 +62,16 @@ class BaseDatabase {
 
     await this.save(users);
   };
+
+  async find(id) {
+    const users = await this.load();
+    const user  = users.find(u => u.id === id);
+
+    if (!user)
+      throw new Error('Cannot find user');
+
+    return user;
+  }
   
   async findBy(property, value) {
     return (await this.load()).find(u => u[property] === value);
