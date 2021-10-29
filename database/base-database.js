@@ -28,15 +28,17 @@ class BaseDatabase {
     })
   }
   
-  async update(objects) {
+  async update(object) {
     const users = await this.load();
+    
+    const userIndex = users.findIndex(u => u.id === object.id);
+
+    if (userIndex === -1 )
+      throw new Error('Cannot find user')
+    
+    users.splice(userIndex, 1, object)
   
-    objects.forEach(o => {
-      const userIndex = users.findIndex(u => u.id === o.id);
-      return users.splice(userIndex, 1, o);
-    })
-  
-    return this.save(users);
+    await this.save(users);
   }
   
   async insert(object) {
