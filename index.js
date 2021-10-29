@@ -10,6 +10,12 @@ app.get('/', async  (req, res) => {
   res.render('index', { users });
 })
 
+app.get('/users', async (req, res) => {
+  const users = await userDatabase.load();
+
+  res.render('users', { users } )
+})
+
 app.get('/users/:userId', async (req, res) => {
   const user = await userDatabase.findBy('id', req.params.userId);
 
