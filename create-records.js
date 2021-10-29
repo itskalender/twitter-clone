@@ -70,7 +70,7 @@ async function main() {
 
     await userDatabase.update(kalender);
     await userDatabase.insert(ezgi);
-    await userDatabase.remove([ozden]);
+    await userDatabase.remove(ozden);
 
     const users = await userDatabase.load();
     printUsernames(users);
