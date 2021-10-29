@@ -1,7 +1,5 @@
 extends layout
 block content
-  p Here are our excellent users!
-  ol
-    each user in users
-      li 
-        a(href=`users/${user.id}`) #{user.name}
+  p Click 
+    a(href="/users") here 
+    | to see our excellent users!
