@@ -1,6 +1,7 @@
 const express         = require('express');
 const bodyParser      = require('body-parser');
 const { userDatabase} = require('./database');
+const { Tweet }       = require('./models');
 
 const app             = express();
 
@@ -38,7 +39,21 @@ app.delete('/users/:userId', async (req, res) => {
   const user = await userDatabase.find(req.params.userId);
   await userDatabase.remove(user);
 
-  res.send(`${user.name} with the id of (${user.id}) was deleted.`) // This will be the data property of the response.
+  res.send('OK') // This will be the data property of the response.
+})
+
+app.post('/users/:userId/tweets', async (req, res) => {
+  const { userId }  = req.params;
+  const { content } = req.body;
+
+  const user        = await userDatabase.find(userId);
+
+  const tweet       = new Tweet(user, content);
+  user.tweet(tweet);
+
+  await userDatabase.update(user);
+
+  res.send('OK');
 })
 
 app.listen(3000, () => {
