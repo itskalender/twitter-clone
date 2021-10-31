@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 app.get('/', async  (_, res) => {
   const users = await userDatabase.load();
+
   res.render('index', { users });
 })
 
@@ -26,17 +27,21 @@ app.post('/users', async (req, res) => {
 })
 
 app.get('/users/:userId', async (req, res) => {
-  const user = await userDatabase.findBy('id', req.params.userId);
+  const { userId } = req.params;
+
+  const user = await userDatabase.findBy('id', userId);
 
   if ( !user ) {
     res.status(404).send('Cannot find user');
   }
   
-  res.render('user', { user } );
+  res.render('user', { user });
 })
 
 app.delete('/users/:userId', async (req, res) => {
-  const user = await userDatabase.find(req.params.userId);
+  const { userId } = req.params;
+
+  const user = await userDatabase.find(userId);
   await userDatabase.remove(user);
 
   res.send('OK') // This will be the data property of the response.
@@ -50,7 +55,6 @@ app.post('/users/:userId/tweets', async (req, res) => {
 
   const tweet       = new Tweet(user, content);
   user.tweet(tweet);
-
   await userDatabase.update(user);
 
   res.send('OK');
