@@ -48,4 +48,21 @@ router.post('/:userId/tweets', async (req, res) => {
   res.send('OK');
 })
 
+router.delete('/:userId/tweets/:tweetId', async (req, res) => {
+  const { userId, tweetId } = req.params;
+
+  const user  = await userDatabase.find(userId);
+  const tweet = user.tweets.find(t => t.id === tweetId);
+
+  if ( !tweet ) {
+    res.status(404).send('Cannot find tweet');
+  }
+
+  user.deleteTweet(tweet);
+
+  await userDatabase.update(user);
+
+  res.send('OK');
+})
+
 module.exports = router;

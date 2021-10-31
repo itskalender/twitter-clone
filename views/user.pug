@@ -7,9 +7,9 @@ block content
     ol
       each tweet in user.tweets
         if tweet.originalTweet
-          li "#{tweet.content}" with the original tweet "#{tweet.originalTweet.content}"
+          li "#{tweet.content}" with the original tweet "#{tweet.originalTweet.content} (#{tweet.id})"
         else 
-          li "#{tweet.content}"
+          li "#{tweet.content} (#{tweet.id})"
   else
     p #{user.name} has no tweet yet!
   
