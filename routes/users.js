@@ -17,7 +17,7 @@ router.post('', async (req, res) => {
 router.get('/:userId', async (req, res) => {
   const { userId } = req.params;
 
-  const user = await userDatabase.findBy('id', userId);
+  const user = await userDatabase.find(userId);
 
   if ( !user ) {
     res.status(404).send('Cannot find user');
@@ -37,7 +37,7 @@ router.delete('/:userId', async (req, res) => {
 
 router.post('/:userId/tweets', async (req, res) => {
   const { userId }  = req.params;
-  const { content } = req.body;
+  const { content } = req.body; // You need to pull other things that you have to pass in to the Tweet class.
 
   const user        = await userDatabase.find(userId);
 
@@ -91,6 +91,21 @@ router.delete('/:userId/followings/:otherUserId', async (req, res) => {
   await userDatabase.update(otherUser);
 
   res.send('OK') 
+})
+
+router.post('/:userId/retweets/:retweetId', async (req, res) => {
+  const { userId, retweetId } = req.params;
+  const { content }           = req.body;
+
+  const user          = await userDatabase.find(userId);
+  const users         = await userDatabase.load();
+  const originalTweet = users.flatMap(u => u.tweets).find(t => t.id === retweetId);
+
+  user.retweet(originalTweet, content);
+
+  await userDatabase.update(user);
+
+  res.send('OK');
 })
 
 module.exports = router;
