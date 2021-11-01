@@ -1,8 +1,9 @@
 extends layout
 block content
-  h3 User Details
-  p Name: #{user.name}
-  h3 Tweets
+  h2 User Details
+  h4 Username / Name
+  | #{user.username} / #{user.name} 
+  h4 Tweets
   if user.tweets.length
     ol
       each tweet in user.tweets
@@ -12,4 +13,24 @@ block content
           li "#{tweet.content} (#{tweet.id})"
   else
     p #{user.name} has no tweet yet!
-  
+  h4 likedTweets
+  if user.likedTweets.length
+    ol
+      each tweet in user.likedTweets 
+        li "#{tweet.content} (#{tweet.id})"
+  else
+    p #{user.name} has no liked tweet yet!
+  h4 Followings
+  if user.followings.length
+    ol
+      each person in user.followings
+        li #{person.name}
+  else
+    p #{user.name} has no following yet!
+  h4 Followers
+  if user.followers.length
+    ol
+      each person in user.followers 
+        li #{person.name}
+  else
+    p #{user.name} has no follower yet!
