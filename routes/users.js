@@ -65,18 +65,32 @@ router.delete('/:userId/tweets/:tweetId', async (req, res) => {
   res.send('OK');
 })
 
-router.post('/:userId/followings/:followingId', async (req, res) => {
-  const { userId, followingId } = req.params;
+router.post('/:userId/followings/:otherUserId', async (req, res) => {
+  const { userId, otherUserId } = req.params;
 
-  const follower  = await userDatabase.find(userId);
-  const following = await userDatabase.find(followingId);
+  const user      = await userDatabase.find(userId);
+  const otherUser = await userDatabase.find(otherUserId);
   
-  follower.follow(following);
+  user.follow(otherUser);
 
-  await userDatabase.update(follower);
-  await userDatabase.update(following);
+  await userDatabase.update(user);
+  await userDatabase.update(otherUser);
 
   res.send('OK')
+})
+
+router.delete('/:userId/followings/:otherUserId', async (req, res) => {
+  const { userId, otherUserId } = req.params;
+
+  const user      = await userDatabase.find(userId);
+  const otherUser = await userDatabase.find(otherUserId);
+  
+  user.unfollow(otherUser);
+
+  await userDatabase.update(user);
+  await userDatabase.update(otherUser);
+
+  res.send('OK') 
 })
 
 module.exports = router;
