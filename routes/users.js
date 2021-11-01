@@ -52,7 +52,7 @@ router.delete('/:userId/tweets/:tweetId', async (req, res) => {
   const { userId, tweetId } = req.params;
 
   const user  = await userDatabase.find(userId);
-  const tweet = user.tweets.find(t => t.id === tweetId);
+  const tweet = user.tweets.find(t => t.id === tweetId); // Should I make a database for tweets separately?
 
   if ( !tweet ) {
     res.status(404).send('Cannot find tweet');
@@ -63,6 +63,20 @@ router.delete('/:userId/tweets/:tweetId', async (req, res) => {
   await userDatabase.update(user);
 
   res.send('OK');
+})
+
+router.post('/:userId/followings/:followingId', async (req, res) => {
+  const { userId, followingId } = req.params;
+
+  const follower  = await userDatabase.find(userId);
+  const following = await userDatabase.find(followingId);
+  
+  follower.follow(following);
+
+  await userDatabase.update(follower);
+  await userDatabase.update(following);
+
+  res.send('OK')
 })
 
 module.exports = router;
