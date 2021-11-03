@@ -1,80 +1,34 @@
-const fs                    = require('fs');
-const { stringify, parse }  = require('flatted');
-
 class BaseDatabase {
   constructor(model) {
-    this.model    = model;
-    this.filename = model.name.toLowerCase();
+    this.model = model;
   }
 
   save(objects) {
-    return new Promise((resolve, reject) => {
-      fs.writeFile(`${__dirname}/${this.filename}.json`, stringify(objects, null, 2), (err) => {
-        if (err) reject(err);
-        resolve();
-      });
-    })
+    return this.model.insertMany(objects);
   };
   
   load() {
-    return new Promise((resolve, reject) => {
-      fs.readFile(`${__dirname}/${this.filename}.json`, 'utf-8', (err, file) => {
-        if (err) reject(err);
-        
-        const objects = parse(file);
-        resolve(objects.map(this.model.create));
-      });
-    })
+    return this.model.find();
   }
   
-  async update(object) {
-    const users     = await this.load();
-    const userIndex = users.findIndex(u => u.id === object.id);
-
-    if (userIndex === -1 )
-      throw new Error('Cannot find user');
-    
-    users.splice(userIndex, 1, object);
-  
-    await this.save(users);
+  async update(id, object) {
+    return this.model.findByIdAndUpdate(id, object);
   }
   
   async insert(object) {
-    const objects = await this.load();
-
-    if ( !(object instanceof this.model) ) {
-      object = this.model.create(object);
-    }
-    
-    await this.save(objects.concat(object));
-
-    return object;
+    return this.model.create(object);
   };
   
-  async remove(object) {
-    const users     = await this.load();
-    const userIndex = users.findIndex(u => u.id === object.id);
-
-    if (userIndex === -1 )
-      throw new Error('Cannot find user');
-    
-    users.splice(userIndex, 1);
-
-    await this.save(users);
+  async delete(id) {
+    return this.model.findByIdAndDelete(id);
   };
 
-  async find(id) {
-    const users = await this.load();
-    const user  = users.find(u => u.id === id);
-
-    if (!user)
-      throw new Error('Cannot find user');
-
-    return user;
+  async findById(id) {
+    return this.model.findById(id);
   }
   
   async findBy(property, value) {
-    return (await this.load()).find(u => u[property] === value);
+    return this.model.find( { [property] : value } );
   }
 }
 

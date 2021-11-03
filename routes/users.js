@@ -17,7 +17,7 @@ router.post('', async (req, res) => {
 router.get('/:userId', async (req, res) => {
   const { userId } = req.params;
 
-  const user = await userDatabase.find(userId);
+  const user = await userDatabase.findById(userId);
 
   if ( !user ) {
     res.status(404).send('Cannot find user');
@@ -29,99 +29,107 @@ router.get('/:userId', async (req, res) => {
 router.delete('/:userId', async (req, res) => {
   const { userId } = req.params;
 
-  const user = await userDatabase.find(userId);
-  await userDatabase.remove(user);
+  await userDatabase.delete(userId);
 
-  res.send('OK') // This will be the data property of the response.
+  res.send('OK');
 })
 
-router.post('/:userId/tweets', async (req, res) => {
+router.patch('/:userId', async (req, res) => {
   const { userId }  = req.params;
-  const { content } = req.body; // You need to pull other things that you have to pass in to the Tweet class.
+  const object      = req.body;
 
-  const user        = await userDatabase.find(userId);
-
-  const tweet       = new Tweet(user, content);
-  user.tweet(tweet);
-  await userDatabase.update(user);
+  await userDatabase.update(userId, object);
 
   res.send('OK');
 })
 
-router.delete('/:userId/tweets/:tweetId', async (req, res) => {
-  const { userId, tweetId } = req.params;
+// router.post('/:userId/tweets', async (req, res) => {
+//   const { userId }  = req.params;
+//   const { content } = req.body; // You need to pull other things that you have to pass in to the Tweet class.
 
-  const user  = await userDatabase.find(userId);
-  const tweet = user.tweets.find(t => t.id === tweetId); // Should I make a database for tweets separately?
+//   const user        = await userDatabase.find(userId);
 
-  if ( !tweet ) {
-    res.status(404).send('Cannot find tweet');
-  }
+//   const tweet       = new Tweet(user, content);
+//   user.tweet(tweet);
+//   await userDatabase.update(user);
 
-  user.deleteTweet(tweet);
+//   res.send('OK');
+// })
 
-  await userDatabase.update(user);
+// router.delete('/:userId/tweets/:tweetId', async (req, res) => {
+//   const { userId, tweetId } = req.params;
 
-  res.send('OK');
-})
+//   const user  = await userDatabase.find(userId);
+//   const tweet = user.tweets.find(t => t.id === tweetId); // Should I make a database for tweets separately?
 
-router.post('/:userId/followings/:otherUserId', async (req, res) => {
-  const { userId, otherUserId } = req.params;
+//   if ( !tweet ) {
+//     res.status(404).send('Cannot find tweet');
+//   }
 
-  const user      = await userDatabase.find(userId);
-  const otherUser = await userDatabase.find(otherUserId);
+//   user.deleteTweet(tweet);
+
+//   await userDatabase.update(user);
+
+//   res.send('OK');
+// })
+
+// router.post('/:userId/followings/:otherUserId', async (req, res) => {
+//   const { userId, otherUserId } = req.params;
+
+//   const user      = await userDatabase.find(userId);
+//   const otherUser = await userDatabase.find(otherUserId);
   
-  user.follow(otherUser);
+//   user.follow(otherUser);
 
-  await userDatabase.update(user);
-  await userDatabase.update(otherUser);
+//   await userDatabase.update(user);
+//   await userDatabase.update(otherUser);
 
-  res.send('OK')
-})
+//   res.send('OK')
+// })
 
-router.delete('/:userId/followings/:otherUserId', async (req, res) => {
-  const { userId, otherUserId } = req.params;
+// router.delete('/:userId/followings/:otherUserId', async (req, res) => {
+//   const { userId, otherUserId } = req.params;
 
-  const user      = await userDatabase.find(userId);
-  const otherUser = await userDatabase.find(otherUserId);
+//   const user      = await userDatabase.find(userId);
+//   const otherUser = await userDatabase.find(otherUserId);
   
-  user.unfollow(otherUser);
+//   user.unfollow(otherUser);
 
-  await userDatabase.update(user);
-  await userDatabase.update(otherUser);
+//   await userDatabase.update(user);
+//   await userDatabase.update(otherUser);
 
-  res.send('OK') 
-})
+//   res.send('OK') 
+// })
 
-router.post('/:userId/retweets/:retweetId', async (req, res) => {
-  const { userId, retweetId } = req.params;
-  const { content }           = req.body;
+// router.post('/:userId/retweets/:retweetId', async (req, res) => {
+//   const { userId, retweetId } = req.params;
+//   const { content }           = req.body;
 
-  const user          = await userDatabase.find(userId);
-  const users         = await userDatabase.load();
-  const originalTweet = users.flatMap(u => u.tweets).find(t => t.id === retweetId);
+//   const user          = await userDatabase.find(userId);
+//   const users         = await userDatabase.load();
+//   const originalTweet = users.flatMap(u => u.tweets).find(t => t.id === retweetId);
 
-  user.retweet(originalTweet, content);
+//   user.retweet(originalTweet, content);
 
-  await userDatabase.update(user);
+//   await userDatabase.update(user);
 
-  res.send('OK');
-})
+//   res.send('OK');
+// })
 
-router.delete('/:userId/retweets/:retweetId', async (req, res) => { // Will be changed!
-  const { userId, retweetId } = req.params;
+// router.delete('/:userId/retweets/:retweetId', async (req, res) => { // Will be changed!
+//   const { userId, retweetId } = req.params;
 
-  const users   = await userDatabase.load();
-  const user    = await userDatabase.find(userId);
-  const retweet = user.tweets(t => t.id === retweetId);
+//   const users   = await userDatabase.load();
+//   const user    = await userDatabase.find(userId);
+//   const retweet = user.tweets(t => t.id === retweetId);
 
-  if ( !retweet ) {
-    res.status(404).send('Cannot find tweet');
-  }
+//   if ( !retweet ) {
+//     res.status(404).send('Cannot find tweet');
+//   }
 
-  user.unretweet(retweet);
+//   user.unretweet(retweet);
 
-  await userDatabase.update(user);
-})
+//   await userDatabase.update(user);
+// })
 
 module.exports = router;
