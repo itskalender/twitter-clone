@@ -142,41 +142,39 @@ class User {
     console.log(`${colors.red(this.name)} retweeted "${colors.yellow(originalTweet.content)}"${content ? ` with a comment on it: ${colors.yellow(content)}.` : '.'}`)
   }
   
-  unretweet(tweet) {
+  unretweet(retweet) {
     const retweets        = this.tweets.filter(t => t.originalTweet);
-    const hasUnretweeted  = retweets.find(t => t.originalTweet.id === tweet.id) === undefined ? true : false;
+    const hasUnretweeted  = retweets.find(t => t.originalTweet.id === retweet.id) === undefined ? true : false;
 
     if (hasUnretweeted) {
-      console.log(`You've already unretweeted "${colors.yellow(tweet.content)}".`);
+      console.log(`You've already unretweeted "${colors.yellow(retweet.content)}".`);
       return;
     }
 
     const updatedTweets = this.tweets.filter(t => {
       if (t.originalTweet) {
-        return t.originalTweet.id !== tweet.id 
+        return t.originalTweet.id !== retweet.id 
       }
-      else {
-        return t.id !== tweet.id
-      }
+      return true;
     });
     const updatedHome = this.home.filter(t => {
       if (t.originalTweet) {
-        return t.originalTweet.id !== tweet.id 
+        return t.originalTweet.id !== retweet.id 
       }
-      else {
-        return t.id !== tweet.id
-      }
+      return true
     });
 
     this.tweets = updatedTweets; 
     this.home   = updatedHome;
 
+    /* BAD CODE */
+    const unretweetedTweet = retweet.retweets.find(t => t.author.id === this.id)
     this.followers.forEach(f => {
-      const updatedHome = f.home.filter(t => t.id !== tweet.id)
+      const updatedHome = f.home.filter(t => t.id !== unretweetedTweet )
       f.home = updatedHome;
     })
 
-    console.log(`${colors.red(this.name)} unretweeted "${colors.yellow(tweet.content)}".`);
+    console.log(`${colors.red(this.name)} unretweeted "${colors.yellow(retweet.content)}".`);
   }
 
   like(tweet) {

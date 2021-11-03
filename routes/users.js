@@ -108,4 +108,20 @@ router.post('/:userId/retweets/:retweetId', async (req, res) => {
   res.send('OK');
 })
 
+router.delete('/:userId/retweets/:retweetId', async (req, res) => { // Will be changed!
+  const { userId, retweetId } = req.params;
+
+  const users   = await userDatabase.load();
+  const user    = await userDatabase.find(userId);
+  const retweet = user.tweets(t => t.id === retweetId);
+
+  if ( !retweet ) {
+    res.status(404).send('Cannot find tweet');
+  }
+
+  user.unretweet(retweet);
+
+  await userDatabase.update(user);
+})
+
 module.exports = router;
