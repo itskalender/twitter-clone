@@ -2,16 +2,19 @@ const router          = require('express').Router();
 const { userDatabase} = require('../database');
 const { Tweet }       = require('../models');
 
-router.get('', async (_, res) => {
+router.get('/', async (_, res) => {
   const users = await userDatabase.load();
 
   res.render('users', { users } );
 })
 
-router.post('', async (req, res) => {
-  const user = await userDatabase.insert(req.body);
-
-  res.send(user);
+router.post('/', async (req, res) => {
+  try {
+    const user = await userDatabase.insert(req.body);
+    res.send(user);
+  } catch (error) {
+    res.send(error.message);    
+  }
 })
 
 router.get('/:userId', async (req, res) => {

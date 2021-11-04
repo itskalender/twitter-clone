@@ -1,15 +1,20 @@
-const colors          = require('colors/safe');
-const { v4: uuidv4 }  = require('uuid');
-const Retweet         = require('./retweet');
-
-const mongoose        = require('mongoose');
+const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
-  name      : String,
-  username  : String,
-  email     : String,
-  password  : String,
-})
+  name        : { type: String, required: true },
+  username    : { type: String, required: true, unique: true },
+  email       : { type: String, required: true, unique : true },
+  password    : { type: String, required: true },
+  bio         : String,
+  location    : String,
+  webSite     : String,
+  profilPic   : String,
+  tweets      : [],
+  likedTweets : [],
+  followings  : [],
+  followers   : [],
+  home        : [],
+}, { timestamps: true })
 
 module.exports = mongoose.model('User', UserSchema);
 
