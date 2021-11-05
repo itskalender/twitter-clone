@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
   }
 })
 
+
 router.get('/:userId', async (req, res) => {
   const { userId } = req.params;
 
@@ -28,7 +29,7 @@ router.get('/:userId', async (req, res) => {
     res.status(404).send('Cannot find user');
   }
   
-  res.render('user', { user });
+  res.send(user);
 })
 
 router.delete('/:userId', async (req, res) => {
@@ -48,6 +49,8 @@ router.patch('/:userId', async (req, res) => {
   res.send('OK');
 })
 
+
+
 router.post('/:userId/tweets', async (req, res) => {
   const { userId }  = req.params;
   const { body }    = req.body;
@@ -63,25 +66,17 @@ router.get('/:userId/tweets/:tweetId', async (req, res) => {
   const tweet = await tweetDatabase.findById(tweetId);
 
   res.render('tweet', { tweet });
-  // res.send(tweet);
 })
 
-// router.delete('/:userId/tweets/:tweetId', async (req, res) => {
-//   const { userId, tweetId } = req.params;
+router.delete('/:userId/tweets/:tweetId', async function (req, res) {
+  const { tweetId } = req.params;
 
-//   const user  = await userDatabase.find(userId);
-//   const tweet = user.tweets.find(t => t.id === tweetId); // Should I make a database for tweets separately?
+  await tweetDatabase.delete(tweetId);
+  // In this way of deleting, in 'users' collection I've still have 'tweet object-id ref' in my users tweets array.
+  // is this correct?
 
-//   if ( !tweet ) {
-//     res.status(404).send('Cannot find tweet');
-//   }
-
-//   user.deleteTweet(tweet);
-
-//   await userDatabase.update(user);
-
-//   res.send('OK');
-// })
+  res.send('OK');
+})
 
 // router.post('/:userId/followings/:otherUserId', async (req, res) => {
 //   const { userId, otherUserId } = req.params;
