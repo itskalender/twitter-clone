@@ -12,14 +12,14 @@ class BaseService {
   }
   
   async update(id, object) {
-    return this.model.findByIdAndUpdate(id, object);
+    return this.model.findByIdAndUpdate(id, object, { returnDocument: 'after' });
   }
   
   async insert(object) {
     return this.model.create(object);
   };
   
-  async delete(id) {
+  async deleteById(id) {
     return this.model.findByIdAndDelete(id);
   };
 
