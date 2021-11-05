@@ -1,6 +1,8 @@
 const router          = require('express').Router();
-const { userDatabase} = require('../database');
-const { Tweet }       = require('../models');
+const { 
+  userDatabase,
+  tweetDatabase
+}                     = require('../database');
 
 router.get('/', async (_, res) => {
   const users = await userDatabase.load();
@@ -46,18 +48,23 @@ router.patch('/:userId', async (req, res) => {
   res.send('OK');
 })
 
-// router.post('/:userId/tweets', async (req, res) => {
-//   const { userId }  = req.params;
-//   const { content } = req.body; // You need to pull other things that you have to pass in to the Tweet class.
+router.post('/:userId/tweets', async (req, res) => {
+  const { userId }  = req.params;
+  const { body }    = req.body;
 
-//   const user        = await userDatabase.find(userId);
+  const tweet = await tweetDatabase.tweet(userId, body);
 
-//   const tweet       = new Tweet(user, content);
-//   user.tweet(tweet);
-//   await userDatabase.update(user);
+  res.send(tweet);
+})
 
-//   res.send('OK');
-// })
+router.get('/:userId/tweets/:tweetId', async (req, res) => {
+  const { tweetId } = req.params;
+
+  const tweet = await tweetDatabase.findById(tweetId);
+
+  res.render('tweet', { tweet });
+  // res.send(tweet);
+})
 
 // router.delete('/:userId/tweets/:tweetId', async (req, res) => {
 //   const { userId, tweetId } = req.params;
