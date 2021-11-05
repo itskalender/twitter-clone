@@ -1,8 +1,8 @@
 const router          = require('express').Router();
-const { userDatabase} = require('../database');
+const { userService } = require('../services');
 
 router.get('', async  (_, res) => {
-  const users = await userDatabase.load();
+  const users = await userService.load();
 
   res.render('index', { users });
 })

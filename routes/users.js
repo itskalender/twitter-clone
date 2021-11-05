@@ -1,18 +1,18 @@
 const router          = require('express').Router();
 const { 
-  userDatabase,
-  tweetDatabase
-}                     = require('../database');
+  userService,
+  tweetService
+}                     = require('../services');
 
 router.get('/', async (_, res) => {
-  const users = await userDatabase.load();
+  const users = await userService.load();
 
   res.render('users', { users } );
 })
 
 router.post('/', async (req, res) => {
   try {
-    const user = await userDatabase.insert(req.body);
+    const user = await userService.insert(req.body);
     res.send(user);
   } catch (error) {
     res.send(error.message);    
@@ -23,19 +23,19 @@ router.post('/', async (req, res) => {
 router.get('/:userId', async (req, res) => {
   const { userId } = req.params;
 
-  const user = await userDatabase.findById(userId);
+  const user = await userService.findById(userId);
 
   if ( !user ) {
     res.status(404).send('Cannot find user');
   }
   
-  res.send(user);
+  res.render('user', { user });
 })
 
 router.delete('/:userId', async (req, res) => {
   const { userId } = req.params;
 
-  await userDatabase.delete(userId);
+  await userService.delete(userId);
 
   res.send('OK');
 })
@@ -44,7 +44,7 @@ router.patch('/:userId', async (req, res) => {
   const { userId }  = req.params;
   const object      = req.body;
 
-  await userDatabase.update(userId, object);
+  await userService.update(userId, object);
 
   res.send('OK');
 })
@@ -55,7 +55,7 @@ router.post('/:userId/tweets', async (req, res) => {
   const { userId }  = req.params;
   const { body }    = req.body;
 
-  const tweet = await tweetDatabase.tweet(userId, body);
+  const tweet = await tweetService.tweet(userId, body);
 
   res.send(tweet);
 })
@@ -63,7 +63,7 @@ router.post('/:userId/tweets', async (req, res) => {
 router.get('/:userId/tweets/:tweetId', async (req, res) => {
   const { tweetId } = req.params;
 
-  const tweet = await tweetDatabase.findById(tweetId);
+  const tweet = await tweetService.findById(tweetId);
 
   res.render('tweet', { tweet });
 })
@@ -71,9 +71,9 @@ router.get('/:userId/tweets/:tweetId', async (req, res) => {
 router.delete('/:userId/tweets/:tweetId', async function (req, res) {
   const { tweetId } = req.params;
 
-  await tweetDatabase.delete(tweetId);
+  await tweetService.delete(tweetId);
   // In this way of deleting, in 'users' collection I've still have 'tweet object-id ref' in my users tweets array.
-  // is this correct?
+  // is this enough?
 
   res.send('OK');
 })
@@ -81,13 +81,13 @@ router.delete('/:userId/tweets/:tweetId', async function (req, res) {
 // router.post('/:userId/followings/:otherUserId', async (req, res) => {
 //   const { userId, otherUserId } = req.params;
 
-//   const user      = await userDatabase.find(userId);
-//   const otherUser = await userDatabase.find(otherUserId);
+//   const user      = await userService.find(userId);
+//   const otherUser = await userService.find(otherUserId);
   
 //   user.follow(otherUser);
 
-//   await userDatabase.update(user);
-//   await userDatabase.update(otherUser);
+//   await userService.update(user);
+//   await userService.update(otherUser);
 
 //   res.send('OK')
 // })
@@ -95,13 +95,13 @@ router.delete('/:userId/tweets/:tweetId', async function (req, res) {
 // router.delete('/:userId/followings/:otherUserId', async (req, res) => {
 //   const { userId, otherUserId } = req.params;
 
-//   const user      = await userDatabase.find(userId);
-//   const otherUser = await userDatabase.find(otherUserId);
+//   const user      = await userService.find(userId);
+//   const otherUser = await userService.find(otherUserId);
   
 //   user.unfollow(otherUser);
 
-//   await userDatabase.update(user);
-//   await userDatabase.update(otherUser);
+//   await userService.update(user);
+//   await userService.update(otherUser);
 
 //   res.send('OK') 
 // })
@@ -110,13 +110,13 @@ router.delete('/:userId/tweets/:tweetId', async function (req, res) {
 //   const { userId, retweetId } = req.params;
 //   const { content }           = req.body;
 
-//   const user          = await userDatabase.find(userId);
-//   const users         = await userDatabase.load();
+//   const user          = await userService.find(userId);
+//   const users         = await userService.load();
 //   const originalTweet = users.flatMap(u => u.tweets).find(t => t.id === retweetId);
 
 //   user.retweet(originalTweet, content);
 
-//   await userDatabase.update(user);
+//   await userService.update(user);
 
 //   res.send('OK');
 // })
@@ -124,8 +124,8 @@ router.delete('/:userId/tweets/:tweetId', async function (req, res) {
 // router.delete('/:userId/retweets/:retweetId', async (req, res) => { // Will be changed!
 //   const { userId, retweetId } = req.params;
 
-//   const users   = await userDatabase.load();
-//   const user    = await userDatabase.find(userId);
+//   const users   = await userService.load();
+//   const user    = await userService.find(userId);
 //   const retweet = user.tweets(t => t.id === retweetId);
 
 //   if ( !retweet ) {
@@ -134,7 +134,7 @@ router.delete('/:userId/tweets/:tweetId', async function (req, res) {
 
 //   user.unretweet(retweet);
 
-//   await userDatabase.update(user);
+//   await userService.update(user);
 // })
 
 module.exports = router;

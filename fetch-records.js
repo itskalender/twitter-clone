@@ -1,4 +1,4 @@
-const { userDatabase }  = require('./database');
+const { userService }  = require('./service');
 const { 
   getUsers,
   printUsernames,
@@ -9,6 +9,6 @@ const {
   const users = await getUsers();
   printUsernames(users);
 
-  const kalender = await userDatabase.findByUsername('toptaskalender');
+  const kalender = await userService.findByUsername('toptaskalender');
   printTweets(kalender);
 })()
