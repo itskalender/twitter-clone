@@ -30,8 +30,8 @@ router.get('/:userId', async (req, res) => {
     res.status(404).send('Cannot find user');
   }
   
-  res.render('user', { user });
-  // res.send(user);
+  // res.render('user', { user });
+  res.send(user);
 })
 
 router.delete('/:userId', async (req, res) => {
@@ -87,19 +87,13 @@ router.post('/:userId/followings/:otherUserId', async function (req, res) {
   res.send('OK');
 })
 
-// router.post('/:userId/followings/:otherUserId', async (req, res) => {
-//   const { userId, otherUserId } = req.params;
+router.delete('/:userId/followings/:otherUserId', async function (req, res) {
+  const { userId, otherUserId } = req.params;
 
-//   const user      = await userService.find(userId);
-//   const otherUser = await userService.find(otherUserId);
-  
-//   user.follow(otherUser);
+  await userService.unfollow(userId, otherUserId);
 
-//   await userService.update(user);
-//   await userService.update(otherUser);
-
-//   res.send('OK')
-// })
+  res.send('OK');
+})
 
 // router.delete('/:userId/followings/:otherUserId', async (req, res) => {
 //   const { userId, otherUserId } = req.params;

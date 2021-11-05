@@ -22,6 +22,19 @@ class UserService extends BaseService {
     await follower.save();
     await following.save();
   }
+
+  async unfollow(unfollowerId, unfollowingId) {
+    const unfollower  = await this.findById(unfollowerId);
+    const unfollowing = await this.findById(unfollowingId);
+
+    unfollower.followings = unfollower.followings.filter(user => user.username !== unfollowing.username);
+    unfollowing.followers = unfollowing.followers.filter(user => user.username !== unfollower.username);
+
+    unfollower.home = unfollower.home.filter(tweet => tweet.author.username !== unfollowing.username);
+
+    await unfollower.save();
+    await unfollowing.save();
+  }
 };
 
 module.exports = new UserService(User)
