@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose      = require('mongoose');
+const autopopulate  = require('mongoose-autopopulate')
+const Tweet         = require('./tweet');
 
 const UserSchema = mongoose.Schema({
   name        : { type: String, required: true },
@@ -9,12 +11,20 @@ const UserSchema = mongoose.Schema({
   location    : String,
   webSite     : String,
   profilPic   : String,
-  tweets      : [],
+  tweets      : [
+    {
+      type  : mongoose.Schema.Types.ObjectId,
+      ref   : 'Tweet',
+      autopopulate: { maxDepth: 1 }
+    }
+  ],
   likedTweets : [],
   followings  : [],
   followers   : [],
   home        : [],
 }, { timestamps: true })
+
+UserSchema.plugin(autopopulate);
 
 module.exports = mongoose.model('User', UserSchema);
 
