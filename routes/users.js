@@ -8,6 +8,7 @@ router.get('/', async (_, res) => {
   const users = await userService.load();
 
   res.render('users', { users } );
+  // res.send(users)
 })
 
 router.post('/', async (req, res) => {
@@ -30,12 +31,13 @@ router.get('/:userId', async (req, res) => {
   }
   
   res.render('user', { user });
+  // res.send(user);
 })
 
 router.delete('/:userId', async (req, res) => {
   const { userId } = req.params;
 
-  await userService.delete(userId);
+  await userService.deleteById(userId);
 
   res.send('OK');
 })
@@ -44,9 +46,9 @@ router.patch('/:userId', async (req, res) => {
   const { userId }  = req.params;
   const object      = req.body;
 
-  await userService.update(userId, object);
+  const user = await userService.update(userId, object);
 
-  res.send('OK');
+  res.send(user);
 })
 
 
@@ -69,11 +71,18 @@ router.get('/:userId/tweets/:tweetId', async (req, res) => {
 })
 
 router.delete('/:userId/tweets/:tweetId', async function (req, res) {
-  const { tweetId } = req.params;
+  const { userId, tweetId } = req.params;
 
-  await tweetService.delete(tweetId);
-  // In this way of deleting, in 'users' collection I've still have 'tweet object-id ref' in my users tweets array.
-  // is this enough?
+  await tweetService.deleteTweet(userId, tweetId);
+
+  res.send('OK');
+})
+
+
+router.post('/:userId/followings/:otherUserId', async function (req, res) {
+  const { userId, otherUserId } = req.params;
+
+  await userService.follow(userId, otherUserId);
 
   res.send('OK');
 })
