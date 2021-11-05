@@ -1,7 +1,7 @@
 const mongoose      = require('mongoose');
 const autopopulate  = require('mongoose-autopopulate');
 
-const TweetSchema = mongoose.Schema({
+const tweetSchema = mongoose.Schema({
   author      : { 
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -16,6 +16,6 @@ const TweetSchema = mongoose.Schema({
 
 }, { timestamp: true })
 
-TweetSchema.plugin(autopopulate);
+tweetSchema.plugin(autopopulate);
 
-module.exports = mongoose.model('Tweet', TweetSchema);
+module.exports = mongoose.model('Tweet', tweetSchema);
