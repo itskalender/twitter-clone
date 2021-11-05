@@ -14,7 +14,7 @@ const tweetSchema = mongoose.Schema({
   likes       : [],
   attachments : []
 
-}, { timestamp: true })
+}, { timestamps: true })
 
 tweetSchema.plugin(autopopulate);
 
