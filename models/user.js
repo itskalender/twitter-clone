@@ -12,15 +12,33 @@ const userSchema = mongoose.Schema({
   profilPic   : String,
   tweets      : [
     {
-      type  : mongoose.Schema.Types.ObjectId,
-      ref   : 'Tweet',
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Tweet',
       autopopulate: { maxDepth: 1 }
     }
   ],
   likedTweets : [],
-  followings  : [],
-  followers   : [],
-  home        : [],
+  followings  : [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      autopopulate : { maxDepth: 1 }
+    }
+  ],
+  followers   : [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      autopopulate: { maxDepth: 1 }
+    }
+  ],
+  home        : [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Tweet',
+      autopopulate: { maxDepth: 1 }
+    }
+  ],
 }, { timestamps: true })
 
 userSchema.plugin(autopopulate);
