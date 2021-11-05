@@ -95,19 +95,7 @@ router.delete('/:userId/followings/:otherUserId', async function (req, res) {
   res.send('OK');
 })
 
-// router.delete('/:userId/followings/:otherUserId', async (req, res) => {
-//   const { userId, otherUserId } = req.params;
 
-//   const user      = await userService.find(userId);
-//   const otherUser = await userService.find(otherUserId);
-  
-//   user.unfollow(otherUser);
-
-//   await userService.update(user);
-//   await userService.update(otherUser);
-
-//   res.send('OK') 
-// })
 
 // router.post('/:userId/retweets/:retweetId', async (req, res) => {
 //   const { userId, retweetId } = req.params;
