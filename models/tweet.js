@@ -9,9 +9,14 @@ const tweetSchema = mongoose.Schema({
     autopopulate: { maxDepth : 1 }
   },
   body        : { type: String, required: true },
-  replies     : [],
   retweets    : [],
-  likes       : [],
+  likes       : [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      autopopulate: { maxDepth: 1 }
+    }
+  ],
   attachments : []
 
 }, { timestamps: true })
