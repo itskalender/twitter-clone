@@ -4,14 +4,14 @@ const {
   tweetService
 }                     = require('../services');
 
-router.get('/', async (_, res) => {
+router.get('/', async function (_, res) {
   const users = await userService.load();
 
   res.render('users', { users } );
   // res.send(users)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', async function (req, res) {
   try {
     const user = await userService.insert(req.body);
     res.send(user);
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 })
 
 
-router.get('/:userId', async (req, res) => {
+router.get('/:userId', async function (req, res) {
   const { userId } = req.params;
 
   const user = await userService.findById(userId);
@@ -34,7 +34,7 @@ router.get('/:userId', async (req, res) => {
   // res.send(user);
 })
 
-router.delete('/:userId', async (req, res) => {
+router.delete('/:userId', async function (req, res) {
   const { userId } = req.params;
 
   await userService.deleteById(userId);
@@ -42,7 +42,7 @@ router.delete('/:userId', async (req, res) => {
   res.send('OK');
 })
 
-router.patch('/:userId', async (req, res) => {
+router.patch('/:userId', async function (req, res) {
   const { userId }  = req.params;
   const object      = req.body;
 
@@ -53,7 +53,7 @@ router.patch('/:userId', async (req, res) => {
 
 
 
-router.post('/:userId/tweets', async (req, res) => {
+router.post('/:userId/tweets', async function (req, res) {
   const { userId }  = req.params;
   const { body }    = req.body;
 
@@ -62,7 +62,7 @@ router.post('/:userId/tweets', async (req, res) => {
   res.send(tweet);
 })
 
-router.get('/:userId/tweets/:tweetId', async (req, res) => {
+router.get('/:userId/tweets/:tweetId', async function (req, res) {
   const { tweetId } = req.params;
 
   const tweet = await tweetService.findById(tweetId);
@@ -96,36 +96,12 @@ router.delete('/:userId/followings/:otherUserId', async function (req, res) {
 })
 
 
+router.post('/:userId/likes/:tweetId', async function (req, res) {
+  const { userId, tweetId } = req.params;
 
-// router.post('/:userId/retweets/:retweetId', async (req, res) => {
-//   const { userId, retweetId } = req.params;
-//   const { content }           = req.body;
+  await tweetService.like(userId, tweetId);
 
-//   const user          = await userService.find(userId);
-//   const users         = await userService.load();
-//   const originalTweet = users.flatMap(u => u.tweets).find(t => t.id === retweetId);
-
-//   user.retweet(originalTweet, content);
-
-//   await userService.update(user);
-
-//   res.send('OK');
-// })
-
-// router.delete('/:userId/retweets/:retweetId', async (req, res) => { // Will be changed!
-//   const { userId, retweetId } = req.params;
-
-//   const users   = await userService.load();
-//   const user    = await userService.find(userId);
-//   const retweet = user.tweets(t => t.id === retweetId);
-
-//   if ( !retweet ) {
-//     res.status(404).send('Cannot find tweet');
-//   }
-
-//   user.unretweet(retweet);
-
-//   await userService.update(user);
-// })
+  res.send('OK');
+})
 
 module.exports = router;
