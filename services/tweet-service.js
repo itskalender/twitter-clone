@@ -51,6 +51,23 @@ class TweetService extends BaseService {
     await user.save();
     await tweet.save();
   }
+
+  async retweet(userId, originalTweetId, body) {
+    const author        = await userService.findById(userId);
+    const originalTweet = await this.findById(originalTweetId);
+
+    const retweet = await Tweet.create({ author, originalTweet, body })
+
+    author.tweets.push(retweet);
+    author.home.push(retweet);
+
+    originalTweet.retweets.push(retweet);
+
+    await author.save();
+    await originalTweet.save();
+
+    return retweet;
+  }
 };
 
 module.exports = new TweetService(Tweet)
