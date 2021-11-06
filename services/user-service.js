@@ -29,10 +29,10 @@ class UserService extends BaseService {
     const unfollower  = await this.findById(unfollowerId);
     const unfollowing = await this.findById(unfollowingId);
 
-    unfollower.followings = unfollower.followings.filter(user => user.username !== unfollowing.username);
-    unfollowing.followers = unfollowing.followers.filter(user => user.username !== unfollower.username);
+    unfollower.followings = unfollower.followings.filter(user => user.id !== unfollowingId);
+    unfollowing.followers = unfollowing.followers.filter(user => user.id !== unfollowerId);
 
-    unfollower.home = unfollower.home.filter(tweet => tweet.author.username !== unfollowing.username);
+    unfollower.home = unfollower.home.filter(tweet => tweet.author.id !== unfollowingId);
 
     await unfollower.save();
     await unfollowing.save();
