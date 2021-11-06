@@ -1,14 +1,16 @@
-const { userDatabase }  = require('./database');
-const { 
-  getUsers,
-  printUsernames,
-  printTweets 
-}                       = require('./lib');
+const express         = require('express');
+const bodyParser      = require('body-parser');
+const usersRouter     = require('./routes/users');
+const indexRouter     = require('./routes/index');
+require('./mongo-connection');
 
-(async function init() {
-  const users = await getUsers();
-  printUsernames(users);
+const app             = express();
 
-  const kalender = await userDatabase.findByUsername('toptaskalender');
-  printTweets(kalender);
-})()
+app.set('view engine', 'pug');
+app.use(bodyParser.json());
+app.use('/users', usersRouter);
+app.use('/', indexRouter);
+
+app.listen(3000, () => {
+  console.log('started listening on 3000');
+})

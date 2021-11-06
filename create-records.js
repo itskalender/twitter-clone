@@ -1,5 +1,5 @@
 const { User, Tweet }   = require('./models');
-const { userDatabase }  = require('./database');
+const { userService }  = require('./service');
 const { 
   printUsernames, 
   printTweets 
@@ -60,7 +60,7 @@ kalender.unretweet(tweet3);
 
 async function main() {
   try {
-    await userDatabase.save([kalender, ozden, mustafa]);
+    await userService.save([kalender, ozden, mustafa]);
 
     const tweet5 = new Tweet(ezgi, 'Learning AJAX is cool too!');
     ezgi.tweet(tweet5);
@@ -68,11 +68,11 @@ async function main() {
     const tweet6 = new Tweet(kalender, 'Check for update!');
     kalender.tweet(tweet6);
 
-    await userDatabase.update([kalender]);
-    await userDatabase.insert([ezgi]);
-    await userDatabase.remove([ozden]);
+    await userService.update(kalender);
+    await userService.insert(ezgi);
+    // await userService.remove(ozden);
 
-    const users = await userDatabase.load();
+    const users = await userService.load();
     printUsernames(users);
     printTweets(ezgi);
   } catch (e) {

@@ -1,17 +1,21 @@
-const { v4: uuidv4 }  = require('uuid');
+const mongoose      = require('mongoose');
+const autopopulate  = require('mongoose-autopopulate');
 
-class Tweet {
-  id            = uuidv4();
-  createdAt     = new Date();
-  attachments   = [];
-  replies       = [];
-  retweets      = [];
-  likes         = [];
-  
-  constructor(author, content) {
-    this.author   = author;
-    this.content  = content;
-  }
-}
+const tweetSchema = mongoose.Schema({
+  author      : { 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+    autopopulate: { maxDepth : 1 }
+  },
+  body        : { type: String, required: true },
+  replies     : [],
+  retweets    : [],
+  likes       : [],
+  attachments : []
 
-module.exports = Tweet;
+}, { timestamps: true })
+
+tweetSchema.plugin(autopopulate);
+
+module.exports = mongoose.model('Tweet', tweetSchema);
