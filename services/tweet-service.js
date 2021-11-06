@@ -22,7 +22,7 @@ class TweetService extends BaseService {
 
   async deleteTweet(userId, tweetId) {
     await this.deleteById(tweetId);
-    // In this way, the tweet can be able to be removed from tweets collection, but can't from user's tweets array.
+    // In this way, the tweet can be able to be removed from tweets collection, but can't from user's tweets array and user's followers' home array!
   }
 };
 
