@@ -8,7 +8,6 @@ router.get('/', async function (_, res) {
   const users = await userService.load();
 
   res.render('users', { users } );
-  // res.send(users)
 })
 
 router.post('/', async function (req, res) {
