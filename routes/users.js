@@ -104,4 +104,12 @@ router.post('/:userId/likes/:tweetId', async function (req, res) {
   res.send('OK');
 })
 
+router.delete('/:userId/likes/:tweetId', async function (req, res) {
+  const { userId, tweetId } = req.params;
+
+  await tweetService.unlike(userId, tweetId);
+
+  res.send('OK')
+})
+
 module.exports = router;
