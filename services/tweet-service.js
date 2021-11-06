@@ -1,6 +1,6 @@
 const BaseService = require('./base-service');
 const userService = require('./user-service');
-const { Tweet, User }   = require('../models');
+const { Tweet }   = require('../models');
 
 class TweetService extends BaseService {
   async tweet(userId, body) {
