@@ -24,6 +24,17 @@ class TweetService extends BaseService {
     await this.deleteById(tweetId);
     // In this way, the tweet can be able to be removed from tweets collection, but can't from user's tweets array and user's followers' home array!
   }
+
+  async like(userId, tweetId) {
+    const tweet = await this.findById(tweetId);
+    const user  = await userService.findById(userId);
+
+    user.likedTweets.push(tweet);
+    tweet.likes.push(user);
+
+    await user.save();
+    await tweet.save();
+  }
 };
 
 module.exports = new TweetService(Tweet)
