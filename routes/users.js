@@ -30,8 +30,8 @@ router.get('/:userId', async (req, res) => {
     res.status(404).send('Cannot find user');
   }
   
-  // res.render('user', { user });
-  res.send(user);
+  res.render('user', { user });
+  // res.send(user);
 })
 
 router.delete('/:userId', async (req, res) => {
