@@ -10,7 +10,7 @@ block content
     ol
       each tweet in user.tweets
         if tweet.originalTweet
-          li "#{tweet.content}" with the original tweet "#{tweet.originalTweet.content} (#{tweet.id})"
+          li "#{tweet.body}" with the original tweet "#{tweet.originalTweet.body} from "#{tweet.originalTweet.author.name}"
         else 
           li "#{tweet.body}" Click 
             a(href=`/users/${user._id}/tweets/${tweet._id}`) here
@@ -22,9 +22,9 @@ block content
     ol
       each tweet in user.home
         if tweet.originalTweet
-          li #{tweet.author.name}: "#{tweet.content}" with the original tweet "#{tweet.originalTweet.content} (#{tweet.id})"
+          li "#{tweet.body}" with the original tweet "#{tweet.originalTweet.body} from "#{tweet.originalTweet.author.name}"
         else 
-          li #{tweet.author.name}: "#{tweet.body}" Click 
+          li "#{tweet.body}" from #{tweet.author.name}. Click 
             a(href=`/users/${tweet.author._id}/tweets/${tweet._id}`) here
             |  to see details.
   else
@@ -34,7 +34,7 @@ block content
   //- if user.likedTweets.length
   //-   ol
   //-     each tweet in user.likedTweets 
-  //-       li "#{tweet.content} (#{tweet.id})"
+  //-       li "#{tweet.body} (#{tweet.id})"
   //- else
   //-   p #{user.name} has no liked tweet yet!
   h4 Followings
