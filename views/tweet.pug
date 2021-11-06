@@ -5,3 +5,10 @@ block content
   | #{tweet.author.name}
   h4 Body
   | #{tweet.body}
+  h4 Likes
+  if tweet.likes.length
+    ol
+      each user in tweet.likes
+        li #{user.name}
+  else
+    p There is no user who liked the tweet 😥.

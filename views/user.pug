@@ -12,11 +12,11 @@ block content
         if tweet.originalTweet
           li "#{tweet.body}" with the original tweet "#{tweet.originalTweet.body} from "#{tweet.originalTweet.author.name}"
         else 
-          li "#{tweet.body}" Click 
+          li "#{tweet.body}" - Click 
             a(href=`/users/${user._id}/tweets/${tweet._id}`) here
             |  to see details.
   else
-    p #{user.name} has no tweet yet!
+    p #{user.name} has no tweet yet❗
   h4 Home
   if user.home.length
     ol
@@ -28,26 +28,25 @@ block content
             a(href=`/users/${tweet.author._id}/tweets/${tweet._id}`) here
             |  to see details.
   else
-    p There is no tweets to show!
-    
-  //- h4 likedTweets
-  //- if user.likedTweets.length
-  //-   ol
-  //-     each tweet in user.likedTweets 
-  //-       li "#{tweet.body} (#{tweet.id})"
-  //- else
-  //-   p #{user.name} has no liked tweet yet!
+    p There is no tweets to show❗
+  h4 Liked Tweets
+  if user.likedTweets.length
+    ol
+      each tweet in user.likedTweets 
+        li "#{tweet.body}" from #{tweet.author.name}.
+  else
+    p #{user.name} has no liked tweet yet❗
   h4 Followings
   if user.followings.length
     ol
       each person in user.followings
         li #{person.name}
   else
-    p #{user.name} has no following yet!
+    p #{user.name} has no following yet❗
   h4 Followers
   if user.followers.length
     ol
       each person in user.followers 
         li #{person.name}
   else
-    p #{user.name} has no follower yet!
+    p #{user.name} has no follower yet❗
