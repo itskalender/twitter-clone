@@ -19,8 +19,10 @@ class UserService extends BaseService {
 
     follower.home = follower.home.concat(following.tweets); // Ordering
 
-    await follower.save();
-    await following.save();
+    return Promise.all( [follower.save(), following.save()] );
+
+    // await follower.save();
+    // await following.save();
   }
 
   async unfollow(unfollowerId, unfollowingId) {
