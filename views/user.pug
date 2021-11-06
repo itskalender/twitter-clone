@@ -10,11 +10,9 @@ block content
     ol
       each tweet in user.tweets
         if tweet.originalTweet
-          li "#{tweet.body}" with the original tweet "#{tweet.originalTweet.body} from "#{tweet.originalTweet.author.name}"
+          li #{user.name} retweeted "#{tweet.originalTweet.body}" #{tweet.body ? `with this quote "${tweet.body}"` : 'without quote'}
         else 
-          li "#{tweet.body}" - Click 
-            a(href=`/users/${user._id}/tweets/${tweet._id}`) here
-            |  to see details.
+          li #{user.name} tweeted "#{tweet.body}"
   else
     p #{user.name} has no tweet yet❗
   h4 Home
@@ -22,13 +20,11 @@ block content
     ol
       each tweet in user.home
         if tweet.originalTweet
-          li "#{tweet.body}" with the original tweet "#{tweet.originalTweet.body} from "#{tweet.originalTweet.author.name}"
+          li "#{tweet.body ? tweet.body : 'WITHOUT QUOTE'}" from #{tweet.author.name} with this original tweet "#{tweet.originalTweet.body}"
         else 
-          li "#{tweet.body}" from #{tweet.author.name}. Click 
-            a(href=`/users/${tweet.author._id}/tweets/${tweet._id}`) here
-            |  to see details.
+          li "#{tweet.body}" from #{tweet.author.name}
   else
-    p There is no tweets to show❗
+    p There is no tweet to show❗
   h4 Liked Tweets
   if user.likedTweets.length
     ol
