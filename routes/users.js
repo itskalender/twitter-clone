@@ -112,4 +112,13 @@ router.delete('/:userId/likes/:tweetId', async function (req, res) {
   res.send('OK')
 })
 
+router.post('/:userId/retweets', async function (req, res) {
+  const { userId }                = req.params;
+  const { originalTweetId, body } = req.body;
+
+  const tweet = await tweetService.retweet(userId, originalTweetId, body);
+
+  res.send(tweet);
+})
+
 module.exports = router;
