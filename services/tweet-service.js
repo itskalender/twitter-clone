@@ -10,12 +10,17 @@ class TweetService extends BaseService {
     author.tweets.push(tweet);
     author.home.push(tweet);
 
-    author.followers.forEach(user => {
+    await author.save();
+
+    for ( let user of author.followers ) {
       user.home.push(tweet);
       user.save();
-    })
-    
-    await author.save();
+    }
+
+    // author.followers.forEach(async user => {
+    //   user.home.push(tweet);
+    //   await user.save();
+    // })
     
     return tweet;
   };
