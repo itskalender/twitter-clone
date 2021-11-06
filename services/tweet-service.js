@@ -26,11 +26,22 @@ class TweetService extends BaseService {
   }
 
   async like(userId, tweetId) {
-    const tweet = await this.findById(tweetId);
     const user  = await userService.findById(userId);
+    const tweet = await this.findById(tweetId);
 
     user.likedTweets.push(tweet);
     tweet.likes.push(user);
+
+    await user.save();
+    await tweet.save();
+  }
+
+  async unlike(userId, tweetId) {
+    const user  = await userService.findById(userId);
+    const tweet = await this.findById(tweetId);
+
+    user.likedTweets  = user.likedTweets.filter(tweet => tweet.id !== tweetId);
+    tweet.likes       = tweet.likes.filter(user => user.id !== userId);
 
     await user.save();
     await tweet.save();
