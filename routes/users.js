@@ -66,7 +66,8 @@ router.get('/:userId/tweets/:tweetId', async function (req, res) {
 
   const tweet = await tweetService.findById(tweetId);
 
-  res.render('tweet', { tweet });
+  // res.render('tweet', { tweet });
+  res.send(tweet);
 })
 
 router.delete('/:userId/tweets/:tweetId', async function (req, res) {
@@ -118,6 +119,14 @@ router.post('/:userId/retweets', async function (req, res) {
   const tweet = await tweetService.retweet(userId, originalTweetId, body);
 
   res.send(tweet);
+})
+
+router.delete('/:userId/retweets/:retweetId', async function (req, res) {
+  const { userId, retweetId } = req.params;
+
+  await tweetService.unretweet(userId, retweetId);
+
+  res.send('OK');
 })
 
 module.exports = router;
