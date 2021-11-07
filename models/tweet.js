@@ -14,7 +14,13 @@ const tweetSchema = mongoose.Schema({
     ref: 'Tweet',
     autopopulate: { maxDepth: 1 } 
   },
-  retweets      : [],
+  retweets      : [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Tweet',
+      autopopulate: { maxDepth: 1 }
+    }
+  ],
   likes         : [
     {
       type: mongoose.Schema.Types.ObjectId,
