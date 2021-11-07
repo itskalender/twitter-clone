@@ -17,11 +17,6 @@ class TweetService extends BaseService {
       user.save();
     }
 
-    // author.followers.forEach(async user => {
-    //   user.home.push(tweet);
-    //   await user.save();
-    // })
-    
     return tweet;
   };
 
