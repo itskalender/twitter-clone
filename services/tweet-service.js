@@ -63,6 +63,21 @@ class TweetService extends BaseService {
 
     return retweet;
   }
+
+  async unretweet(userId, retweetId) {
+    const user          = await userService.findById(userId);
+    const retweet       = await this.findById(retweetId);
+    const originalTweet = await this.findById(retweet.originalTweet.id);
+
+    user.tweets = user.tweets.filter(tweet => tweet.id !== retweetId);
+    user.home   = user.home.filter(tweet => tweet.id !== retweetId);
+    await user.save();
+
+    originalTweet.retweets = originalTweet.retweets.filter(tweet => tweet.id !== retweetId);
+    await originalTweet.save();
+
+    await this.deleteById(retweetId);
+  }
 };
 
 module.exports = new TweetService(Tweet)
