@@ -1,7 +1,5 @@
-const tweetService = require('./tweet-service');
-const userService  = require('./user-service');
+const authService = require('./auth');
 
 module.exports = {
-  userService,
-  tweetService
+  authService
 }
