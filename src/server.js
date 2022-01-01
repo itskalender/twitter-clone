@@ -6,5 +6,5 @@ configure();
 load();
 
 app.listen(process.env.APP_PORT, function startHandler() {
-  console.log(`Server listening on port: ${process.env.APP_PORT}     ✅`)
+  console.log(`Server listening on port: ${process.env.APP_PORT}     ✅`);
 });
