@@ -2,6 +2,7 @@ async function errorHandler(err, req, res, next) {
   if (err.isOperational) {
     res.status(err.status).json({
       error: err,
+      stack: err.stack,
       code: err.code,
       msg: err.message
     });
@@ -9,6 +10,7 @@ async function errorHandler(err, req, res, next) {
   else {
     res.status(500).json({
       error: err,
+      stack: err.stack,
       code: 2,
       msg: 'Internal server error.'
     });
