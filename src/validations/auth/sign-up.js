@@ -23,11 +23,11 @@ const signUpValidation = Joi.object({
     .required()
     .error(joiErrorHandler),
 
-  passwordConfirm: Joi
+  confirmationPassword: Joi
     .ref('password')
-    
+
 })
-  .with('password', 'passwordConfirm')
+  .with('password', 'confirmationPassword')
   .error(joiErrorHandler)
 
 module.exports = signUpValidation;
