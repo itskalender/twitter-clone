@@ -9,7 +9,7 @@ function joiErrorHandler(errors) {
         err.message = `${field.label} is a required field.`;
         break;
       case 'any.only':
-        err.message = `${field.label} must be either ${field.valids.join(', ')}.`;
+        err.message = `${field.label} must be equal to ${field.valids[0].key}.`;
         break;
 
       case 'string.base':
