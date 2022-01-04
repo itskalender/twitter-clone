@@ -3,16 +3,24 @@ const {
   validateAgainst
 }                 = require('../middlewares');
 const {
-  signUpValidation
+  signUpValidation,
+  logInValidation
 }                 = require('../validations');
 const {
-  signUp
+  signUp,
+  logIn
 }                 = require('../controllers');
 
 router.route('/sign-up')
   .post(
     validateAgainst(signUpValidation),
     signUp
+  )
+
+router.route('/log-in')
+  .post(
+    validateAgainst(logInValidation),
+    logIn
   )
 
 module.exports = router;
