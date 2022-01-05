@@ -1,18 +1,20 @@
-const jwt   = require('jsonwebtoken');
-const {
-  AppError
-}           = require('../classes');
+const jwt = require('jsonwebtoken');
 
 function signToken(userId) {
-  try {
-    return jwt.sign(
+  return new Promise((resolve, reject) => {
+    jwt.sign(
       { id: userId },
       process.env.JWT_SECRET_KEY,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
+      { expiresIn: process.env.JWT_EXPIRES_IN },
+      (err, jwt) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(jwt);
+        }
+      }
     );
-  } catch (err) {
-    throw new AppError(500, 'Cannot sign token.');
-  }
+  });
 }
 
 module.exports = signToken;
