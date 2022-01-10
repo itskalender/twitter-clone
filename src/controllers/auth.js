@@ -1,7 +1,8 @@
 const {
   catchAsync,
   AppError,
-  signToken
+  signToken,
+  sendResetPasswordEmail
 }               = require('../utils');
 const {
   authService
@@ -27,13 +28,13 @@ const logIn = catchAsync(async (req, res, next) => {
   const user = await authService.findOne({ email }, '+password');
 
   if (!user) {
-    return next(new AppError(400, 'Cannot find a user with given email or password.'));
+    return next(new AppError(404, 'Cannot find a user with given email or password.'));
   }
 
   const arePasswordsEqual = await user.comparePasswords(password, user.password);
 
   if (!arePasswordsEqual) {
-    return next(new AppError(400, 'Cannot find a user with given email or password.'));
+    return next(new AppError(404, 'Cannot find a user with given email or password.'));
   }
 
   const JWT = await signToken(user.id);
@@ -48,7 +49,25 @@ const logIn = catchAsync(async (req, res, next) => {
   });
 });
 
+const forgotPassword = catchAsync(async (req, res, next) => {
+  const { email } = req.body;
+
+  const user = await authService.findOne({ email });
+
+  if (!user) {
+    return next(new AppError(404, 'Cannot find a user with given email. Please provide correct information.'));
+  }
+
+  await sendResetPasswordEmail(req, user);
+
+  res.status(200).json({
+    code: 0,
+    msg: 'Reset password email successfully sent.'
+  });
+});
+
 module.exports = {
   signUp,
-  logIn
+  logIn,
+  forgotPassword
 }
