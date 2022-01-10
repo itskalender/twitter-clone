@@ -1,5 +1,6 @@
 const mongoose  = require('mongoose');
 const bcrypt    = require('bcryptjs');
+const crypto    = require('crypto');
 const {
   hashPassword
 }               = require('../../../utils');
@@ -42,6 +43,10 @@ const userSchema = mongoose.Schema({
     required    : [true, 's']
   },
 
+  passwordResetToken: String,
+
+  passwordResetTokenExpiresAt: String,
+
   bio           : String,
 
   location      : String,
@@ -49,41 +54,6 @@ const userSchema = mongoose.Schema({
   webSite       : String,
 
   profilPic     : String,
-
-  tweets: [
-    {
-      type      : mongoose.Schema.Types.ObjectId,
-      ref       : 'Tweet',
-    }
-  ],
-
-  likedTweets: [
-    {
-      type      : mongoose.Schema.Types.ObjectId,
-      ref       : 'Tweet',
-    }
-  ],
-
-  followings: [
-    {
-      type      : mongoose.Schema.Types.ObjectId,
-      ref       : 'User',
-    }
-  ],
-
-  followers: [
-    {
-      type      : mongoose.Schema.Types.ObjectId,
-      ref       : 'User',
-    }
-  ],
-
-  home: [
-    {
-      type      : mongoose.Schema.Types.ObjectId,
-      ref       : 'Tweet',
-    }
-  ]
 
 }, { 
   timestamps  : true,
@@ -94,6 +64,16 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.comparePasswords = function(password, hash) {
   return bcrypt.compare(password, hash);
+}
+
+userSchema.methods.setPasswordResetToken = function() {
+  const passwordResetToken          = crypto.randomBytes(32).toString('hex');
+  const passwordResetTokenHash      = crypto.createHash('sha256').update(passwordResetToken).digest('hex');
+
+  this.passwordResetToken           = passwordResetTokenHash;
+  this.passwordResetTokenExpiresAt  = Date.now() + 10 * 60 * 1000;
+
+  return passwordResetToken;
 }
 
 userSchema.pre('save', async function(next) {
