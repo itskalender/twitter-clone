@@ -4,11 +4,13 @@ const {
 }                 = require('../middlewares');
 const {
   signUpValidation,
-  logInValidation
+  logInValidation,
+  forgotPasswordValidation
 }                 = require('../validations');
 const {
   signUp,
-  logIn
+  logIn,
+  forgotPassword
 }                 = require('../controllers');
 
 router.route('/sign-up')
@@ -21,6 +23,12 @@ router.route('/log-in')
   .post(
     validateAgainst(logInValidation),
     logIn
+  )
+
+router.route('/forgot-password')
+  .post(
+    validateAgainst(forgotPasswordValidation),
+    forgotPassword
   )
 
 module.exports = router;
