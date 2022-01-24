@@ -2,7 +2,8 @@ const {
   catchAsync,
   AppError,
   signToken,
-  sendResetPasswordEmail
+  sendResetPasswordEmail,
+  HelperFunctions
 }               = require('../utils');
 const {
   authService
@@ -66,8 +67,37 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   });
 });
 
+const resetPassword = catchAsync(async (req, res, next) => {
+  const { password, confirmationPassword }  = req.body;
+  const { resetToken }                      = req.params;
+
+  const passwordResetToken = HelperFunctions.hashToken(resetToken);
+
+  const user = await authService.findOne({
+    passwordResetToken,
+    passwordResetTokenExpiresAt: { $gte: new Date().getTime() }
+  });
+
+  if (!user) {
+    return next(new AppError(400, 'Malformed reset token or exceeded expire time. Please try again to reset password.'));
+  }
+
+  user.update({ password, confirmationPassword });
+
+  await user.save();
+
+  res.status(200).json({
+    code: 0,
+    msg: 'success',
+    data: {
+      data: user
+    }
+  })
+});
+
 module.exports = {
   signUp,
   logIn,
-  forgotPassword
+  forgotPassword,
+  resetPassword
 }
