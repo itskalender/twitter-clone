@@ -5,12 +5,14 @@ const {
 const {
   signUpValidation,
   logInValidation,
-  forgotPasswordValidation
+  forgotPasswordValidation,
+  resetPasswordValidation
 }                 = require('../validations');
 const {
   signUp,
   logIn,
-  forgotPassword
+  forgotPassword,
+  resetPassword
 }                 = require('../controllers');
 
 router.route('/sign-up')
@@ -29,6 +31,12 @@ router.route('/forgot-password')
   .post(
     validateAgainst(forgotPasswordValidation),
     forgotPassword
+  )
+
+router.route('/reset-password/:resetToken')
+  .patch(
+    validateAgainst(resetPasswordValidation),
+    resetPassword
   )
 
 module.exports = router;
