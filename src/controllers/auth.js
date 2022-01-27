@@ -56,14 +56,14 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   const user = await authService.findOne({ email });
 
   if (!user) {
-    return next(new AppError(404, 'Cannot find a user with given email. Please provide correct information.'));
+    return next(new AppError(404, 'Cannot find a user with given email. Please provide correct email.'));
   }
 
   await sendResetPasswordEmail(req, user);
 
   res.status(200).json({
     code: 0,
-    msg: 'Reset password email successfully sent.'
+    msg: 'Reset password email successfully sent to given email.'
   });
 });
 
