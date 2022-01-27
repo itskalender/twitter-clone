@@ -1,8 +1,6 @@
 const mongoose  = require('mongoose');
-const bcrypt    = require('bcryptjs');
 const {
-  HelperFunctions,
-  hashPassword
+  HelperFunctions
 }               = require('../../../utils');
 
 const userSchema = mongoose.Schema({
@@ -33,14 +31,12 @@ const userSchema = mongoose.Schema({
   confirmationPassword: {
     type        : String,
     validate: {
-      validator : function validatePasswordConfirm(value) {
+      validator : function validateConfirmationPassword(value) {
         return this.password === value;
       },
-      message   : function createConfirmationPasswordErrorMessage(props) {
-        return `Confirmation password must be equal to password.`
-      }
+      message   : `Confirmation password must be equal to password.`
     },
-    required    : [true, 's']
+    required    : [true, 'Confirmation password must be provided.']
   },
 
   passwordResetToken: String,
@@ -68,13 +64,9 @@ userSchema.methods.update = function(object) {
   }
 }
 
-userSchema.methods.comparePasswords = function(password, hash) {
-  return bcrypt.compare(password, hash);
-}
-
 userSchema.methods.setPasswordResetToken = function() {
   const passwordResetToken          = HelperFunctions.createRandomBytes(32);
-  const passwordResetTokenHash      = HelperFunctions.hashToken(passwordResetToken);
+  const passwordResetTokenHash      = HelperFunctions.hash(passwordResetToken);
 
   this.passwordResetToken           = passwordResetTokenHash;
   this.passwordResetTokenExpiresAt  = Date.now() + 10 * 60 * 1000;
@@ -84,7 +76,7 @@ userSchema.methods.setPasswordResetToken = function() {
 
 userSchema.pre('save', async function(next) {
   if ( this.isModified('password') ) {
-    this.password                     = await hashPassword(this.password);
+    this.password                     = await HelperFunctions.hashPassword(this.password, 8);
     this.confirmationPassword         = undefined;
     this.passwordResetToken           = undefined;
     this.passwordResetTokenExpiresAt  = undefined;
