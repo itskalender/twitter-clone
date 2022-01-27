@@ -12,9 +12,10 @@ const userSchema = mongoose.Schema({
   username: {
     type        : String,
     unique      : true,
-    default     : function setDefaultUsername() {
-      return this.name.toLowerCase() + String(Date.now()).slice(0, 6);
+    default     : function createDefaultUsername() {
+      return this.name.toLowerCase() + HelperFunctions.createRandomBytes(6);
     }
+  
   },
 
   email: {
@@ -25,7 +26,8 @@ const userSchema = mongoose.Schema({
 
   password: {
     type        : String,
-    required    : [true, 'A user must have a password']
+    required    : [true, 'A user must have a password'],
+    select      : false
   },
 
   passwordUpdatedAt: Date,
