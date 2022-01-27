@@ -32,7 +32,7 @@ const logIn = catchAsync(async (req, res, next) => {
     return next(new AppError(404, 'Cannot find a user with given email or password.'));
   }
 
-  const arePasswordsEqual = await user.comparePasswords(password, user.password);
+  const arePasswordsEqual = await HelperFunctions.comparePasswords(password, user.password);
 
   if (!arePasswordsEqual) {
     return next(new AppError(404, 'Cannot find a user with given email or password.'));
@@ -71,7 +71,7 @@ const resetPassword = catchAsync(async (req, res, next) => {
   const { password, confirmationPassword }  = req.body;
   const { resetToken }                      = req.params;
 
-  const passwordResetToken = HelperFunctions.hashToken(resetToken);
+  const passwordResetToken = HelperFunctions.hash(resetToken);
 
   const user = await authService.findOne({
     passwordResetToken,
