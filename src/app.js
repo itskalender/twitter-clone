@@ -2,7 +2,8 @@ const express     = require('express');
 const helmet      = require('helmet');
 const morgan      = require('morgan');
 const {
-  authRouter
+  authRouter,
+  usersRouter
 }                 = require('./routes');
 const {
   invalidEndpointHandler,
@@ -16,6 +17,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/', authRouter);
+app.use('/users', usersRouter);
 
 app.all('*', invalidEndpointHandler);
 app.use(errorHandler);
