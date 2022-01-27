@@ -28,6 +28,8 @@ const userSchema = mongoose.Schema({
     required    : [true, 'A user must have a password']
   },
 
+  passwordUpdatedAt: Date,
+
   confirmationPassword: {
     type        : String,
     validate: {
@@ -82,6 +84,10 @@ userSchema.pre('save', async function(next) {
     this.passwordResetTokenExpiresAt  = undefined;
 
     next();
+  }
+
+  if ( this.isModified('password') && !this.isNew ) {
+    this.passwordUpdatedAt = Date.now();  
   }
 
   next();
