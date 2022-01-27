@@ -38,6 +38,8 @@ const logIn = catchAsync(async (req, res, next) => {
     return next(new AppError(404, 'Cannot find a user with given email or password.'));
   }
 
+  user.update({ password: undefined });
+
   const JWT = await signToken(user.id);
 
   res.status(200).json({
